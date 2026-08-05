@@ -13,15 +13,15 @@ import {
     orderBy 
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// Configuración de tu proyecto en Firebase Console
-// ⚠️ REEMPLAZA estos valores con tus claves reales de Firebase Console
+// Configuración con tus claves reales de Firebase
 const firebaseConfig = {
-  apiKey: "TU_API_KEY_AQUI",
-  authDomain: "TU_PROYECTO.firebaseapp.com",
-  projectId: "TU_PROYECTO_ID",
-  storageBucket: "TU_PROYECTO.appspot.com",
-  messagingSenderId: "TU_MESSAGING_SENDER_ID",
-  appId: "TU_APP_ID"
+    apiKey: "AIzaSyDeN3tM31wjUozZk42xkGPu-dgXNNL_0ws",
+    authDomain: "finanzas-familiares-6ca5b.firebaseapp.com",
+    projectId: "finanzas-familiares-6ca5b",
+    storageBucket: "finanzas-familiares-6ca5b.firebasestorage.app",
+    messagingSenderId: "342235863775",
+    appId: "1:342235863775:web:b6845b73e0c6c146ede76a",
+    measurementId: "G-WC8KWTJFPM"
 };
 
 // Inicializar Firebase
