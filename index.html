@@ -25,6 +25,7 @@
     <!-- Librerías Externas (CDNs) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
@@ -41,6 +42,8 @@
         <div class="hero-badge">
             🎮 Organiza • 💰 Ahorra • ✈️ Cumple tus metas
         </div>
+        <!-- RELOJ Y FECHA EN TIEMPO REAL -->
+        <div id="liveClock" style="margin-top: 12px; font-size: 0.9em; opacity: 0.9; font-weight: 500;"></div>
     </header>
 
     <!-- SELECTOR DE MES -->
@@ -253,7 +256,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Fecha</th>
-                        <th>Hora</th> <!-- 👈 COLUMNA AÑADIDA -->
+                        <th>F. Ingreso</th> <!-- 👈 FECHA DE REGISTRO -->
+                        <th>Hora</th>
                         <th>Periodo</th>
                         <th>Persona</th>
                         <th>Tipo</th>
