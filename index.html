@@ -10,6 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 
 <style>
+
 :root{
 --bg:#f6f4ff;
 --card:#ffffff;
@@ -20,21 +21,22 @@
 --purple2:#eeeaff;
 
 --dafne:#ffdce8;
---dafne-dark:#e85d8b;
+--dafne-dark:#e98dad;
 
 --fran:#d9f2ff;
---fran-dark:#3498db;
+--fran-dark:#62b8e8;
 
 --green:#d9f7c9;
---green-dark:#4eaa3b;
+--green-dark:#59ad45;
 
 --orange:#ffe2c4;
---orange-dark:#e88928;
+--orange-dark:#e99a43;
 
---red:#ffe1e5;
---red-dark:#c83d50;
+--red:#ffe0e3;
+--red-dark:#c84d5b;
 
 --border:#e9e5f6;
+
 --shadow:0 10px 30px rgba(67,55,125,.08);
 }
 
@@ -48,16 +50,9 @@ scroll-behavior:smooth;
 
 body{
 margin:0;
-background:
-linear-gradient(180deg,#fbfaff,#f3f0ff);
+background:linear-gradient(180deg,#fbfaff,#f3f0ff);
 color:var(--ink);
-font-family:
-Inter,
-system-ui,
--apple-system,
-BlinkMacSystemFont,
-"Segoe UI",
-sans-serif;
+font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
 button,
@@ -72,24 +67,21 @@ cursor:pointer;
 border:0;
 }
 
-button:active{
-transform:scale(.98);
-}
-
 .wrap{
 max-width:1250px;
 margin:auto;
 padding:16px;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
-background:
-linear-gradient(135deg,#302b59,#6a5bd2);
+background:linear-gradient(135deg,#302b59,#6a5bd2);
 color:white;
 border-radius:28px;
-padding:28px;
+padding:26px;
 box-shadow:0 16px 40px rgba(57,48,120,.17);
 }
 
@@ -99,7 +91,7 @@ margin:0;
 }
 
 .hero p{
-margin:8px 0 0;
+margin:7px 0 0;
 font-size:16px;
 opacity:.92;
 }
@@ -108,16 +100,18 @@ opacity:.92;
 display:inline-block;
 margin-top:15px;
 padding:8px 13px;
-border-radius:999px;
 background:rgba(255,255,255,.15);
+border-radius:999px;
 font-size:13px;
 font-weight:800;
 }
 
-/* GENERAL */
+/* =========================
+   GENERAL
+========================= */
 
 .card{
-background:rgba(255,255,255,.96);
+background:rgba(255,255,255,.95);
 border:1px solid var(--border);
 border-radius:23px;
 padding:18px;
@@ -127,76 +121,12 @@ box-shadow:var(--shadow);
 .title{
 font-size:23px;
 font-weight:900;
-margin:27px 0 10px;
-}
-
-.subtitle{
-font-size:15px;
-font-weight:700;
-color:var(--muted);
-margin-top:-5px;
-margin-bottom:12px;
+margin:25px 0 10px;
 }
 
 .small{
 font-size:13px;
 color:var(--muted);
-}
-
-.money{
-font-variant-numeric:tabular-nums;
-}
-
-.btn{
-background:white;
-border:1px solid var(--border);
-border-radius:16px;
-padding:13px;
-font-weight:800;
-min-height:50px;
-}
-
-/* MONTH */
-
-.month{
-display:grid;
-grid-template-columns:1fr 2fr 1fr;
-gap:10px;
-margin:15px 0;
-}
-
-.month button{
-background:white;
-border:1px solid var(--border);
-border-radius:16px;
-padding:13px;
-font-weight:800;
-min-height:50px;
-}
-
-.month select{
-border:1px solid var(--border);
-border-radius:16px;
-padding:10px;
-text-align:center;
-background:white;
-font-weight:900;
-}
-
-/* KPI */
-
-.grid4{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px;
-}
-
-.kpi{
-min-height:125px;
-}
-
-.emoji{
-font-size:34px;
 }
 
 .label{
@@ -209,6 +139,10 @@ font-weight:800;
 font-size:28px;
 font-weight:950;
 margin-top:4px;
+}
+
+.emoji{
+font-size:34px;
 }
 
 .green{
@@ -227,7 +161,57 @@ background:linear-gradient(135deg,#fff3f7,var(--dafne));
 background:linear-gradient(135deg,#f2fbff,var(--fran));
 }
 
-/* ENERGY */
+.red{
+background:linear-gradient(135deg,#fff3f4,var(--red));
+}
+
+/* =========================
+   MONTH
+========================= */
+
+.month{
+display:grid;
+grid-template-columns:1fr 2fr 1fr;
+gap:10px;
+margin:15px 0;
+}
+
+.btn,
+.month button{
+background:white;
+border:1px solid var(--border);
+border-radius:16px;
+padding:13px;
+font-weight:800;
+min-height:50px;
+}
+
+.month select{
+border:1px solid var(--border);
+border-radius:16px;
+padding:10px;
+text-align:center;
+background:white;
+font-weight:900;
+}
+
+/* =========================
+   KPI
+========================= */
+
+.grid4{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+}
+
+.kpi{
+min-height:125px;
+}
+
+/* =========================
+   ENERGY
+========================= */
 
 .energy{
 height:27px;
@@ -238,7 +222,6 @@ overflow:hidden;
 
 .energy>div{
 height:100%;
-width:0%;
 background:linear-gradient(90deg,#79d85d,#a6eb73);
 border-radius:99px;
 transition:.5s;
@@ -250,7 +233,9 @@ font-weight:900;
 margin:8px;
 }
 
-/* PEOPLE / CHARTS */
+/* =========================
+   PEOPLE / CHARTS
+========================= */
 
 .people,
 .charts{
@@ -263,7 +248,9 @@ gap:12px;
 min-height:340px;
 }
 
-/* FORM */
+/* =========================
+   FORM
+========================= */
 
 .form{
 display:grid;
@@ -273,20 +260,20 @@ gap:15px;
 .step{
 background:#fbfaff;
 border:1px solid var(--border);
-padding:16px;
+padding:14px;
 border-radius:20px;
 }
 
 .step-title{
-font-size:17px;
+font-size:16px;
 font-weight:900;
 }
 
 .choices{
 display:grid;
 grid-template-columns:repeat(5,1fr);
-gap:9px;
-margin-top:11px;
+gap:8px;
+margin-top:9px;
 }
 
 .choice{
@@ -296,27 +283,25 @@ border-radius:17px;
 padding:14px 7px;
 text-align:center;
 font-weight:850;
-min-height:75px;
-transition:.15s;
-}
-
-.choice span{
-display:block;
-font-size:28px;
-margin-bottom:4px;
-}
-
-.choice.active{
-border-color:var(--purple);
-background:var(--purple2);
-box-shadow:0 0 0 3px rgba(98,84,201,.12);
+min-height:68px;
+transition:.2s;
 }
 
 .choice:hover{
 transform:translateY(-2px);
 }
 
-/* FIELDS */
+.choice span{
+display:block;
+font-size:26px;
+margin-bottom:4px;
+}
+
+.choice.active{
+border-color:var(--purple);
+background:var(--purple2);
+box-shadow:0 0 0 3px rgba(98,84,201,.11);
+}
 
 .fields{
 display:grid;
@@ -342,10 +327,9 @@ outline:none;
 }
 
 .field input:focus,
-.field select:focus,
-.field textarea:focus{
+.field select:focus{
 border-color:var(--purple);
-box-shadow:0 0 0 3px rgba(98,84,201,.10);
+box-shadow:0 0 0 3px rgba(98,84,201,.1);
 }
 
 .quick{
@@ -363,8 +347,6 @@ padding:9px 13px;
 font-weight:900;
 }
 
-/* SAVE */
-
 .save{
 width:100%;
 background:linear-gradient(135deg,#6758d5,#5042b8);
@@ -373,14 +355,16 @@ border-radius:19px;
 padding:18px;
 font-size:19px;
 font-weight:950;
-box-shadow:0 8px 20px rgba(91,76,198,.20);
+box-shadow:0 8px 20px rgba(91,76,198,.2);
 }
 
 .save:hover{
-filter:brightness(1.04);
+transform:translateY(-1px);
 }
 
-/* FIXED EXPENSES */
+/* =========================
+   FIXED EXPENSES
+========================= */
 
 .fixed{
 background:linear-gradient(135deg,#fff7e9,#ffe1bc);
@@ -388,86 +372,21 @@ background:linear-gradient(135deg,#fff7e9,#ffe1bc);
 
 .fixed-list{
 display:grid;
+grid-template-columns:repeat(3,1fr);
 gap:10px;
-margin-top:15px;
+margin:15px 0;
 }
 
 .fixed-item{
-background:rgba(255,255,255,.8);
-border:1px solid rgba(220,180,130,.35);
-border-radius:17px;
+background:rgba(255,255,255,.7);
 padding:13px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:12px;
+border-radius:15px;
+font-weight:800;
 }
 
-.fixed-info{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.fixed-icon{
-font-size:29px;
-}
-
-.fixed-name{
-font-weight:900;
-}
-
-.fixed-person{
-font-size:12px;
-color:var(--muted);
-margin-top:2px;
-}
-
-.fixed-amount{
-font-weight:950;
-}
-
-.status-btn{
-border-radius:999px;
-padding:8px 12px;
-font-size:12px;
-font-weight:950;
-white-space:nowrap;
-}
-
-.status-paid{
-background:var(--green);
-color:#327d28;
-}
-
-.status-pending{
-background:var(--orange);
-color:#a35d0b;
-}
-
-/* SUMMARY */
-
-.summary-box{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-top:15px;
-}
-
-.summary-mini{
-padding:14px;
-background:white;
-border-radius:16px;
-border:1px solid var(--border);
-}
-
-.summary-mini strong{
-display:block;
-font-size:21px;
-margin-top:3px;
-}
-
-/* TABLE */
+/* =========================
+   TABLE
+========================= */
 
 .tablewrap{
 overflow:auto;
@@ -478,7 +397,7 @@ border-radius:16px;
 .table{
 width:100%;
 border-collapse:collapse;
-min-width:1050px;
+min-width:950px;
 }
 
 .table th,
@@ -492,7 +411,7 @@ text-align:left;
 background:#faf9ff;
 position:sticky;
 top:0;
-z-index:1;
+z-index:2;
 }
 
 .pill{
@@ -505,33 +424,40 @@ display:inline-block;
 
 .paid{
 background:var(--green);
-color:#327d28;
+color:#397d2d;
 }
 
 .pending{
 background:var(--orange);
-color:#a35d0b;
+color:#9a5e18;
+}
+
+.actions{
+display:flex;
+gap:6px;
+flex-wrap:wrap;
+}
+
+.action-btn{
+padding:8px 10px;
+border-radius:10px;
+font-weight:800;
+font-size:12px;
+}
+
+.pay{
+background:var(--green);
+color:#397d2d;
+}
+
+.unpay{
+background:var(--orange);
+color:#9a5e18;
 }
 
 .danger{
 background:#fff0f1;
 color:#b33b49;
-padding:8px 10px;
-border-radius:10px;
-font-weight:800;
-}
-
-.edit{
-background:#eeeaff;
-color:#493db0;
-padding:8px 10px;
-border-radius:10px;
-font-weight:800;
-}
-
-.actions{
-display:flex;
-gap:7px;
 }
 
 .empty{
@@ -540,43 +466,38 @@ padding:35px;
 color:var(--muted);
 }
 
-/* ALERT */
+/* =========================
+   NOTIFICATION
+========================= */
 
-.notice{
-padding:14px;
-border-radius:17px;
-margin-top:12px;
-font-size:14px;
-font-weight:700;
-}
-
-.notice-purple{
-background:var(--purple2);
-color:#4d42a8;
-}
-
-.notice-green{
-background:var(--green);
-color:#347b2a;
-}
-
-.notice-orange{
-background:var(--orange);
-color:#9a5b0c;
-}
-
-/* FOOTER */
-
-footer{
+.toast{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%) translateY(100px);
+background:#302b59;
+color:white;
+padding:14px 20px;
+border-radius:16px;
+font-weight:800;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+z-index:9999;
+opacity:0;
+transition:.3s;
+max-width:90%;
 text-align:center;
-padding:25px 10px;
-color:var(--muted);
-font-size:13px;
 }
 
-/* RESPONSIVE */
+.toast.show{
+transform:translateX(-50%) translateY(0);
+opacity:1;
+}
 
-@media(max-width:900px){
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:800px){
 
 .grid4{
 grid-template-columns:1fr 1fr;
@@ -595,17 +516,16 @@ grid-template-columns:repeat(3,1fr);
 grid-template-columns:1fr;
 }
 
+.month{
+grid-template-columns:1fr;
 }
 
-@media(max-width:650px){
+.fixed-list{
+grid-template-columns:1fr 1fr;
+}
 
 .wrap{
 padding:9px;
-}
-
-.hero{
-border-radius:20px;
-padding:21px;
 }
 
 .card{
@@ -617,9 +537,9 @@ padding:14px;
 font-size:20px;
 }
 
-.month{
-grid-template-columns:1fr;
 }
+
+@media(max-width:450px){
 
 .grid4{
 grid-template-columns:1fr 1fr;
@@ -633,39 +553,28 @@ grid-template-columns:repeat(2,1fr);
 font-size:23px;
 }
 
-.fixed-item{
-align-items:flex-start;
+.hero{
+border-radius:20px;
+padding:20px;
 }
 
-.fixed-item{
-flex-direction:column;
-}
-
-.fixed-item > div:last-child{
-width:100%;
-}
-
-.status-btn{
-width:100%;
-}
-
-.summary-box{
+.fixed-list{
 grid-template-columns:1fr;
 }
 
 }
 
-@media(max-width:400px){
+/* =========================
+   FOOTER
+========================= */
 
-.grid4{
-grid-template-columns:1fr;
+footer{
+text-align:center;
+padding:25px 10px;
+color:var(--muted);
+font-size:13px;
 }
 
-.choices{
-grid-template-columns:1fr 1fr;
-}
-
-}
 </style>
 </head>
 
@@ -673,23 +582,29 @@ grid-template-columns:1fr 1fr;
 
 <div class="wrap">
 
+<!-- =========================
+     HEADER
+========================= -->
+
 <header class="hero">
 
 <h1>💜 Finanzas Familiares</h1>
 
 <p>
 El dinero de <b>Dafne 💗</b> y <b>Francesco 🦁</b>,
-fácil de entender, registrar y cuidar.
+fácil de entender y administrar.
 </p>
 
 <div class="hero-badge">
-🏠 Nuestro dinero • 📊 Nuestro control • 🎯 Nuestras metas
+🎮 Organiza • 💰 Ahorra • ✈️ Cumple tus metas
 </div>
 
 </header>
 
 
-<!-- MES -->
+<!-- =========================
+     SELECTOR DE MES
+========================= -->
 
 <section class="month">
 
@@ -706,21 +621,36 @@ Mes siguiente 👉
 </section>
 
 
-<!-- REGLA DEL SUELDO -->
+<!-- =========================
+     REGLA DEL DINERO
+========================= -->
 
-<div class="card notice notice-purple">
+<div class="title">
+🧠 Regla de nuestro dinero
+</div>
 
-💡 <b>Regla familiar del sueldo:</b>
-el sueldo recibido al final de un mes puede utilizarse para financiar el mes siguiente.
+<div class="card fran">
 
-Por ejemplo:
+<div style="font-size:30px">
+💡
+</div>
 
-<b>💵 Sueldo de julio → 💳 dinero disponible para agosto.</b>
+<h3>
+El sueldo recibido a fin de mes puede financiar el mes siguiente
+</h3>
+
+<p class="small">
+Ejemplo: el sueldo recibido el <b>31 de julio</b>
+puede ser utilizado para cubrir los gastos de <b>agosto</b>.
+Por eso podemos indicar a qué periodo pertenece realmente cada ingreso.
+</p>
 
 </div>
 
 
-<!-- ENERGIA -->
+<!-- =========================
+     ENERGÍA
+========================= -->
 
 <div class="title">
 🎮 Tu energía de dinero
@@ -732,49 +662,62 @@ Por ejemplo:
 <div id="energyBar"></div>
 </div>
 
-<div class="energytext" id="energyText">
-🔋 Calculando...
-</div>
+<div class="energytext" id="energyText"></div>
 
 </div>
 
 
-<!-- KPI -->
+<!-- =========================
+     KPI
+========================= -->
 
 <div class="title">
-📊 Resumen del mes
+📊 Este mes
 </div>
 
 <div class="grid4">
 
 <div class="card kpi green">
+
 <div class="emoji">💰</div>
-<div class="label">Ingresos del mes</div>
-<div class="value money" id="income">S/ 0.00</div>
+<div class="label">Ingreso disponible</div>
+<div class="value" id="income"></div>
+
 </div>
+
 
 <div class="card kpi orange">
+
 <div class="emoji">💸</div>
-<div class="label">Gastos del mes</div>
-<div class="value money" id="expense">S/ 0.00</div>
+<div class="label">Gastos</div>
+<div class="value" id="expense"></div>
+
 </div>
+
 
 <div class="card kpi green">
+
 <div class="emoji">🐷</div>
 <div class="label">Ahorro</div>
-<div class="value money" id="saving">S/ 0.00</div>
+<div class="value" id="saving"></div>
+
 </div>
+
 
 <div class="card kpi fran">
+
 <div class="emoji">✈️</div>
-<div class="label">Fondo de viajes</div>
-<div class="value money" id="travel">S/ 0.00</div>
-</div>
+<div class="label">Fondo viajes</div>
+<div class="value" id="travel"></div>
 
 </div>
 
+</div>
 
-<!-- DISPONIBLE -->
+
+<!-- =========================
+     PERSONAS
+========================= -->
 
 <div class="title">
 👨‍👩‍👧 ¿Cómo vamos cada uno?
@@ -790,11 +733,9 @@ Por ejemplo:
 Dafne — disponible
 </div>
 
-<div class="value money" id="dafneAvail">
+<div class="value" id="dafneAvail">
 S/ 0.00
 </div>
-
-<div class="small" id="dafneDetail"></div>
 
 </div>
 
@@ -807,18 +748,18 @@ S/ 0.00
 Francesco — disponible
 </div>
 
-<div class="value money" id="franAvail">
+<div class="value" id="franAvail">
 S/ 0.00
 </div>
 
-<div class="small" id="franDetail"></div>
-
 </div>
 
 </div>
 
 
-<!-- GRAFICOS -->
+<!-- =========================
+     GRÁFICOS
+========================= -->
 
 <div class="title">
 📈 Mira tus números
@@ -850,7 +791,9 @@ S/ 0.00
 </div>
 
 
-<!-- ACUMULADOS -->
+<!-- =========================
+     ACUMULADOS
+========================= -->
 
 <div class="title">
 🌎 Tesoros acumulados
@@ -868,7 +811,7 @@ S/ 0.00
 Alcancía de emergencia
 </div>
 
-<div class="value money" id="globalSaving">
+<div class="value" id="globalSaving">
 S/ 0.00
 </div>
 
@@ -889,7 +832,7 @@ Ahorro acumulado de todos los meses.
 Meta de viajes
 </div>
 
-<div class="value money" id="globalTravel">
+<div class="value" id="globalTravel">
 S/ 0.00
 </div>
 
@@ -908,7 +851,9 @@ S/ 0.00
 </div>
 
 
-<!-- HISTORICO -->
+<!-- =========================
+     HISTÓRICO
+========================= -->
 
 <div class="title">
 📉 Evolución histórica
@@ -921,19 +866,15 @@ S/ 0.00
 </div>
 
 
-<!-- REGISTRO -->
+<!-- =========================
+     REGISTRO
+========================= -->
 
 <div class="title">
 🚀 Registrar un movimiento
 </div>
 
-<div class="subtitle">
-Registra aquí cualquier ingreso, gasto, deuda, ahorro o dinero para viajes.
-</div>
-
-
 <div class="card form">
-
 
 <!-- PERSONA -->
 
@@ -974,14 +915,14 @@ Registra aquí cualquier ingreso, gasto, deuda, ahorro o dinero para viajes.
 </div>
 
 
-<!-- FECHA -->
+<!-- FECHA / PERIODO -->
 
 <div class="fields">
 
 <div class="field">
 
 <label>
-📅 Fecha
+📅 Fecha del movimiento
 </label>
 
 <input
@@ -995,6 +936,21 @@ type="date"
 <div class="field">
 
 <label>
+📆 ¿Para qué periodo cuenta?
+</label>
+
+<select id="period"></select>
+
+</div>
+
+</div>
+
+
+<!-- DETALLE -->
+
+<div class="field">
+
+<label>
 📝 Detalle
 </label>
 
@@ -1002,8 +958,6 @@ type="date"
 id="detail"
 placeholder="Ej.: mercado, taxi, sueldo..."
 >
-
-</div>
 
 </div>
 
@@ -1028,20 +982,20 @@ placeholder="0.00"
 
 <div class="quick">
 
-<button type="button" data-add="10">
-+ S/10
+<button data-add="10">
++10
 </button>
 
-<button type="button" data-add="50">
-+ S/50
+<button data-add="50">
++50
 </button>
 
-<button type="button" data-add="100">
-+ S/100
+<button data-add="100">
++100
 </button>
 
-<button type="button" data-add="200">
-+ S/200
+<button data-add="200">
++200
 </button>
 
 </div>
@@ -1052,7 +1006,7 @@ placeholder="0.00"
 <div class="field">
 
 <label>
-🎯 Monto presupuestado (S/)
+🎯 Presupuesto (S/)
 </label>
 
 <input
@@ -1073,7 +1027,7 @@ placeholder="0.00"
 <div class="step">
 
 <div class="step-title">
-4️⃣ Estado
+5️⃣ Estado
 </div>
 
 <div class="choices" id="stateChoices"></div>
@@ -1081,25 +1035,20 @@ placeholder="0.00"
 </div>
 
 
-<button
-type="button"
-class="save"
-id="save"
->
+<!-- GUARDAR -->
+
+<button class="save" id="save">
+
 🚀 GUARDAR REGISTRO
+
 </button>
-
-
-<div
-id="formMessage"
-class="notice notice-green"
-style="display:none"
-></div>
 
 </div>
 
 
-<!-- GASTOS FIJOS -->
+<!-- =========================
+     GASTOS FIJOS
+========================= -->
 
 <div class="title">
 ⚡ Gastos fijos
@@ -1113,50 +1062,52 @@ style="display:none"
 
 <p class="small">
 
-Los gastos se generan como <b>⏳ PENDIENTES</b>.
-
-Después puedes presionar cada botón para cambiarlo a
-<b>✅ PAGADO</b> cuando realmente hayas realizado el pago.
+Esta opción crea únicamente:
 
 </p>
 
+<div class="fixed-list">
 
-<div class="summary-box">
-
-<div class="summary-mini">
-<div class="small">🏠 Alquiler</div>
-<strong>S/ 300</strong>
+<div class="fixed-item">
+🏠 Alquiler — S/ 300
 </div>
 
-<div class="summary-mini">
-<div class="small">🍕 Comida</div>
-<strong>S/ 400</strong>
+<div class="fixed-item">
+🍕 Comida — S/ 400
 </div>
 
-<div class="summary-mini">
-<div class="small">🎒 Colegio</div>
-<strong>S/ 400</strong>
+<div class="fixed-item">
+🎒 Colegio — S/ 200
 </div>
 
 </div>
 
+<p class="small">
 
-<button
-type="button"
-class="save"
-id="fixed"
-style="margin-top:15px"
->
+Cada gasto se divide automáticamente 50/50 entre Dafne y Francesco.
+
+<br><br>
+
+⚠️ <b>Bancos/Servicios NO se carga automáticamente.</b>
+
+<br>
+
+Los servicios deberán registrarse manualmente cuando corresponda.
+
+</p>
+
+<button class="save" id="fixed">
+
 ⚡ CARGAR GASTOS FIJOS DEL MES
+
 </button>
 
-
-<div id="fixedList" class="fixed-list"></div>
-
 </div>
 
 
-<!-- HISTORIAL -->
+<!-- =========================
+     HISTORIAL
+========================= -->
 
 <div class="title">
 📚 Historial único
@@ -1164,48 +1115,11 @@ style="margin-top:15px"
 
 <div class="card">
 
-<div class="fields">
-
-<div class="field">
-
-<label>
-🔎 Buscar
-</label>
-
 <input
 id="search"
-placeholder="Persona, categoría, detalle..."
+style="width:100%;padding:13px;border:1px solid var(--border);border-radius:14px"
+placeholder="🔎 Buscar persona, categoría, detalle..."
 >
-
-</div>
-
-
-<div class="field">
-
-<label>
-📌 Filtrar estado
-</label>
-
-<select id="statusFilter">
-
-<option value="TODOS">
-Todos
-</option>
-
-<option value="PAGADO">
-✅ Pagados
-</option>
-
-<option value="PENDIENTE">
-⏳ Pendientes
-</option>
-
-</select>
-
-</div>
-
-</div>
-
 
 <div
 class="tablewrap"
@@ -1220,6 +1134,7 @@ style="margin-top:12px"
 
 <th>ID</th>
 <th>Fecha</th>
+<th>Periodo</th>
 <th>Persona</th>
 <th>Tipo</th>
 <th>Categoría</th>
@@ -1227,7 +1142,7 @@ style="margin-top:12px"
 <th>Presupuesto</th>
 <th>Real</th>
 <th>Estado</th>
-<th>Acción</th>
+<th>Acciones</th>
 
 </tr>
 
@@ -1241,12 +1156,13 @@ style="margin-top:12px"
 
 
 <button
-type="button"
 class="btn"
 id="csv"
 style="margin-top:12px;width:100%"
 >
+
 ⬇️ Exportar historial CSV
+
 </button>
 
 </div>
@@ -1256,35 +1172,33 @@ style="margin-top:12px;width:100%"
 
 💜 Finanzas Familiares Dafne & Francesco
 
-<br>
+<br><br>
 
 Los datos se guardan en este dispositivo mediante
 <b>localStorage</b>.
-
-<br>
-
-Para sincronizar automáticamente celulares y PC necesitaremos
-una base de datos online.
 
 </footer>
 
 </div>
 
 
+<!-- TOAST -->
+
+<div id="toast" class="toast"></div>
+
+
 <script>
 
-/* ============================================================
+/* =====================================================
    CONFIGURACIÓN
-============================================================ */
+===================================================== */
 
 const KEY = "finanzas_dafne_francesco_v3";
 
-const TRAVEL_GOAL = 5000;
 
-
-/* ============================================================
+/* =====================================================
    CATEGORÍAS
-============================================================ */
+===================================================== */
 
 const cats = {
 
@@ -1315,9 +1229,9 @@ const cats = {
 };
 
 
-/* ============================================================
+/* =====================================================
    TIPOS
-============================================================ */
+===================================================== */
 
 const types = {
 
@@ -1334,9 +1248,9 @@ const types = {
 };
 
 
-/* ============================================================
+/* =====================================================
    PERSONAS
-============================================================ */
+===================================================== */
 
 const people = {
 
@@ -1347,9 +1261,9 @@ const people = {
 };
 
 
-/* ============================================================
+/* =====================================================
    ESTADOS
-============================================================ */
+===================================================== */
 
 const states = {
 
@@ -1360,41 +1274,53 @@ const states = {
 };
 
 
-/* ============================================================
+/* =====================================================
    DATOS DE PRUEBA
-============================================================ */
+===================================================== */
 
-const demoData = [
+let data = JSON.parse(
+localStorage.getItem(KEY) || "null"
+);
+
+
+if(!data){
+
+data = [
+
+/* JULIO */
 
 {
 id:1,
 date:"2026-07-31",
+period:"2026-08",
 person:"Dafne",
 type:"Ingreso",
 cat:"Sueldo",
-detail:"Sueldo julio - recibido fin de mes",
+detail:"Sueldo de julio para financiar agosto",
 budget:2800,
 amount:2800,
-state:"PAGADO",
-fundsMonth:"2026-08"
+state:"PAGADO"
 },
 
 {
 id:2,
 date:"2026-07-31",
+period:"2026-08",
 person:"Francesco",
 type:"Ingreso",
 cat:"Sueldo",
-detail:"Sueldo julio - recibido fin de mes",
+detail:"Sueldo de julio para financiar agosto",
 budget:3000,
 amount:3000,
-state:"PAGADO",
-fundsMonth:"2026-08"
+state:"PAGADO"
 },
+
+/* AGOSTO */
 
 {
 id:3,
 date:"2026-08-02",
+period:"2026-08",
 person:"Dafne",
 type:"Gasto",
 cat:"Casa/Alquiler",
@@ -1407,6 +1333,7 @@ state:"PAGADO"
 {
 id:4,
 date:"2026-08-02",
+period:"2026-08",
 person:"Francesco",
 type:"Gasto",
 cat:"Casa/Alquiler",
@@ -1419,6 +1346,7 @@ state:"PAGADO"
 {
 id:5,
 date:"2026-08-03",
+period:"2026-08",
 person:"Dafne",
 type:"Gasto",
 cat:"Comida",
@@ -1431,6 +1359,7 @@ state:"PAGADO"
 {
 id:6,
 date:"2026-08-03",
+period:"2026-08",
 person:"Francesco",
 type:"Gasto",
 cat:"Comida",
@@ -1443,6 +1372,7 @@ state:"PAGADO"
 {
 id:7,
 date:"2026-08-04",
+period:"2026-08",
 person:"Dafne",
 type:"Gasto",
 cat:"Movilidad",
@@ -1455,6 +1385,7 @@ state:"PAGADO"
 {
 id:8,
 date:"2026-08-04",
+period:"2026-08",
 person:"Francesco",
 type:"Gasto",
 cat:"Movilidad",
@@ -1467,6 +1398,7 @@ state:"PAGADO"
 {
 id:9,
 date:"2026-08-05",
+period:"2026-08",
 person:"Dafne",
 type:"Ahorro",
 cat:"Ahorro General",
@@ -1479,6 +1411,7 @@ state:"PAGADO"
 {
 id:10,
 date:"2026-08-05",
+period:"2026-08",
 person:"Francesco",
 type:"Ahorro",
 cat:"Ahorro General",
@@ -1491,6 +1424,7 @@ state:"PAGADO"
 {
 id:11,
 date:"2026-08-05",
+period:"2026-08",
 person:"Dafne",
 type:"Fondo Viajes",
 cat:"Fondo Viajes",
@@ -1503,6 +1437,7 @@ state:"PAGADO"
 {
 id:12,
 date:"2026-08-05",
+period:"2026-08",
 person:"Francesco",
 type:"Fondo Viajes",
 cat:"Fondo Viajes",
@@ -1510,120 +1445,22 @@ detail:"Meta viaje familiar",
 budget:150,
 amount:150,
 state:"PAGADO"
-},
-
-{
-id:13,
-date:"2026-07-10",
-person:"Dafne",
-type:"Gasto",
-cat:"Salidas",
-detail:"Salida familiar",
-budget:180,
-amount:165,
-state:"PAGADO"
-},
-
-{
-id:14,
-date:"2026-07-12",
-person:"Francesco",
-type:"Gasto",
-cat:"Compras Casa",
-detail:"Compra de hogar",
-budget:250,
-amount:230,
-state:"PAGADO"
-},
-
-{
-id:15,
-date:"2026-07-15",
-person:"Dafne",
-type:"Ahorro",
-cat:"Ahorro General",
-detail:"Ahorro julio",
-budget:200,
-amount:200,
-state:"PAGADO"
-},
-
-{
-id:16,
-date:"2026-07-15",
-person:"Francesco",
-type:"Fondo Viajes",
-cat:"Fondo Viajes",
-detail:"Viaje julio",
-budget:250,
-amount:250,
-state:"PAGADO"
-},
-
-{
-id:17,
-date:"2026-06-03",
-person:"Dafne",
-type:"Ingreso",
-cat:"Sueldo",
-detail:"Sueldo junio",
-budget:2700,
-amount:2700,
-state:"PAGADO"
-},
-
-{
-id:18,
-date:"2026-06-03",
-person:"Francesco",
-type:"Ingreso",
-cat:"Sueldo",
-detail:"Sueldo junio",
-budget:2900,
-amount:2900,
-state:"PAGADO"
 }
 
 ];
-
-
-/* ============================================================
-   CARGAR DATOS
-============================================================ */
-
-let data;
-
-try{
-
-data = JSON.parse(
-localStorage.getItem(KEY)
-);
-
-}catch(e){
-
-data = null;
-
-}
-
-if(!Array.isArray(data)){
-
-data = demoData;
 
 save();
 
 }
 
 
-/* ============================================================
-   ESTADO DE LA APP
-============================================================ */
+/* =====================================================
+   ESTADO
+===================================================== */
 
-const now = new Date();
-
-let selected =
-now.getFullYear() +
-"-" +
-String(now.getMonth()+1).padStart(2,"0");
+let selected = new Date()
+.toISOString()
+.slice(0,7);
 
 let selPerson = "Dafne";
 
@@ -1631,14 +1468,32 @@ let selType = "Gasto";
 
 let selCat = "Comida";
 
-let selState = "PENDIENTE";
+let selState = "PAGADO";
 
 let charts = {};
 
 
-/* ============================================================
-   UTILIDADES
-============================================================ */
+/* =====================================================
+   DINERO
+===================================================== */
+
+const money = n =>
+
+"S/ " +
+
+Number(n || 0)
+.toLocaleString(
+"es-PE",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
+
+
+/* =====================================================
+   GUARDAR
+===================================================== */
 
 function save(){
 
@@ -1650,55 +1505,65 @@ JSON.stringify(data)
 }
 
 
-function money(n){
+/* =====================================================
+   TOAST
+===================================================== */
 
-return "S/ " +
-Number(n || 0).toLocaleString(
-"es-PE",
-{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-}
+function toast(message){
+
+const t =
+document.getElementById("toast");
+
+t.textContent = message;
+
+t.classList.add("show");
+
+setTimeout(
+()=>t.classList.remove("show"),
+2500
 );
 
 }
 
 
-function sum(arr, condition){
+/* =====================================================
+   SUMAR
+===================================================== */
+
+function sum(arr,fn){
 
 return arr.reduce(
-
-(total,item)=>{
-
-return total +
-(condition(item)
-? Number(item.amount || 0)
-: 0);
-
-},
-
+(a,x)=>
+a + (
+fn(x)
+?
+Number(x.amount)
+:
 0
-
+),
+0
 );
 
 }
 
 
-function getMonths(){
+/* =====================================================
+   PERIODOS
+===================================================== */
 
-const set = new Set();
+function periods(){
+
+let set = new Set();
 
 data.forEach(x=>{
 
-if(x.date){
+if(x.period){
+
+set.add(x.period);
+
+}else{
 
 set.add(x.date.slice(0,7));
-
-}
-
-if(x.fundsMonth){
-
-set.add(x.fundsMonth);
 
 }
 
@@ -1706,303 +1571,355 @@ set.add(x.fundsMonth);
 
 set.add(selected);
 
-return [...set].sort().reverse();
+return [...set].sort();
 
 }
 
 
-/* ============================================================
-   ELECCIÓN DE BOTONES
-============================================================ */
+/* =====================================================
+   MESES
+===================================================== */
+
+function months(){
+
+let set = new Set();
+
+data.forEach(x=>{
+
+if(x.period){
+
+set.add(x.period);
+
+}
+
+set.add(x.date.slice(0,7));
+
+});
+
+set.add(selected);
+
+return [...set]
+.sort()
+.reverse();
+
+}
+
+
+/* =====================================================
+   RENDER CHOICES
+===================================================== */
 
 function renderChoices(
-containerId,
-object,
+id,
+obj,
 current,
 setter
 ){
 
 const container =
-document.getElementById(containerId);
+document.getElementById(id);
 
-if(!container) return;
+container.innerHTML =
+Object.entries(obj)
+.map(([k,v])=>`
 
-container.innerHTML = "";
+<button
+class="choice ${k===current?"active":""}"
+data-k="${k}"
+>
 
-Object.entries(object).forEach(
-([key,value])=>{
+<span>${v[0]}</span>
 
-const button =
-document.createElement("button");
+${v[1]}
 
-button.type = "button";
+</button>
 
-button.className =
-"choice " +
-(key === current ? "active" : "");
+`)
+.join("");
 
-button.dataset.key = key;
+container
+.querySelectorAll(".choice")
+.forEach(button=>{
 
-button.innerHTML =
-"<span>"+value[0]+"</span>"+
-value[1];
+button.onclick=()=>{
 
-button.addEventListener(
-"click",
-()=>{
+setter(button.dataset.k);
 
-setter(key);
+renderAll();
 
-renderChoices(
-containerId,
-object,
-key,
-setter
-);
-
-}
-);
-
-container.appendChild(button);
+};
 
 });
 
 }
 
 
-/* ============================================================
-   FORMULARIO
-============================================================ */
+/* =====================================================
+   RENDER ALL
+===================================================== */
 
-function renderForm(){
+function renderAll(){
 
-renderChoices(
-"personChoices",
-people,
-selPerson,
-value=>{
+/* ---------------------
+   MESES
+--------------------- */
 
-selPerson=value;
+let ms = months();
+
+let monthSelect =
+document.getElementById("month");
+
+monthSelect.innerHTML =
+ms.map(x=>`
+
+<option value="${x}">
+
+${new Date(x+"-15")
+.toLocaleDateString(
+"es-PE",
+{
+month:"long",
+year:"numeric"
+}
+)
+.toUpperCase()}
+
+</option>
+
+`).join("");
+
+monthSelect.value = selected;
+
+
+/* ---------------------
+   PERIODOS
+--------------------- */
+
+let periodSelect =
+document.getElementById("period");
+
+periodSelect.innerHTML =
+periods()
+.map(x=>`
+
+<option value="${x}">
+${new Date(x+"-15")
+.toLocaleDateString(
+"es-PE",
+{
+month:"long",
+year:"numeric"
+}
+)
+.toUpperCase()}
+</option>
+
+`)
+.join("");
+
+if(
+!periodSelect.value
+){
+
+periodSelect.value =
+selected;
 
 }
+
+
+/* ---------------------
+   DATOS DEL PERIODO
+--------------------- */
+
+let z = data.filter(x=>
+
+(x.period || x.date.slice(0,7))
+=== selected
+
 );
 
 
-renderChoices(
-"typeChoices",
-types,
-selType,
-value=>{
+/* ---------------------
+   INGRESOS
+--------------------- */
 
-selType=value;
-
-}
-);
-
-
-renderChoices(
-"catChoices",
-cats,
-selCat,
-value=>{
-
-selCat=value;
-
-}
-);
-
-
-renderChoices(
-"stateChoices",
-states,
-selState,
-value=>{
-
-selState=value;
-
-}
-);
-
-}
-
-
-/* ============================================================
-   FECHA
-============================================================ */
-
-function setDefaultDate(){
-
-const input =
-document.getElementById("date");
-
-if(!input.value){
-
-const d =
-new Date();
-
-const localDate =
-d.getFullYear()+
-"-"+
-String(d.getMonth()+1).padStart(2,"0")+
-"-"+
-String(d.getDate()).padStart(2,"0");
-
-input.value = localDate;
-
-}
-
-}
-
-
-/* ============================================================
-   RESUMEN DEL MES
-============================================================ */
-
-function renderDashboard(){
-
-const actualMonthData =
-data.filter(x=>{
-
-return x.date &&
-x.date.slice(0,7) === selected;
-
-});
-
-
-/*
-IMPORTANTE:
-
-Los ingresos con fundsMonth=2026-08
-se consideran disponibles en agosto,
-aunque su fecha sea 2026-07-31.
-
-*/
-
-const incomeCurrent =
+let income =
 sum(
-actualMonthData,
+z,
 x=>x.type==="Ingreso"
 );
 
 
-const incomeTransferred =
+/* ---------------------
+   GASTOS
+--------------------- */
+
+let expense =
 sum(
-data,
-x=>
-x.type==="Ingreso" &&
-x.fundsMonth === selected &&
-x.date.slice(0,7) !== selected
-);
-
-
-const totalIncome =
-incomeCurrent +
-incomeTransferred;
-
-
-const expenses =
-sum(
-actualMonthData,
+z,
 x=>x.type==="Gasto"
 );
 
 
-const savings =
+/* ---------------------
+   AHORRO
+--------------------- */
+
+let saving =
 sum(
-actualMonthData,
+z,
 x=>x.type==="Ahorro"
 );
 
 
-const travel =
+/* ---------------------
+   VIAJES
+--------------------- */
+
+let travel =
 sum(
-actualMonthData,
+z,
 x=>x.type==="Fondo Viajes"
 );
 
 
-const available =
-totalIncome -
-expenses -
-savings -
+/* ---------------------
+   DISPONIBLE
+--------------------- */
+
+let available =
+income
+-
+expense
+-
+saving
+-
 travel;
 
 
-document.getElementById("income")
-.textContent =
-money(totalIncome);
+/* ---------------------
+   KPI
+--------------------- */
 
+document.getElementById(
+"income"
+).textContent =
+money(income);
 
-document.getElementById("expense")
-.textContent =
-money(expenses);
+document.getElementById(
+"expense"
+).textContent =
+money(expense);
 
+document.getElementById(
+"saving"
+).textContent =
+money(saving);
 
-document.getElementById("saving")
-.textContent =
-money(savings);
-
-
-document.getElementById("travel")
-.textContent =
+document.getElementById(
+"travel"
+).textContent =
 money(travel);
 
 
-/* ENERGÍA */
+/* ---------------------
+   ENERGÍA
+--------------------- */
 
 let pct =
-totalIncome > 0
-? available / totalIncome
-: 0;
-
-pct =
+income
+?
 Math.max(
 0,
-Math.min(1,pct)
-);
+Math.min(
+1,
+available / income
+)
+)
+:
+0;
 
 document.getElementById(
 "energyBar"
-).style.width =
+)
+.style.width =
 (pct*100)+"%";
 
 document.getElementById(
 "energyText"
+)
+.textContent =
+`🔋 ${money(available)} disponibles • ${(pct*100).toFixed(0)}% de energía`;
+
+
+/* ---------------------
+   PERSONAS
+--------------------- */
+
+for(
+let [id,p] of
+[
+["dafneAvail","Dafne"],
+["franAvail","Francesco"]
+]
+){
+
+let q =
+z.filter(
+x=>x.person===p
+);
+
+let personIncome =
+sum(
+q,
+x=>x.type==="Ingreso"
+);
+
+let personExpenses =
+sum(
+q,
+x=>
+[
+"Gasto",
+"Ahorro",
+"Fondo Viajes"
+]
+.includes(x.type)
+);
+
+document.getElementById(
+id
 ).textContent =
-"🔋 "+
-money(available)+
-" disponibles • "+
-Math.round(pct*100)+
-"% de energía";
-
-
-/* PERSONAS */
-
-renderPersonAvailability(
-"Dafne",
-"dafneAvail",
-"dafneDetail"
+money(
+personIncome -
+personExpenses
 );
 
-renderPersonAvailability(
-"Francesco",
-"franAvail",
-"franDetail"
-);
+}
 
 
-/* ACUMULADOS */
+/* ---------------------
+   ACUMULADOS
+--------------------- */
 
-const globalSaving =
+let globalSaving =
 sum(
 data,
 x=>x.type==="Ahorro"
 );
 
-const globalTravel =
+let globalTravel =
 sum(
 data,
 x=>x.type==="Fondo Viajes"
+);
+
+let goal = 5000;
+
+let travelPctValue =
+Math.min(
+1,
+globalTravel/goal
 );
 
 document.getElementById(
@@ -2010,504 +1927,130 @@ document.getElementById(
 ).textContent =
 money(globalSaving);
 
-
 document.getElementById(
 "globalTravel"
 ).textContent =
-money(globalTravel)+
-" / "+
-money(TRAVEL_GOAL);
-
-
-const travelPct =
-Math.min(
-100,
-(globalTravel/TRAVEL_GOAL)*100
-);
-
+money(globalTravel)
++
+" / "
++
+money(goal);
 
 document.getElementById(
 "travelPct"
 ).textContent =
-Math.round(travelPct)+
+(travelPctValue*100)
+.toFixed(0)
++
 "% completado";
-
 
 document.getElementById(
 "travelBar"
 ).style.width =
-travelPct+"%";
+(travelPctValue*100)
++
+"%";
 
-}
 
+/* ---------------------
+   CHOICES
+--------------------- */
 
-function renderPersonAvailability(
-person,
-valueId,
-detailId
-){
+renderChoices(
+"personChoices",
+people,
+selPerson,
+x=>selPerson=x
+);
 
-const monthData =
-data.filter(
-x=>
-x.date &&
-x.date.slice(0,7)===selected &&
-x.person===person
+renderChoices(
+"typeChoices",
+types,
+selType,
+x=>selType=x
+);
+
+renderChoices(
+"catChoices",
+cats,
+selCat,
+x=>selCat=x
+);
+
+renderChoices(
+"stateChoices",
+states,
+selState,
+x=>selState=x
 );
 
 
-/* sueldo del mes */
+/* ---------------------
+   FECHA
+--------------------- */
 
-const currentIncome =
-sum(
-monthData,
-x=>x.type==="Ingreso"
-);
+const dateInput =
+document.getElementById("date");
 
+if(!dateInput.value){
 
-/* sueldo que llegó el mes anterior
-pero está destinado al mes actual */
-
-const transferredIncome =
-sum(
-data,
-x=>
-x.type==="Ingreso" &&
-x.person===person &&
-x.fundsMonth===selected &&
-x.date.slice(0,7)!==selected
-);
-
-
-const income =
-currentIncome +
-transferredIncome;
-
-
-const expense =
-sum(
-monthData,
-x=>x.type==="Gasto"
-);
-
-
-const saving =
-sum(
-monthData,
-x=>x.type==="Ahorro"
-);
-
-
-const travel =
-sum(
-monthData,
-x=>x.type==="Fondo Viajes"
-);
-
-
-const available =
-income -
-expense -
-saving -
-travel;
-
-
-document.getElementById(valueId)
-.textContent =
-money(available);
-
-
-let detail =
-"💵 Ingresos: "+
-money(income)+
-" • 💸 Gastos: "+
-money(expense);
-
-
-if(transferredIncome>0){
-
-detail +=
-" • 🔄 Incluye "+
-money(transferredIncome)+
-" del mes anterior";
+dateInput.value =
+new Date()
+.toISOString()
+.slice(0,10);
 
 }
 
 
-document.getElementById(detailId)
-.textContent =
-detail;
+/* ---------------------
+   GRÁFICOS
+--------------------- */
+
+drawCharts(z);
+
+
+/* ---------------------
+   TABLA
+--------------------- */
+
+renderTable();
 
 }
 
 
-/* ============================================================
-   SELECTOR DE MES
-============================================================ */
+/* =====================================================
+   DESTRUIR GRÁFICO
+===================================================== */
 
-function renderMonthSelector(){
+function destroy(k){
 
-const select =
-document.getElementById("month");
+if(charts[k]){
 
-const months =
-getMonths();
-
-select.innerHTML = "";
-
-months.forEach(month=>{
-
-const option =
-document.createElement("option");
-
-option.value=month;
-
-option.textContent =
-new Date(
-month+"-15"
-).toLocaleDateString(
-"es-PE",
-{
-month:"long",
-year:"numeric"
-}
-).toUpperCase();
-
-select.appendChild(option);
-
-});
-
-if(!months.includes(selected)){
-
-selected=months[0];
-
-}
-
-select.value=selected;
-
-}
-
-
-/* ============================================================
-   GASTOS FIJOS
-============================================================ */
-
-function fixedExpenses(){
-
-return [
-
-{
-cat:"Casa/Alquiler",
-detail:"Alquiler familiar 50/50",
-amount:150,
-icon:"🏠"
-},
-
-{
-cat:"Comida",
-detail:"Comida familiar 50/50",
-amount:200,
-icon:"🍕"
-},
-
-{
-cat:"Colegio",
-detail:"Colegio - parte familiar",
-amount:100,
-icon:"🎒"
-},
-
-{
-cat:"Bancos/Servicios",
-detail:"Servicios del hogar 50/50",
-amount:80,
-icon:"💡"
-}
-
-];
-
-}
-
-
-function loadFixedExpenses(){
-
-const month = selected;
-
-let added = 0;
-
-const items =
-fixedExpenses();
-
-
-items.forEach(item=>{
-
-["Dafne","Francesco"].forEach(person=>{
-
-const exists =
-data.some(x=>
-
-x.date &&
-x.date.startsWith(month) &&
-
-x.person === person &&
-
-x.cat === item.cat &&
-
-x.detail === item.detail
-
-);
-
-if(!exists){
-
-data.push({
-
-id:nextId(),
-
-date:month+"-01",
-
-person:person,
-
-type:"Gasto",
-
-cat:item.cat,
-
-detail:item.detail,
-
-budget:item.amount,
-
-amount:item.amount,
-
-state:"PENDIENTE",
-
-fixed:true
-
-});
-
-added++;
-
-}
-
-});
-
-});
-
-
-save();
-
-renderAll();
-
-alert(
-"⚡ Se agregaron "+
-added+
-" gastos fijos.\n\n"+
-"Todos fueron creados como ⏳ PENDIENTES.\n\n"+
-"Cuando pagues uno, presiona su botón para cambiarlo a ✅ PAGADO."
-);
-
-}
-
-
-function nextId(){
-
-if(!data.length) return 1;
-
-return Math.max(
-...data.map(x=>Number(x.id)||0)
-)+1;
-
-}
-
-
-/* ============================================================
-   MOSTRAR GASTOS FIJOS
-============================================================ */
-
-function renderFixedList(){
-
-const container =
-document.getElementById("fixedList");
-
-const rows =
-data.filter(x=>
-
-x.date &&
-x.date.slice(0,7)===selected &&
-x.fixed===true
-
-);
-
-if(!rows.length){
-
-container.innerHTML =
-
-'<div class="empty">'+
-"💡 Todavía no hay gastos fijos cargados para este mes."+
-"</div>";
-
-return;
-
-}
-
-
-container.innerHTML="";
-
-
-rows.forEach(item=>{
-
-const wrapper =
-document.createElement("div");
-
-wrapper.className="fixed-item";
-
-
-const left =
-document.createElement("div");
-
-left.className="fixed-info";
-
-left.innerHTML =
-
-'<div class="fixed-icon">'+
-(cats[item.cat]?.[0]||"📦")+
-'</div>'+
-
-'<div>'+
-'<div class="fixed-name">'+
-item.cat+
-'</div>'+
-'<div class="fixed-person">'+
-item.person+
-" • "+
-item.detail+
-'</div>'+
-'</div>';
-
-
-const right =
-document.createElement("div");
-
-const button =
-document.createElement("button");
-
-button.type="button";
-
-button.className =
-"status-btn "+
-(
-item.state==="PAGADO"
-? "status-paid"
-: "status-pending"
-);
-
-
-button.textContent =
-item.state==="PAGADO"
-? "✅ PAGADO • "+money(item.amount)
-: "⏳ PENDIENTE • "+money(item.amount);
-
-
-button.addEventListener(
-"click",
-()=>{
-
-toggleStatus(item.id);
-
-}
-);
-
-
-right.appendChild(button);
-
-wrapper.appendChild(left);
-
-wrapper.appendChild(right);
-
-container.appendChild(wrapper);
-
-});
-
-}
-
-
-/* ============================================================
-   CAMBIAR PENDIENTE / PAGADO
-============================================================ */
-
-function toggleStatus(id){
-
-const item =
-data.find(x=>Number(x.id)===Number(id));
-
-if(!item) return;
-
-
-item.state =
-item.state==="PAGADO"
-? "PENDIENTE"
-: "PAGADO";
-
-
-save();
-
-renderAll();
-
-}
-
-
-/* ============================================================
-   GRAFICOS
-============================================================ */
-
-function destroyChart(name){
-
-if(charts[name]){
-
-charts[name].destroy();
-
-charts[name]=null;
+charts[k].destroy();
 
 }
 
 }
 
 
-function drawCharts(){
+/* =====================================================
+   GRÁFICOS
+===================================================== */
 
-const monthData =
-data.filter(x=>
+function drawCharts(z){
 
-x.date &&
-x.date.slice(0,7)===selected
+/* PIE */
 
-);
+destroy("pie");
 
-
-/* DONA */
-
-const expenseData =
-monthData.filter(
-x=>x.type==="Gasto"
-);
-
-
-const categories =
-[...new Set(
-expenseData.map(x=>x.cat)
-)];
-
-
-const categoryValues =
-categories.map(
-cat=>
-sum(
-expenseData,
-x=>x.cat===cat
+let categories =
+[
+...new Set(
+z
+.filter(x=>x.type==="Gasto")
+.map(x=>x.cat)
 )
-);
-
-
-destroyChart("pie");
-
+];
 
 charts.pie =
 new Chart(
@@ -2518,17 +2061,22 @@ type:"doughnut",
 
 data:{
 
-labels:
-categories.length
-? categories
-: ["Sin gastos"],
+labels:categories,
 
 datasets:[{
 
 data:
-categoryValues.length
-? categoryValues
-: [1]
+
+categories.map(
+c=>
+sum(
+z,
+x=>
+x.type==="Gasto"
+&&
+x.cat===c
+)
+)
 
 }]
 
@@ -2554,14 +2102,11 @@ position:"bottom"
 
 /* PERSONAS */
 
-destroyChart("people");
-
+destroy("people");
 
 charts.people =
 new Chart(
-document.getElementById(
-"peopleChart"
-),
+document.getElementById("peopleChart"),
 {
 
 type:"bar",
@@ -2577,23 +2122,22 @@ datasets:[{
 
 label:"Gastos S/",
 
-data:[
+data:
 
-sum(
-monthData,
-x=>
-x.type==="Gasto" &&
-x.person==="Dafne"
-),
-
-sum(
-monthData,
-x=>
-x.type==="Gasto" &&
-x.person==="Francesco"
-)
-
+[
+"Dafne",
+"Francesco"
 ]
+.map(
+p=>
+sum(
+z,
+x=>
+x.type==="Gasto"
+&&
+x.person===p
+)
+)
 
 }]
 
@@ -2604,19 +2148,15 @@ options:{
 responsive:true,
 
 plugins:{
-
 legend:{
 display:false
 }
-
 },
 
 scales:{
-
 y:{
 beginAtZero:true
 }
-
 }
 
 }
@@ -2627,84 +2167,81 @@ beginAtZero:true
 
 /* HISTÓRICO */
 
-const months =
-[...new Set(
-data
-.filter(x=>x.date)
-.map(x=>x.date.slice(0,7))
-)]
+let ms =
+[
+...new Set(
+data.map(
+x=>
+x.period ||
+x.date.slice(0,7)
+)
+)
+]
 .sort();
 
-
-const labels =
-months.map(
-month=>
-
+let labels =
+ms.map(
+x=>
 new Date(
-month+"-15"
-).toLocaleDateString(
+x+"-15"
+)
+.toLocaleDateString(
 "es-PE",
 {
 month:"short",
 year:"numeric"
 }
 )
-
 );
 
 
-const typesHistory =
-[
-"Ingreso",
-"Gasto",
-"Ahorro",
-"Fondo Viajes"
-];
-
-
-destroyChart("history");
-
+destroy("history");
 
 charts.history =
 new Chart(
-document.getElementById(
-"history"
-),
+document.getElementById("history"),
 {
 
 type:"line",
 
 data:{
 
-labels:labels,
+labels,
 
 datasets:
 
-typesHistory.map(type=>({
+[
+"Ingreso",
+"Gasto",
+"Ahorro",
+"Fondo Viajes"
+]
+.map(
+t=>({
 
-label:type,
+label:t,
 
 data:
 
-months.map(month=>
-
+ms.map(
+mm=>
 sum(
-
-data.filter(
+data,
 x=>
-x.date &&
-x.date.slice(0,7)===month
-),
-
-x=>x.type===type
-
+(
+x.period ||
+x.date.slice(0,7)
 )
-
+===mm
+&&
+x.type===t
+)
 ),
 
 tension:.3
 
-}))
+})
+)
 
 },
 
@@ -2713,11 +2250,9 @@ options:{
 responsive:true,
 
 scales:{
-
 y:{
 beginAtZero:true
 }
-
 }
 
 }
@@ -2728,292 +2263,479 @@ beginAtZero:true
 }
 
 
-/* ============================================================
-   HISTORIAL
-============================================================ */
-
-function renderTable(){
-
-const search =
-(
-document.getElementById(
-"search"
-).value || ""
-).toLowerCase();
-
-
-const status =
-document.getElementById(
-"statusFilter"
-).value;
-
-
-let rows =
-data.filter(item=>{
-
-const text =
-Object.values(item)
-.join(" ")
-.toLowerCase();
-
-
-const matchesSearch =
-text.includes(search);
-
-
-const matchesStatus =
-status==="TODOS" ||
-item.state===status;
-
-
-return matchesSearch &&
-matchesStatus;
-
-});
-
-
-rows.sort(
-(a,b)=>
-b.date.localeCompare(a.date) ||
-Number(b.id)-Number(a.id)
-);
-
-
-const tbody =
-document.getElementById(
-"tbody"
-);
-
-
-tbody.innerHTML="";
-
-
-if(!rows.length){
-
-tbody.innerHTML =
-'<tr>'+
-'<td colspan="10" class="empty">'+
-"💡 No encontramos movimientos."+
-"</td>"+
-"</tr>";
-
-return;
-
-}
-
-
-rows.forEach(item=>{
-
-const tr =
-document.createElement("tr");
-
-
-tr.innerHTML =
-
-"<td>"+item.id+"</td>"+
-
-"<td>"+item.date+"</td>"+
-
-"<td>"+
-(people[item.person]?.[0]||"👤")+
-" "+
-item.person+
-"</td>"+
-
-"<td>"+
-(types[item.type]?.[0]||"📦")+
-" "+
-item.type+
-"</td>"+
-
-"<td>"+
-(cats[item.cat]?.[0]||"📦")+
-" "+
-item.cat+
-"</td>"+
-
-"<td>"+
-escapeHTML(item.detail)+
-"</td>"+
-
-"<td>"+
-money(item.budget)+
-"</td>"+
-
-"<td>"+
-money(item.amount)+
-"</td>"+
-
-"<td>"+
-'<span class="pill '+
-(item.state==="PAGADO"
-?"paid"
-:"pending")+
-'">'+
-(item.state==="PAGADO"
-?"✅ PAGADO"
-:"⏳ PENDIENTE")+
-"</span>"+
-"</td>"+
-
-"<td></td>";
-
-
-const actionCell =
-tr.lastElementChild;
-
-
-const actions =
-document.createElement("div");
-
-actions.className="actions";
-
-
-const toggle =
-document.createElement("button");
-
-toggle.className="edit";
-
-toggle.type="button";
-
-toggle.textContent =
-item.state==="PAGADO"
-? "⏳ Pendiente"
-: "✅ Pagar";
-
-
-toggle.addEventListener(
-"click",
-()=>toggleStatus(item.id)
-);
-
-
-const del =
-document.createElement("button");
-
-del.className="danger";
-
-del.type="button";
-
-del.textContent="🗑️";
-
-
-del.addEventListener(
-"click",
-()=>deleteItem(item.id)
-);
-
-
-actions.appendChild(toggle);
-
-actions.appendChild(del);
-
-actionCell.appendChild(actions);
-
-
-tbody.appendChild(tr);
-
-});
-
-}
-
-
-function escapeHTML(value){
-
-return String(value ?? "")
+/* =====================================================
+   ESCAPAR HTML
+===================================================== */
+
+function esc(s){
+
+return String(
+s ?? ""
+)
 .replace(
 /[&<>"']/g,
-char=>({
-
+c=>
+({
 "&":"&amp;",
 "<":"&lt;",
 ">":"&gt;",
 '"':"&quot;",
 "'":"&#039;"
-
-}[char])
+}[c])
 );
 
 }
 
 
-/* ============================================================
-   ELIMINAR
-============================================================ */
+/* =====================================================
+   TABLA
+===================================================== */
 
-function deleteItem(id){
+function renderTable(){
 
-const item =
+let q =
+(
+document.getElementById(
+"search"
+).value || ""
+)
+.toLowerCase();
+
+let rows =
+data
+
+.filter(
+x=>
+Object
+.values(x)
+.join(" ")
+.toLowerCase()
+.includes(q)
+)
+
+.sort(
+(a,b)=>
+b.date.localeCompare(a.date)
+||
+b.id-a.id
+);
+
+
+document.getElementById(
+"tbody"
+)
+.innerHTML =
+
+rows.map(x=>`
+
+<tr>
+
+<td>
+${x.id}
+</td>
+
+<td>
+${x.date}
+</td>
+
+<td>
+${x.period || x.date.slice(0,7)}
+</td>
+
+<td>
+${people[x.person]?.[0] || ""}
+${x.person}
+</td>
+
+<td>
+${types[x.type]?.[0] || "📦"}
+${x.type}
+</td>
+
+<td>
+${cats[x.cat]?.[0] || "📦"}
+${x.cat}
+</td>
+
+<td>
+${esc(x.detail)}
+</td>
+
+<td>
+${money(x.budget)}
+</td>
+
+<td>
+${money(x.amount)}
+</td>
+
+<td>
+
+<span
+class="pill ${
+x.state==="PAGADO"
+?
+"paid"
+:
+"pending"
+}"
+>
+
+${x.state==="PAGADO"
+?
+"✅ PAGADO"
+:
+"⏳ PENDIENTE"}
+
+</span>
+
+</td>
+
+<td>
+
+<div class="actions">
+
+${
+x.state==="PENDIENTE"
+
+?
+
+`<button
+class="action-btn pay"
+onclick="markPaid(${x.id})"
+>
+✅ Pagar
+</button>`
+
+:
+
+`<button
+class="action-btn unpay"
+onclick="markPending(${x.id})"
+>
+⏳ Pendiente
+</button>`
+}
+
+<button
+class="action-btn danger"
+onclick="del(${x.id})"
+>
+🗑️
+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+`)
+.join("")
+
+||
+
+`
+<tr>
+
+<td
+colspan="11"
+class="empty"
+>
+
+No encontramos movimientos.
+
+</td>
+
+</tr>
+`;
+
+}
+
+
+/* =====================================================
+   PAGAR
+===================================================== */
+
+window.markPaid =
+function(id){
+
+let item =
 data.find(
-x=>Number(x.id)===Number(id)
+x=>x.id===id
 );
 
 if(!item) return;
 
-
-const ok =
-confirm(
-"¿Seguro que deseas eliminar este movimiento?\n\n"+
-item.detail+
-"\n"+
-money(item.amount)
-);
-
-
-if(!ok) return;
-
-
-data =
-data.filter(
-x=>Number(x.id)!==Number(id)
-);
-
+item.state="PAGADO";
 
 save();
 
 renderAll();
 
+toast(
+"✅ ¡Movimiento marcado como PAGADO!"
+);
+
+};
+
+
+/* =====================================================
+   VOLVER A PENDIENTE
+===================================================== */
+
+window.markPending =
+function(id){
+
+let item =
+data.find(
+x=>x.id===id
+);
+
+if(!item) return;
+
+item.state="PENDIENTE";
+
+save();
+
+renderAll();
+
+toast(
+"⏳ Movimiento cambiado a PENDIENTE."
+);
+
+};
+
+
+/* =====================================================
+   ELIMINAR
+===================================================== */
+
+window.del =
+function(id){
+
+if(
+confirm(
+"¿Eliminar este movimiento?"
+)
+){
+
+data =
+data.filter(
+x=>x.id!==id
+);
+
+save();
+
+renderAll();
+
+toast(
+"🗑️ Movimiento eliminado."
+);
+
 }
 
-
-/* ============================================================
-   GUARDAR MOVIMIENTO
-============================================================ */
-
-function saveMovement(){
-
-const date =
-document.getElementById(
-"date"
-).value;
+};
 
 
-const detail =
-document.getElementById(
-"detail"
-).value.trim();
+/* =====================================================
+   CAMBIO DE MES
+===================================================== */
+
+document
+.getElementById("month")
+.onchange =
+e=>{
+
+selected =
+e.target.value;
+
+renderAll();
+
+};
 
 
-const amount =
-Number(
+/* =====================================================
+   MES ANTERIOR
+===================================================== */
+
+document
+.getElementById("prev")
+.onclick =
+()=>{
+
+let ms =
+months();
+
+let i =
+ms.indexOf(selected);
+
+if(i < ms.length-1){
+
+selected =
+ms[i+1];
+
+}
+
+renderAll();
+
+};
+
+
+/* =====================================================
+   MES SIGUIENTE
+===================================================== */
+
+document
+.getElementById("next")
+.onclick =
+()=>{
+
+let ms =
+months();
+
+let i =
+ms.indexOf(selected);
+
+if(i > 0){
+
+selected =
+ms[i-1];
+
+}
+
+renderAll();
+
+};
+
+
+/* =====================================================
+   BOTONES RÁPIDOS
+===================================================== */
+
+document
+.querySelectorAll("[data-add]")
+.forEach(button=>{
+
+button.onclick=()=>{
+
+const input =
 document.getElementById(
 "amount"
-).value
 );
 
+input.value =
 
-const budget =
+(
+Number(input.value)||0
+)
++
 Number(
-document.getElementById(
-"budget"
-).value
-) || 0;
+button.dataset.add
+);
+
+};
+
+});
 
 
-if(!date){
+/* =====================================================
+   CAMBIO DE FECHA
+===================================================== */
 
-alert(
-"📅 Selecciona una fecha."
+document
+.getElementById("date")
+.onchange =
+()=>{
+
+let date =
+document
+.getElementById("date")
+.value;
+
+if(date){
+
+document
+.getElementById("period")
+.value =
+date.slice(0,7);
+
+}
+
+};
+
+
+/* =====================================================
+   CAMBIO DE PERIODO
+===================================================== */
+
+document
+.getElementById("period")
+.onchange =
+e=>{
+
+selected =
+e.target.value;
+
+};
+
+
+/* =====================================================
+   GUARDAR MOVIMIENTO
+===================================================== */
+
+document
+.getElementById("save")
+.onclick =
+()=>{
+
+let amount =
+Number(
+document
+.getElementById("amount")
+.value
+);
+
+let budget =
+Number(
+document
+.getElementById("budget")
+.value
+)
+||0;
+
+let date =
+document
+.getElementById("date")
+.value
+||
+new Date()
+.toISOString()
+.slice(0,10);
+
+let period =
+document
+.getElementById("period")
+.value
+||
+date.slice(0,7);
+
+let detail =
+document
+.getElementById("detail")
+.value
+.trim();
+
+
+/* VALIDACIÓN */
+
+if(
+!amount ||
+amount<=0
+){
+
+toast(
+"💡 Escribe un monto mayor que S/ 0."
 );
 
 return;
@@ -3021,72 +2743,27 @@ return;
 }
 
 
-if(!amount || amount<=0){
+/* NUEVO ID */
 
-alert(
-"💰 Escribe un monto mayor que S/ 0."
-);
-
-return;
-
-}
-
-
-/*
-REGLA IMPORTANTE:
-
-Si registramos un sueldo al final de julio
-y elegimos que financiará agosto,
-se puede indicar mediante la pregunta
-que aparecerá después.
-*/
-
-let fundsMonth = "";
+let newId =
+data.length
+?
+Math.max(
+...data.map(x=>x.id)
+)+1
+:
+1;
 
 
-if(selType==="Ingreso"){
+/* REGISTRO */
 
-const chosen =
-prompt(
-"💡 ¿Para qué mes quieres considerar este ingreso?\n\n"+
-"Escribe YYYY-MM.\n\n"+
-"Ejemplo:\n"+
-"2026-08\n\n"+
-"Si lo dejas vacío, se considerará en el mes de la fecha.",
-date.slice(0,7)
-);
+data.push({
 
-
-if(chosen){
-
-const regex =
-/^\d{4}-(0[1-9]|1[0-2])$/;
-
-
-if(!regex.test(chosen)){
-
-alert(
-"⚠️ Formato incorrecto.\n\n"+
-"Usa YYYY-MM.\nEjemplo: 2026-08"
-);
-
-return;
-
-}
-
-
-fundsMonth=chosen;
-
-}
-
-}
-
-
-const newItem = {
-
-id:nextId(),
+id:newId,
 
 date:date,
+
+period:period,
 
 person:selPerson,
 
@@ -3102,97 +2779,266 @@ budget:budget,
 
 amount:amount,
 
-state:selState,
+state:selState
 
-fixed:false
-
-};
+});
 
 
-if(fundsMonth){
-
-newItem.fundsMonth =
-fundsMonth;
-
-}
-
-
-data.push(newItem);
+/* GUARDAR */
 
 save();
 
 
-/* limpiar */
+/* LIMPIAR */
 
-document.getElementById(
-"amount"
-).value="";
+document
+.getElementById("amount")
+.value="";
 
+document
+.getElementById("budget")
+.value="";
 
-document.getElementById(
-"budget"
-).value="";
-
-
-document.getElementById(
-"detail"
-).value="";
+document
+.getElementById("detail")
+.value="";
 
 
-selected =
-date.slice(0,7);
+/* IR AL PERIODO */
+
+selected=period;
 
 
-showMessage(
-"🎉 ¡Movimiento guardado correctamente!"
-);
-
+/* REFRESCAR */
 
 renderAll();
 
-}
 
-
-/* ============================================================
-   MENSAJE DEL FORMULARIO
-============================================================ */
-
-function showMessage(message){
-
-const box =
-document.getElementById(
-"formMessage"
+toast(
+"🎉 ¡Movimiento guardado correctamente!"
 );
 
-box.textContent=message;
-
-box.style.display="block";
+};
 
 
-setTimeout(
+/* =====================================================
+   GASTOS FIJOS
+===================================================== */
+
+document
+.getElementById("fixed")
+.onclick =
 ()=>{
 
-box.style.display="none";
 
-},
-3500
+let month =
+selected;
+
+
+/*
+=======================================================
+IMPORTANTE:
+
+AQUÍ SOLO SE CARGAN:
+
+🏠 CASA
+🍕 COMIDA
+🎒 COLEGIO
+
+NO SE CARGA:
+❌ BANCOS/SERVICIOS
+=======================================================
+*/
+
+
+let items = [
+
+[
+"Casa/Alquiler",
+"Alquiler familiar 50/50",
+150
+],
+
+[
+"Comida",
+"Comida familiar 50/50",
+200
+],
+
+[
+"Colegio",
+"Colegio - parte familiar",
+100
+]
+
+];
+
+
+let added=0;
+
+
+/* RECORRER GASTOS */
+
+for(
+let [
+cat,
+detail,
+amt
+]
+of items
+){
+
+
+/* DAR A CADA PERSONA */
+
+for(
+let person
+of [
+"Dafne",
+"Francesco"
+]
+){
+
+
+/*
+EVITAR DUPLICADOS
+*/
+
+let exists =
+data.some(
+x=>
+
+(
+x.period ||
+x.date.slice(0,7)
+)
+===
+month
+
+&&
+
+x.person===
+person
+
+&&
+
+x.cat===
+cat
+
+&&
+
+x.detail===
+detail
+
 );
+
+
+if(!exists){
+
+let newId =
+data.length
+?
+Math.max(
+...data.map(x=>x.id)
+)+1
+:
+1;
+
+
+data.push({
+
+id:newId,
+
+date:
+month+"-01",
+
+period:
+month,
+
+person:
+
+person,
+
+type:
+"Gasto",
+
+cat:
+cat,
+
+detail:
+detail,
+
+budget:
+amt,
+
+amount:
+amt,
+
+state:
+"PENDIENTE"
+
+});
+
+
+added++;
+
+}
+
+}
 
 }
 
 
-/* ============================================================
-   CSV
-============================================================ */
+/* GUARDAR */
 
-function exportCSV(){
+save();
 
-const headers = [
+renderAll();
+
+
+/* AVISO */
+
+if(added){
+
+toast(
+`⚡ Se agregaron ${added} gastos fijos. Todos están PENDIENTES.`
+);
+
+}else{
+
+toast(
+"ℹ️ Los gastos fijos de este mes ya estaban cargados."
+);
+
+}
+
+};
+
+
+/* =====================================================
+   BUSCADOR
+===================================================== */
+
+document
+.getElementById("search")
+.oninput =
+renderTable;
+
+
+/* =====================================================
+   EXPORTAR CSV
+===================================================== */
+
+document
+.getElementById("csv")
+.onclick =
+()=>{
+
+let head = [
 
 "ID",
 "Fecha",
 "Periodo",
-"Mes de fondos",
 "Persona",
 "Tipo",
 "Categoría",
@@ -3204,257 +3050,80 @@ const headers = [
 ];
 
 
-const rows =
-data.map(item=>[
+let lines = [
 
-item.id,
+head,
 
-item.date,
+...data.map(x=>[
 
-item.date
-? item.date.slice(0,7)
-:"",
+x.id,
 
-item.fundsMonth || "",
+x.date,
 
-item.person,
+x.period ||
+x.date.slice(0,7),
 
-item.type,
+x.person,
 
-item.cat,
+x.type,
 
-item.detail,
+x.cat,
 
-item.budget,
+x.detail,
 
-item.amount,
+x.budget,
 
-item.state
+x.amount,
 
-]);
+x.state
 
+])
 
-const csv =
+]
+.map(
+row=>
 
-[headers,...rows]
-
-.map(row=>
-
-row.map(
-value=>
-'"'+
-String(value ?? "")
-.replaceAll('"','""')+
-'"'
-).join(",")
-
+row
+.map(
+v=>
+`"${String(v)
+.replaceAll('"','""')}"`
 )
+.join(",")
+);
 
-.join("\n");
 
-
-const blob =
+let blob =
 new Blob(
-["\ufeff"+csv],
+[
+"\ufeff"
++
+lines.join("\n")
+],
 {
-type:"text/csv;charset=utf-8"
+type:
+"text/csv;charset=utf-8"
 }
 );
 
 
-const url =
-URL.createObjectURL(blob);
-
-
-const a =
+let a =
 document.createElement("a");
 
-a.href=url;
+a.href =
+URL.createObjectURL(blob);
 
 a.download =
 "historial_finanzas_familiares.csv";
 
 a.click();
 
-
-URL.revokeObjectURL(url);
-
-}
+};
 
 
-/* ============================================================
-   RENDER GENERAL
-============================================================ */
-
-function renderAll(){
-
-renderMonthSelector();
-
-renderDashboard();
-
-renderForm();
-
-renderFixedList();
-
-renderTable();
-
-drawCharts();
-
-setDefaultDate();
-
-}
-
-
-/* ============================================================
-   EVENTOS
-============================================================ */
-
-document
-.getElementById("month")
-.addEventListener(
-"change",
-event=>{
-
-selected =
-event.target.value;
-
-renderAll();
-
-}
-);
-
-
-document
-.getElementById("prev")
-.addEventListener(
-"click",
-()=>{
-
-const months =
-getMonths();
-
-const index =
-months.indexOf(selected);
-
-if(index < months.length-1){
-
-selected =
-months[index+1];
-
-renderAll();
-
-}
-
-}
-);
-
-
-document
-.getElementById("next")
-.addEventListener(
-"click",
-()=>{
-
-const months =
-getMonths();
-
-const index =
-months.indexOf(selected);
-
-if(index > 0){
-
-selected =
-months[index-1];
-
-renderAll();
-
-}
-
-}
-);
-
-
-/* BOTONES RAPIDOS */
-
-document
-.querySelectorAll("[data-add]")
-.forEach(button=>{
-
-button.addEventListener(
-"click",
-()=>{
-
-const input =
-document.getElementById(
-"amount"
-);
-
-const current =
-Number(input.value)||0;
-
-input.value =
-current+
-Number(button.dataset.add);
-
-}
-);
-
-});
-
-
-/* GUARDAR */
-
-document
-.getElementById("save")
-.addEventListener(
-"click",
-saveMovement
-);
-
-
-/* GASTOS FIJOS */
-
-document
-.getElementById("fixed")
-.addEventListener(
-"click",
-loadFixedExpenses
-);
-
-
-/* BUSCADOR */
-
-document
-.getElementById("search")
-.addEventListener(
-"input",
-renderTable
-);
-
-
-/* FILTRO */
-
-document
-.getElementById("statusFilter")
-.addEventListener(
-"change",
-renderTable
-);
-
-
-/* CSV */
-
-document
-.getElementById("csv")
-.addEventListener(
-"click",
-exportCSV
-);
-
-
-/* ============================================================
-   INICIO
-============================================================ */
+/* =====================================================
+   INICIAR
+===================================================== */
 
 renderAll();
 
