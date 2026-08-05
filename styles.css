@@ -61,7 +61,7 @@ button {
 }
 
 /* =========================
-   HERO / HEADER
+   HERO / HEADER & CLOCK
 ========================= */
 
 .hero {
@@ -70,6 +70,7 @@ button {
   border-radius: 28px;
   padding: 26px;
   box-shadow: 0 16px 40px rgba(57, 48, 120, 0.17);
+  position: relative;
 }
 
 .hero h1 {
@@ -91,6 +92,29 @@ button {
   border-radius: 999px;
   font-size: 13px;
   font-weight: 800;
+}
+
+/* Reloj e Indicador de Fecha en Tiempo Real */
+#realtimeClock, #liveClock {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#realtimeClock span, #liveClock span {
+  color: #a6eb73;
+  font-family: monospace;
+  font-size: 1rem;
 }
 
 /* =========================
@@ -171,6 +195,12 @@ button {
   padding: 13px;
   font-weight: 800;
   min-height: 50px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn:active,
+.month button:active {
+  transform: scale(0.98);
 }
 
 .month select {
@@ -180,6 +210,7 @@ button {
   text-align: center;
   background: white;
   font-weight: 900;
+  cursor: pointer;
 }
 
 /* =========================
@@ -211,7 +242,7 @@ button {
   height: 100%;
   background: linear-gradient(90deg, #79d85d, #a6eb73);
   border-radius: 99px;
-  transition: 0.5s;
+  transition: width 0.5s ease-in-out;
 }
 
 .energytext {
@@ -271,7 +302,8 @@ button {
   text-align: center;
   font-weight: 850;
   min-height: 68px;
-  transition: 0.2s;
+  transition: all 0.2s ease;
+  user-select: none;
 }
 
 .choice:hover {
@@ -311,10 +343,12 @@ button {
   padding: 13px;
   background: white;
   outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .field input:focus,
-.field select:focus {
+.field select:focus,
+.field textarea:focus {
   border-color: var(--purple);
   box-shadow: 0 0 0 3px rgba(98, 84, 201, 0.1);
 }
@@ -332,6 +366,11 @@ button {
   border-radius: 12px;
   padding: 9px 13px;
   font-weight: 900;
+  transition: background 0.2s;
+}
+
+.quick button:hover {
+  background: #ded7ff;
 }
 
 .save {
@@ -343,10 +382,16 @@ button {
   font-size: 19px;
   font-weight: 950;
   box-shadow: 0 8px 20px rgba(91, 76, 198, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .save:hover {
   transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(91, 76, 198, 0.3);
+}
+
+.save:active {
+  transform: translateY(1px);
 }
 
 /* =========================
@@ -372,26 +417,29 @@ button {
 }
 
 /* =========================
-   TABLE
+   TABLE & HISTORY (AMPLIADO A 13 COLUMNAS)
 ========================= */
 
 .tablewrap {
-  overflow: auto;
+  overflow-x: auto;
   max-height: 550px;
   border-radius: 16px;
+  border: 1px solid var(--border);
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 950px;
+  min-width: 1200px; /* Ancho suficiente para prevenir colapso de las 13 columnas */
 }
 
 .table th,
 .table td {
-  padding: 10px;
+  padding: 12px 10px;
   border-bottom: 1px solid var(--border);
   text-align: left;
+  font-size: 13.5px;
+  white-space: nowrap;
 }
 
 .table th {
@@ -399,14 +447,24 @@ button {
   position: sticky;
   top: 0;
   z-index: 2;
+  font-weight: 900;
+  color: var(--purple-dark);
+}
+
+.table td:nth-child(9) {
+  white-space: normal;
+  min-width: 180px;
+  max-width: 280px;
+  word-break: break-word;
 }
 
 .pill {
   border-radius: 99px;
-  padding: 5px 9px;
+  padding: 5px 10px;
   font-weight: 900;
   font-size: 11px;
   display: inline-block;
+  text-align: center;
 }
 
 .paid {
@@ -422,14 +480,23 @@ button {
 .actions {
   display: flex;
   gap: 6px;
-  flex-wrap: wrap;
+  align-items: center;
 }
 
 .action-btn {
-  padding: 8px 10px;
+  padding: 6px 10px;
   border-radius: 10px;
   font-weight: 800;
   font-size: 12px;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.action-btn:hover {
+  opacity: 0.9;
+}
+
+.action-btn:active {
+  transform: scale(0.95);
 }
 
 .pay {
@@ -451,6 +518,7 @@ button {
   text-align: center;
   padding: 35px;
   color: var(--muted);
+  font-weight: 800;
 }
 
 /* =========================
@@ -470,9 +538,10 @@ button {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   z-index: 9999;
   opacity: 0;
-  transition: 0.3s;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   max-width: 90%;
   text-align: center;
+  pointer-events: none;
 }
 
 .toast.show {
