@@ -4,176 +4,4015 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#6254c9">
+
 <title>💜 Finanzas Familiares | Dafne & Francesco</title>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
 <style>
-:root{--bg:#f6f4ff;--card:#fff;--ink:#292447;--muted:#77718e;--purple:#6254c9;--purple2:#eeeaff;--dafne:#ffdce8;--fran:#d9f2ff;--green:#d9f7c9;--orange:#ffe2c4;--border:#e9e5f6;--shadow:0 10px 30px #43377d12}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#fbfaff,#f3f0ff);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.wrap{max-width:1250px;margin:auto;padding:16px}
-.hero{background:linear-gradient(135deg,#302b59,#6a5bd2);color:#fff;border-radius:28px;padding:25px;box-shadow:0 16px 40px #3930782b}.hero h1{font-size:clamp(29px,5vw,45px);margin:0}.hero p{margin:6px 0 0;font-size:16px;opacity:.9}
-.card{background:#ffffffee;border:1px solid var(--border);border-radius:23px;padding:18px;box-shadow:var(--shadow)}.title{font-size:23px;font-weight:900;margin:23px 0 10px}.small{font-size:13px;color:var(--muted)}
-.month{display:grid;grid-template-columns:1fr 2fr 1fr;gap:10px;margin:15px 0}.btn,.month button{background:#fff;border:1px solid var(--border);border-radius:16px;padding:13px;font-weight:800;min-height:50px}.month select{border:1px solid var(--border);border-radius:16px;padding:10px;text-align:center;background:#fff;font-weight:900}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi{min-height:125px}.emoji{font-size:34px}.label{color:var(--muted);font-size:13px;font-weight:800}.value{font-size:28px;font-weight:950;margin-top:4px}.green{background:linear-gradient(135deg,#f5fff1,var(--green))}.orange{background:linear-gradient(135deg,#fff9f1,var(--orange))}.dafne{background:linear-gradient(135deg,#fff3f7,var(--dafne))}.fran{background:linear-gradient(135deg,#f2fbff,var(--fran))}
-.energy{height:27px;background:#e8e5f4;border-radius:99px;overflow:hidden}.energy>div{height:100%;background:linear-gradient(90deg,#79d85d,#a6eb73);border-radius:99px;transition:.5s}.energytext{text-align:center;font-weight:900;margin:8px}
-.people,.charts{display:grid;grid-template-columns:1fr 1fr;gap:12px}.charts .card{min-height:340px}
-.form{display:grid;gap:15px}.step{background:#fbfaff;border:1px solid var(--border);padding:14px;border-radius:20px}.choices{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:9px}.choice{background:#fff;border:2px solid var(--border);border-radius:17px;padding:14px 7px;text-align:center;font-weight:850;min-height:68px}.choice span{display:block;font-size:26px}.choice.active{border-color:var(--purple);background:var(--purple2);box-shadow:0 0 0 3px #6254c91c}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;font-weight:850;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--border);border-radius:14px;padding:13px;background:#fff}.quick{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.quick button{background:var(--purple2);color:#493db0;border-radius:12px;padding:9px 13px;font-weight:900}.save{width:100%;background:linear-gradient(135deg,#6758d5,#5042b8);color:white;border-radius:19px;padding:18px;font-size:19px;font-weight:950;box-shadow:0 8px 20px #5b4cc633}.fixed{background:linear-gradient(135deg,#fff7e9,#ffe1bc)}
-.tablewrap{overflow:auto;max-height:500px;border-radius:16px}.table{width:100%;border-collapse:collapse;min-width:850px}.table th,.table td{padding:10px;border-bottom:1px solid var(--border);text-align:left}.table th{background:#faf9ff;position:sticky;top:0}.pill{border-radius:99px;padding:5px 9px;font-weight:900;font-size:11px}.paid{background:var(--green)}.pending{background:var(--orange)}.actions{display:flex;gap:8px}.danger{background:#fff0f1;color:#b33b49;padding:8px 10px;border-radius:10px;font-weight:800}.empty{text-align:center;padding:35px;color:var(--muted)}
-@media(max-width:800px){.grid4{grid-template-columns:1fr 1fr}.people,.charts{grid-template-columns:1fr}.choices{grid-template-columns:repeat(3,1fr)}.fields{grid-template-columns:1fr}.month{grid-template-columns:1fr}.wrap{padding:9px}.card{border-radius:19px;padding:14px}.title{font-size:20px}}
-@media(max-width:450px){.grid4{grid-template-columns:1fr 1fr}.choices{grid-template-columns:repeat(2,1fr)}.value{font-size:23px}.hero{border-radius:20px}}
+:root{
+  --bg:#f6f4ff;
+  --card:#fff;
+  --ink:#292447;
+  --muted:#77718e;
+  --purple:#6254c9;
+  --purple2:#eeeaff;
+  --purple3:#4d40ae;
+  --dafne:#ffdce8;
+  --fran:#d9f2ff;
+  --green:#d9f7c9;
+  --orange:#ffe2c4;
+  --red:#ffdfe2;
+  --border:#e9e5f6;
+  --shadow:0 10px 30px #43377d12;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:linear-gradient(180deg,#fbfaff,#f3f0ff);
+  color:var(--ink);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+  border:0;
+}
+
+button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+.wrap{
+  max-width:1300px;
+  margin:auto;
+  padding:16px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  background:linear-gradient(135deg,#302b59,#6a5bd2);
+  color:#fff;
+  border-radius:28px;
+  padding:25px;
+  box-shadow:0 16px 40px #3930782b;
+}
+
+.hero h1{
+  font-size:clamp(29px,5vw,45px);
+  margin:0;
+}
+
+.hero p{
+  margin:6px 0 0;
+  font-size:16px;
+  opacity:.9;
+}
+
+.hero-badges{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:16px;
+}
+
+.hero-badge{
+  background:#ffffff1c;
+  border:1px solid #ffffff2e;
+  border-radius:99px;
+  padding:8px 13px;
+  font-size:13px;
+  font-weight:800;
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+.card{
+  background:#ffffffee;
+  border:1px solid var(--border);
+  border-radius:23px;
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+
+.title{
+  font-size:23px;
+  font-weight:900;
+  margin:23px 0 10px;
+}
+
+.subtitle{
+  font-size:16px;
+  font-weight:900;
+  margin:0 0 8px;
+}
+
+.small{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.note{
+  background:var(--purple2);
+  border:1px solid #dcd5ff;
+  border-radius:16px;
+  padding:13px;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.warning{
+  background:#fff5e9;
+  border:1px solid #ffe0bb;
+  border-radius:16px;
+  padding:13px;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.success{
+  background:#f0ffe9;
+  border:1px solid #d4f3c6;
+  border-radius:16px;
+  padding:13px;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.btn{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:13px;
+  font-weight:800;
+  min-height:50px;
+}
+
+.btn:hover{
+  background:var(--purple2);
+}
+
+.btn-purple{
+  background:linear-gradient(135deg,#6758d5,#5042b8);
+  color:#fff;
+  border:0;
+}
+
+.btn-danger{
+  background:#fff0f1;
+  color:#b33b49;
+  border:1px solid #ffd8dc;
+}
+
+.btn-success{
+  background:#efffe9;
+  color:#398228;
+  border:1px solid #d5f0cb;
+}
+
+/* =========================
+   MONTH
+========================= */
+
+.month{
+  display:grid;
+  grid-template-columns:1fr 2fr 1fr;
+  gap:10px;
+  margin:15px 0;
+}
+
+.month button{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:13px;
+  font-weight:800;
+  min-height:50px;
+}
+
+.month select{
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:10px;
+  text-align:center;
+  background:#fff;
+  font-weight:900;
+  color:var(--ink);
+}
+
+/* =========================
+   ENERGY
+========================= */
+
+.energy{
+  height:27px;
+  background:#e8e5f4;
+  border-radius:99px;
+  overflow:hidden;
+}
+
+.energy>div{
+  height:100%;
+  background:linear-gradient(90deg,#79d85d,#a6eb73);
+  border-radius:99px;
+  transition:.5s;
+}
+
+.energytext{
+  text-align:center;
+  font-weight:900;
+  margin:8px;
+}
+
+/* =========================
+   KPI
+========================= */
+
+.grid4{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.kpi{
+  min-height:125px;
+}
+
+.emoji{
+  font-size:34px;
+}
+
+.label{
+  color:var(--muted);
+  font-size:13px;
+  font-weight:800;
+}
+
+.value{
+  font-size:28px;
+  font-weight:950;
+  margin-top:4px;
+}
+
+.green{
+  background:linear-gradient(135deg,#f5fff1,var(--green));
+}
+
+.orange{
+  background:linear-gradient(135deg,#fff9f1,var(--orange));
+}
+
+.dafne{
+  background:linear-gradient(135deg,#fff3f7,var(--dafne));
+}
+
+.fran{
+  background:linear-gradient(135deg,#f2fbff,var(--fran));
+}
+
+.red{
+  background:linear-gradient(135deg,#fff5f6,var(--red));
+}
+
+/* =========================
+   PEOPLE / CHARTS
+========================= */
+
+.people,
+.charts{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.charts .card{
+  min-height:340px;
+}
+
+.chart-box{
+  position:relative;
+  height:290px;
+}
+
+.chart-box canvas{
+  max-height:290px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form{
+  display:grid;
+  gap:15px;
+}
+
+.step{
+  background:#fbfaff;
+  border:1px solid var(--border);
+  padding:14px;
+  border-radius:20px;
+}
+
+.step-title{
+  font-weight:900;
+}
+
+.choices{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+  margin-top:9px;
+}
+
+.choice{
+  background:#fff;
+  border:2px solid var(--border);
+  border-radius:17px;
+  padding:14px 7px;
+  text-align:center;
+  font-weight:850;
+  min-height:68px;
+  color:var(--ink);
+}
+
+.choice span{
+  display:block;
+  font-size:26px;
+  margin-bottom:4px;
+}
+
+.choice:hover{
+  border-color:#bcb4ef;
+}
+
+.choice.active{
+  border-color:var(--purple);
+  background:var(--purple2);
+  box-shadow:0 0 0 3px #6254c91c;
+}
+
+.fields{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.field label{
+  display:block;
+  font-weight:850;
+  margin-bottom:6px;
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:13px;
+  background:#fff;
+  color:var(--ink);
+}
+
+.field textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  outline:3px solid #6254c91c;
+  border-color:var(--purple);
+}
+
+.quick{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+
+.quick button{
+  background:var(--purple2);
+  color:#493db0;
+  border-radius:12px;
+  padding:9px 13px;
+  font-weight:900;
+}
+
+.save{
+  width:100%;
+  background:linear-gradient(135deg,#6758d5,#5042b8);
+  color:white;
+  border-radius:19px;
+  padding:18px;
+  font-size:19px;
+  font-weight:950;
+  box-shadow:0 8px 20px #5b4cc633;
+}
+
+.save:hover{
+  transform:translateY(-1px);
+}
+
+/* =========================
+   SALARY RULE
+========================= */
+
+.salary-rule{
+  background:linear-gradient(135deg,#f4f0ff,#e9e4ff);
+  border:1px solid #d9d1ff;
+}
+
+.rule-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.rule-example{
+  background:#fff;
+  border-radius:17px;
+  border:1px solid var(--border);
+  padding:14px;
+}
+
+.rule-example strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+/* =========================
+   FIXED
+========================= */
+
+.fixed{
+  background:linear-gradient(135deg,#fff7e9,#ffe1bc);
+}
+
+.fixed-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.fixed-item{
+  background:#ffffffa8;
+  border:1px solid #f4d9b7;
+  border-radius:16px;
+  padding:13px;
+}
+
+.fixed-total{
+  font-size:22px;
+  font-weight:950;
+}
+
+/* =========================
+   HISTORY
+========================= */
+
+.tablewrap{
+  overflow:auto;
+  max-height:600px;
+  border-radius:16px;
+}
+
+.table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:1250px;
+}
+
+.table th,
+.table td{
+  padding:10px;
+  border-bottom:1px solid var(--border);
+  text-align:left;
+  vertical-align:middle;
+}
+
+.table th{
+  background:#faf9ff;
+  position:sticky;
+  top:0;
+  z-index:2;
+}
+
+.table tr:hover td{
+  background:#fcfbff;
+}
+
+.pill{
+  border-radius:99px;
+  padding:5px 9px;
+  font-weight:900;
+  font-size:11px;
+  white-space:nowrap;
+}
+
+.paid{
+  background:var(--green);
+}
+
+.pending{
+  background:var(--orange);
+}
+
+.covered{
+  background:var(--purple2);
+  color:var(--purple3);
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+}
+
+.danger{
+  background:#fff0f1;
+  color:#b33b49;
+  padding:8px 10px;
+  border-radius:10px;
+  font-weight:800;
+}
+
+.empty{
+  text-align:center;
+  padding:35px;
+  color:var(--muted);
+}
+
+.search-row{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+}
+
+/* =========================
+   SETTINGS
+========================= */
+
+.settings-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.setting{
+  background:#fbfaff;
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:14px;
+}
+
+.setting-title{
+  font-weight:900;
+  margin-bottom:7px;
+}
+
+.setting-value{
+  font-size:21px;
+  font-weight:950;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  text-align:center;
+  padding:25px 10px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+  .grid4{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .people,
+  .charts{
+    grid-template-columns:1fr;
+  }
+
+  .choices{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .settings-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:700px){
+
+  .fields,
+  .rule-grid,
+  .fixed-grid,
+  .search-row{
+    grid-template-columns:1fr;
+  }
+
+  .month{
+    grid-template-columns:1fr;
+  }
+
+  .wrap{
+    padding:9px;
+  }
+
+  .card{
+    border-radius:19px;
+    padding:14px;
+  }
+
+  .title{
+    font-size:20px;
+  }
+}
+
+@media(max-width:450px){
+
+  .grid4{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .choices{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .settings-grid{
+    grid-template-columns:1fr;
+  }
+
+  .value{
+    font-size:23px;
+  }
+
+  .hero{
+    border-radius:20px;
+  }
+
+  .hero-badges{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <div class="wrap">
-<header class="hero"><h1>💜 Finanzas Familiares</h1><p>El dinero de <b>Dafne 💗</b> y <b>Francesco 🦁</b>, fácil de entender y guardar.</p></header>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<header class="hero">
+
+  <h1>💜 Finanzas Familiares</h1>
+
+  <p>
+    El dinero de <b>Dafne 💗</b> y <b>Francesco 🦁</b>,
+    fácil de entender, organizar y guardar.
+  </p>
+
+  <div class="hero-badges">
+    <div class="hero-badge">💰 Control familiar</div>
+    <div class="hero-badge">📅 Presupuesto por mes</div>
+    <div class="hero-badge">🐷 Ahorro</div>
+    <div class="hero-badge">✈️ Fondo de viajes</div>
+  </div>
+
+</header>
+
+
+<!-- =========================
+     SELECTOR DE MES
+========================= -->
 
 <section class="month">
-<button id="prev">👈 Mes anterior</button><select id="month"></select><button id="next">Mes siguiente 👉</button>
+
+  <button id="prev">
+    👈 Mes anterior
+  </button>
+
+  <select id="month"></select>
+
+  <button id="next">
+    Mes siguiente 👉
+  </button>
+
 </section>
 
-<div class="title">🎮 Tu energía de dinero</div>
-<div class="card"><div class="energy"><div id="energyBar"></div></div><div class="energytext" id="energyText"></div></div>
 
-<div class="title">📊 Este mes</div>
-<div class="grid4">
-<div class="card kpi green"><div class="emoji">💰</div><div class="label">Ingreso total</div><div class="value" id="income"></div></div>
-<div class="card kpi orange"><div class="emoji">💸</div><div class="label">Gasto total</div><div class="value" id="expense"></div></div>
-<div class="card kpi green"><div class="emoji">🐷</div><div class="label">Ahorro</div><div class="value" id="saving"></div></div>
-<div class="card kpi fran"><div class="emoji">✈️</div><div class="label">Fondo viajes</div><div class="value" id="travel"></div></div>
+<!-- =========================
+     REGLA DEL SUELDO
+========================= -->
+
+<div class="title">
+  💡 Regla financiera familiar
 </div>
 
-<div class="title">👨‍👩‍👧 ¿Cómo vamos cada uno?</div>
-<div class="people">
-<div class="card dafne"><div class="emoji">💗</div><div class="label">Dafne — disponible</div><div class="value" id="dafneAvail"></div></div>
-<div class="card fran"><div class="emoji">🦁</div><div class="label">Francesco — disponible</div><div class="value" id="franAvail"></div></div>
+<div class="card salary-rule">
+
+  <h3 style="margin-top:0">
+    💼 Sueldo cobrado a fin de mes
+  </h3>
+
+  <p class="small">
+    Para que las cuentas representen realmente cómo manejan su dinero,
+    el sistema separa <b>la fecha en que recibes el sueldo</b> del
+    <b>mes que ese sueldo está destinado a cubrir</b>.
+  </p>
+
+  <div class="rule-grid">
+
+    <div class="rule-example">
+      <strong>📅 Fecha real</strong>
+      31/07/2026
+      <div class="small">
+        Día en que recibiste el sueldo.
+      </div>
+    </div>
+
+    <div class="rule-example">
+      <strong>🎯 Mes que cubre</strong>
+      AGOSTO 2026
+      <div class="small">
+        El dinero se utilizará para cubrir agosto.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note" style="margin-top:12px">
+    <b>⚙️ Regla automática:</b>
+    si registras un movimiento como <b>Ingreso → Sueldo</b>
+    y la fecha real es el día <b>25 o posterior</b>,
+    el sistema propone automáticamente el <b>mes siguiente</b>
+    como mes cubierto.
+  </div>
+
 </div>
 
-<div class="title">📈 Mira tus números</div>
-<div class="charts">
-<div class="card"><h3>🍕 Gastos por categoría</h3><canvas id="pie"></canvas></div>
-<div class="card"><h3>👥 Gastos por persona</h3><canvas id="peopleChart"></canvas></div>
+
+<!-- =========================
+     ENERGÍA
+========================= -->
+
+<div class="title">
+  🎮 Tu energía de dinero
 </div>
 
-<div class="title">🌎 Tesoros acumulados</div>
-<div class="people">
-<div class="card green"><div class="emoji">🐷</div><div class="label">Alcancía de emergencia</div><div class="value" id="globalSaving"></div><div class="small">Ahorro acumulado de todos los meses.</div></div>
-<div class="card fran"><div class="emoji">✈️</div><div class="label">Meta de viajes</div><div class="value" id="globalTravel"></div><div class="small" id="travelPct"></div><div class="energy" style="margin-top:9px"><div id="travelBar"></div></div></div>
-</div>
-
-<div class="title">📉 Evolución histórica</div>
-<div class="card"><canvas id="history"></canvas></div>
-
-<div class="title">🚀 Registrar un movimiento</div>
-<div class="card form">
-<div class="step"><b>1️⃣ ¿Quién?</b><div class="choices" id="personChoices"></div></div>
-<div class="step"><b>2️⃣ ¿Qué es?</b><div class="choices" id="typeChoices"></div></div>
-<div class="step"><b>3️⃣ ¿Qué categoría?</b><div class="choices" id="catChoices"></div></div>
-<div class="fields">
-<div class="field"><label>📅 Fecha</label><input id="date" type="date"></div>
-<div class="field"><label>📝 Detalle</label><input id="detail" placeholder="Ej.: mercado, taxi..."></div>
-</div>
-<div class="fields">
-<div class="field"><label>💰 Monto real (S/)</label><input id="amount" type="number" min="0" step="0.01" placeholder="0.00"><div class="quick"><button data-add="10">+10</button><button data-add="50">+50</button><button data-add="100">+100</button><button data-add="200">+200</button></div></div>
-<div class="field"><label>🎯 Presupuesto (S/)</label><input id="budget" type="number" min="0" step="0.01" placeholder="0.00"></div>
-</div>
-<div class="step"><b>5️⃣ Estado</b><div class="choices" id="stateChoices"></div></div>
-<button class="save" id="save">🚀 GUARDAR REGISTRO</button>
-</div>
-
-<div class="title">⚡ Gastos fijos</div>
-<div class="card fixed"><h3>⚡ Cargar gastos fijos del mes</h3><p class="small">Alquiler S/300, comida S/400, colegio S/200 y servicios S/160. Se reparte 50/50 y se evita duplicar la carga.</p><button class="save" id="fixed">⚡ CARGAR GASTOS FIJOS DEL MES</button></div>
-
-<div class="title">📚 Historial único</div>
 <div class="card">
-<input id="search" class="field" style="width:100%;padding:13px;border:1px solid var(--border);border-radius:14px" placeholder="🔎 Buscar persona, categoría, detalle...">
-<div class="tablewrap" style="margin-top:12px"><table class="table"><thead><tr><th>ID</th><th>Fecha</th><th>Persona</th><th>Tipo</th><th>Categoría</th><th>Detalle</th><th>Real</th><th>Estado</th><th></th></tr></thead><tbody id="tbody"></tbody></table></div>
-<button class="btn" id="csv" style="margin-top:12px;width:100%">⬇️ Exportar historial CSV</button>
+
+  <div class="energy">
+    <div id="energyBar"></div>
+  </div>
+
+  <div class="energytext" id="energyText"></div>
+
 </div>
-<p class="small" style="text-align:center;padding:20px">💜 Los datos se guardan en este dispositivo mediante localStorage. Para sincronización entre celulares/PC se requiere una base de datos online.</p>
+
+
+<!-- =========================
+     KPI
+========================= -->
+
+<div class="title">
+  📊 Este mes
 </div>
+
+<div class="grid4">
+
+  <div class="card kpi green">
+    <div class="emoji">💰</div>
+    <div class="label">Ingreso que cubre el mes</div>
+    <div class="value" id="income"></div>
+  </div>
+
+  <div class="card kpi orange">
+    <div class="emoji">💸</div>
+    <div class="label">Gasto del mes</div>
+    <div class="value" id="expense"></div>
+  </div>
+
+  <div class="card kpi green">
+    <div class="emoji">🐷</div>
+    <div class="label">Ahorro del mes</div>
+    <div class="value" id="saving"></div>
+  </div>
+
+  <div class="card kpi fran">
+    <div class="emoji">✈️</div>
+    <div class="label">Fondo viajes del mes</div>
+    <div class="value" id="travel"></div>
+  </div>
+
+</div>
+
+
+<!-- =========================
+     DISPONIBLE POR PERSONA
+========================= -->
+
+<div class="title">
+  👨‍👩‍👧 ¿Cómo vamos cada uno?
+</div>
+
+<div class="people">
+
+  <div class="card dafne">
+
+    <div class="emoji">💗</div>
+
+    <div class="label">
+      Dafne — disponible
+    </div>
+
+    <div class="value" id="dafneAvail"></div>
+
+  </div>
+
+  <div class="card fran">
+
+    <div class="emoji">🦁</div>
+
+    <div class="label">
+      Francesco — disponible
+    </div>
+
+    <div class="value" id="franAvail"></div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     INFORMACIÓN DE FLUJO
+========================= -->
+
+<div class="title">
+  🧠 ¿Cómo se está calculando?
+</div>
+
+<div class="card">
+
+  <div class="note">
+
+    <b>Ingreso del mes:</b>
+    se consideran los ingresos cuyo
+    <b>mes que cubre</b> sea el mes seleccionado.
+
+    <br><br>
+
+    <b>Gastos:</b>
+    se consideran los movimientos cuyo
+    <b>mes que cubre</b> corresponda al mes seleccionado.
+
+    <br><br>
+
+    <b>Disponible:</b>
+    ingresos − gastos − ahorro − fondo de viajes.
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     GRÁFICOS
+========================= -->
+
+<div class="title">
+  📈 Mira tus números
+</div>
+
+<div class="charts">
+
+  <div class="card">
+
+    <h3>
+      🍕 Gastos por categoría
+    </h3>
+
+    <div class="chart-box">
+      <canvas id="pie"></canvas>
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <h3>
+      👥 Gastos por persona
+    </h3>
+
+    <div class="chart-box">
+      <canvas id="peopleChart"></canvas>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     TESOROS ACUMULADOS
+========================= -->
+
+<div class="title">
+  🌎 Tesoros acumulados
+</div>
+
+<div class="people">
+
+  <div class="card green">
+
+    <div class="emoji">
+      🐷
+    </div>
+
+    <div class="label">
+      Alcancía de emergencia
+    </div>
+
+    <div class="value" id="globalSaving"></div>
+
+    <div class="small">
+      Ahorro acumulado de todos los meses.
+    </div>
+
+  </div>
+
+  <div class="card fran">
+
+    <div class="emoji">
+      ✈️
+    </div>
+
+    <div class="label">
+      Meta de viajes
+    </div>
+
+    <div class="value" id="globalTravel"></div>
+
+    <div class="small" id="travelPct"></div>
+
+    <div class="energy" style="margin-top:9px">
+      <div id="travelBar"></div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     HISTORIAL GRÁFICO
+========================= -->
+
+<div class="title">
+  📉 Evolución histórica
+</div>
+
+<div class="card">
+
+  <div class="chart-box">
+    <canvas id="history"></canvas>
+  </div>
+
+</div>
+
+
+<!-- =========================
+     REGISTRAR MOVIMIENTO
+========================= -->
+
+<div class="title">
+  🚀 Registrar un movimiento
+</div>
+
+<div class="card form">
+
+  <!-- PERSONA -->
+
+  <div class="step">
+
+    <div class="step-title">
+      1️⃣ ¿Quién?
+    </div>
+
+    <div class="choices" id="personChoices"></div>
+
+  </div>
+
+
+  <!-- TIPO -->
+
+  <div class="step">
+
+    <div class="step-title">
+      2️⃣ ¿Qué es?
+    </div>
+
+    <div class="choices" id="typeChoices"></div>
+
+  </div>
+
+
+  <!-- CATEGORIA -->
+
+  <div class="step">
+
+    <div class="step-title">
+      3️⃣ ¿Qué categoría?
+    </div>
+
+    <div class="choices" id="catChoices"></div>
+
+  </div>
+
+
+  <!-- FECHA + MES CUBIERTO -->
+
+  <div class="fields">
+
+    <div class="field">
+
+      <label>
+        📅 Fecha real
+      </label>
+
+      <input
+        id="date"
+        type="date"
+      >
+
+      <div class="small" style="margin-top:6px">
+        Día en que realmente recibiste o realizaste el movimiento.
+      </div>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        🎯 Mes que cubre
+      </label>
+
+      <select id="coverageMonth"></select>
+
+      <div class="small" style="margin-top:6px">
+        El mes al que pertenece financieramente el movimiento.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- DETALLE -->
+
+  <div class="field">
+
+    <label>
+      📝 Detalle
+    </label>
+
+    <input
+      id="detail"
+      placeholder="Ej.: sueldo de julio, mercado, taxi..."
+    >
+
+  </div>
+
+
+  <!-- MONTO + PRESUPUESTO -->
+
+  <div class="fields">
+
+    <div class="field">
+
+      <label>
+        💰 Monto real (S/)
+      </label>
+
+      <input
+        id="amount"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="0.00"
+      >
+
+      <div class="quick">
+
+        <button type="button" data-add="10">
+          +10
+        </button>
+
+        <button type="button" data-add="50">
+          +50
+        </button>
+
+        <button type="button" data-add="100">
+          +100
+        </button>
+
+        <button type="button" data-add="200">
+          +200
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        🎯 Presupuesto (S/)
+      </label>
+
+      <input
+        id="budget"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="0.00"
+      >
+
+    </div>
+
+  </div>
+
+
+  <!-- ESTADO -->
+
+  <div class="step">
+
+    <div class="step-title">
+      5️⃣ Estado
+    </div>
+
+    <div class="choices" id="stateChoices"></div>
+
+  </div>
+
+
+  <!-- REGLA EXPLICADA -->
+
+  <div
+    id="salaryHint"
+    class="note"
+    style="display:none"
+  ></div>
+
+
+  <button
+    type="button"
+    class="save"
+    id="save"
+  >
+    🚀 GUARDAR REGISTRO
+  </button>
+
+</div>
+
+
+<!-- =========================
+     GASTOS FIJOS
+========================= -->
+
+<div class="title">
+  ⚡ Gastos fijos
+</div>
+
+<div class="card fixed">
+
+  <h3>
+    ⚡ Cargar gastos fijos del mes
+  </h3>
+
+  <p class="small">
+    Alquiler S/300, comida S/400, colegio S/200 y servicios S/160.
+    El sistema reparte cada gasto 50/50 entre Dafne y Francesco
+    y evita duplicar registros.
+  </p>
+
+  <div class="fixed-grid">
+
+    <div class="fixed-item">
+      🏠 <b>Alquiler</b>
+      <br>
+      S/ 300 total
+      <br>
+      <span class="small">
+        S/ 150 por persona
+      </span>
+    </div>
+
+    <div class="fixed-item">
+      🍕 <b>Comida</b>
+      <br>
+      S/ 400 total
+      <br>
+      <span class="small">
+        S/ 200 por persona
+      </span>
+    </div>
+
+    <div class="fixed-item">
+      🎒 <b>Colegio</b>
+      <br>
+      S/ 200 total
+      <br>
+      <span class="small">
+        S/ 100 por persona
+      </span>
+    </div>
+
+    <div class="fixed-item">
+      💡 <b>Servicios</b>
+      <br>
+      S/ 160 total
+      <br>
+      <span class="small">
+        S/ 80 por persona
+      </span>
+    </div>
+
+  </div>
+
+  <br>
+
+  <div class="fixed-total">
+    Total mensual: S/ 1,060
+  </div>
+
+  <p class="small">
+    Cada persona asume S/ 530.
+  </p>
+
+  <button
+    type="button"
+    class="save"
+    id="fixed"
+  >
+    ⚡ CARGAR GASTOS FIJOS DEL MES
+  </button>
+
+</div>
+
+
+<!-- =========================
+     CONFIGURACIÓN
+========================= -->
+
+<div class="title">
+  ⚙️ Configuración de la regla
+</div>
+
+<div class="card">
+
+  <div class="settings-grid">
+
+    <div class="setting">
+
+      <div class="setting-title">
+        💼 Tipo de movimiento
+      </div>
+
+      <div class="setting-value">
+        Ingreso → Sueldo
+      </div>
+
+      <div class="small">
+        La regla especial se aplica al sueldo.
+      </div>
+
+    </div>
+
+
+    <div class="setting">
+
+      <div class="setting-title">
+        📅 Día considerado fin de mes
+      </div>
+
+      <div class="setting-value">
+        Día 25
+      </div>
+
+      <div class="small">
+        Desde el día 25, el sistema propone el mes siguiente.
+      </div>
+
+    </div>
+
+
+    <div class="setting">
+
+      <div class="setting-title">
+        🔄 Regla
+      </div>
+
+      <div class="setting-value">
+        Mes siguiente
+      </div>
+
+      <div class="small">
+        Ej.: 31/07 → agosto.
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     HISTORIAL
+========================= -->
+
+<div class="title">
+  📚 Historial único
+</div>
+
+<div class="card">
+
+  <div class="search-row">
+
+    <input
+      id="search"
+      class="field"
+      style="width:100%;padding:13px;border:1px solid var(--border);border-radius:14px"
+      placeholder="🔎 Buscar persona, categoría, detalle, mes..."
+    >
+
+    <button
+      type="button"
+      class="btn btn-purple"
+      id="clearSearch"
+    >
+      ✖ Limpiar
+    </button>
+
+  </div>
+
+
+  <div
+    class="tablewrap"
+    style="margin-top:12px"
+  >
+
+    <table class="table">
+
+      <thead>
+
+        <tr>
+          <th>ID</th>
+          <th>Fecha real</th>
+          <th>Mes que cubre</th>
+          <th>Persona</th>
+          <th>Tipo</th>
+          <th>Categoría</th>
+          <th>Detalle</th>
+          <th>Presupuesto</th>
+          <th>Real</th>
+          <th>Estado</th>
+          <th></th>
+        </tr>
+
+      </thead>
+
+      <tbody id="tbody"></tbody>
+
+    </table>
+
+  </div>
+
+
+  <button
+    type="button"
+    class="btn"
+    id="csv"
+    style="margin-top:12px;width:100%"
+  >
+    ⬇️ Exportar historial CSV
+  </button>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<div class="footer">
+
+  <p class="small">
+    💜 Finanzas Familiares — Dafne & Francesco
+  </p>
+
+  <p class="small">
+    Los datos se guardan en este dispositivo mediante localStorage.
+    Para sincronización entre celulares/PC se requiere una base de datos online.
+  </p>
+
+</div>
+
+</div>
+
 
 <script>
-const KEY="finanzas_dafne_francesco_v1";
-const cats={
-"Sueldo":["💼","Sueldo"],"Casa/Alquiler":["🏠","Casa/Alquiler"],"Comida":["🍕","Comida"],
-"Bancos/Servicios":["💡","Bancos/Servicios"],"Colegio":["🎒","Colegio"],"Movilidad":["🚗","Movilidad"],
-"Salidas":["🎡","Salidas"],"Gustos":["🎁","Gustos"],"Deudas Terceros":["🤝","Deudas Terceros"],
-"Compras Casa":["🛒","Compras Casa"],"Ahorro General":["🐷","Ahorro General"],"Fondo Viajes":["✈️","Fondo Viajes"]};
-const types={Ingreso:["💵","Ingreso"],Gasto:["💸","Gasto"],Deuda:["💳","Deuda"],Ahorro:["🐷","Ahorro"],"Fondo Viajes":["✈️","Fondo Viajes"]};
-const people={Dafne:["💗","Dafne"],Francesco:["🦁","Francesco"]};
-const states={PAGADO:["✅","PAGADO"],PENDIENTE:["⏳","PENDIENTE"]};
-let data=JSON.parse(localStorage.getItem(KEY)||"null");
-if(!data){data=[
-["2026-08-01","Dafne","Ingreso","Sueldo","Sueldo agosto",2800,2800,"PAGADO"],
-["2026-08-01","Francesco","Ingreso","Sueldo","Sueldo agosto",3000,3000,"PAGADO"],
-["2026-08-02","Dafne","Gasto","Casa/Alquiler","Alquiler 50/50",150,150,"PAGADO"],
-["2026-08-02","Francesco","Gasto","Casa/Alquiler","Alquiler 50/50",150,150,"PAGADO"],
-["2026-08-03","Dafne","Gasto","Comida","Comida familiar",200,180,"PAGADO"],
-["2026-08-03","Francesco","Gasto","Comida","Comida familiar",200,210,"PAGADO"],
-["2026-08-04","Dafne","Gasto","Movilidad","Taxi y pasajes",100,70,"PAGADO"],
-["2026-08-04","Francesco","Gasto","Movilidad","Taxi y pasajes",100,85,"PAGADO"],
-["2026-08-05","Dafne","Ahorro","Ahorro General","Fondo de emergencia",150,150,"PAGADO"],
-["2026-08-05","Francesco","Ahorro","Ahorro General","Fondo de emergencia",200,200,"PAGADO"],
-["2026-08-05","Dafne","Fondo Viajes","Fondo Viajes","Meta viaje familiar",100,100,"PAGADO"],
-["2026-08-05","Francesco","Fondo Viajes","Fondo Viajes","Meta viaje familiar",150,150,"PAGADO"],
-["2026-07-03","Dafne","Ingreso","Sueldo","Sueldo julio",2750,2750,"PAGADO"],
-["2026-07-03","Francesco","Ingreso","Sueldo","Sueldo julio",3000,3000,"PAGADO"],
-["2026-07-10","Dafne","Gasto","Salidas","Salida familiar",180,165,"PAGADO"],
-["2026-07-12","Francesco","Gasto","Compras Casa","Compra de hogar",250,230,"PAGADO"],
-["2026-07-15","Dafne","Ahorro","Ahorro General","Ahorro julio",200,200,"PAGADO"],
-["2026-07-15","Francesco","Fondo Viajes","Fondo Viajes","Viaje julio",250,250,"PAGADO"],
-["2026-06-03","Dafne","Ingreso","Sueldo","Sueldo junio",2700,2700,"PAGADO"],
-["2026-06-03","Francesco","Ingreso","Sueldo","Sueldo junio",2900,2900,"PAGADO"],
-["2026-06-15","Dafne","Gasto","Gustos","Pequeños gustos",120,95,"PAGADO"],
-["2026-06-15","Francesco","Gasto","Bancos/Servicios","Internet y luz",180,180,"PAGADO"],
-["2026-06-20","Dafne","Ahorro","Ahorro General","Ahorro junio",180,180,"PAGADO"],
-["2026-06-20","Francesco","Fondo Viajes","Fondo Viajes","Viaje junio",200,200,"PAGADO"]].map((x,i)=>({id:i+1,date:x[0],person:x[1],type:x[2],cat:x[3],detail:x[4],budget:x[5],amount:x[6],state:x[7]}));save()}
-function save(){localStorage.setItem(KEY,JSON.stringify(data))}
-let selected=new Date().toISOString().slice(0,7), selPerson="Dafne",selType="Gasto",selCat="Comida",selState="PAGADO",charts={};
-const money=n=>"S/ "+Number(n||0).toLocaleString("es-PE",{minimumFractionDigits:2,maximumFractionDigits:2});
-function months(){let s=new Set(data.map(x=>x.date.slice(0,7)));s.add(selected);return [...s].sort().reverse()}
-function renderChoices(id,obj,current,setter){document.getElementById(id).innerHTML=Object.entries(obj).map(([k,v])=>`<button class="choice ${k===current?"active":""}" data-k="${k}"><span>${v[0]}</span>${v[1]}</button>`).join("");document.querySelectorAll("#"+id+" .choice").forEach(b=>b.onclick=()=>{setter(b.dataset.k);renderAll()})}
-function sum(arr,fn){return arr.reduce((a,x)=>a+(fn(x)?Number(x.amount):0),0)}
+
+/* ============================================================
+   FINANZAS FAMILIARES
+   DAFNE & FRANCESCO
+   ============================================================ */
+
+
+/* ============================================================
+   CONFIGURACIÓN GENERAL
+============================================================ */
+
+const KEY = "finanzas_dafne_francesco_v1";
+
+/*
+  Día desde el cual un sueldo se considera "cobrado a fin de mes".
+  
+  Ejemplo:
+  24/07 → normalmente cubre julio.
+  25/07 → propone agosto.
+  31/07 → propone agosto.
+*/
+const SALARY_CUTOFF_DAY = 25;
+
+
+/* ============================================================
+   CATEGORÍAS
+============================================================ */
+
+const cats = {
+
+  "Sueldo":[
+    "💼",
+    "Sueldo"
+  ],
+
+  "Casa/Alquiler":[
+    "🏠",
+    "Casa/Alquiler"
+  ],
+
+  "Comida":[
+    "🍕",
+    "Comida"
+  ],
+
+  "Bancos/Servicios":[
+    "💡",
+    "Bancos/Servicios"
+  ],
+
+  "Colegio":[
+    "🎒",
+    "Colegio"
+  ],
+
+  "Movilidad":[
+    "🚗",
+    "Movilidad"
+  ],
+
+  "Salidas":[
+    "🎡",
+    "Salidas"
+  ],
+
+  "Gustos":[
+    "🎁",
+    "Gustos"
+  ],
+
+  "Deudas Terceros":[
+    "🤝",
+    "Deudas Terceros"
+  ],
+
+  "Compras Casa":[
+    "🛒",
+    "Compras Casa"
+  ],
+
+  "Ahorro General":[
+    "🐷",
+    "Ahorro General"
+  ],
+
+  "Fondo Viajes":[
+    "✈️",
+    "Fondo Viajes"
+  ]
+
+};
+
+
+/* ============================================================
+   TIPOS
+============================================================ */
+
+const types = {
+
+  "Ingreso":[
+    "💵",
+    "Ingreso"
+  ],
+
+  "Gasto":[
+    "💸",
+    "Gasto"
+  ],
+
+  "Deuda":[
+    "💳",
+    "Deuda"
+  ],
+
+  "Ahorro":[
+    "🐷",
+    "Ahorro"
+  ],
+
+  "Fondo Viajes":[
+    "✈️",
+    "Fondo Viajes"
+  ]
+
+};
+
+
+/* ============================================================
+   PERSONAS
+============================================================ */
+
+const people = {
+
+  "Dafne":[
+    "💗",
+    "Dafne"
+  ],
+
+  "Francesco":[
+    "🦁",
+    "Francesco"
+  ]
+
+};
+
+
+/* ============================================================
+   ESTADOS
+============================================================ */
+
+const states = {
+
+  "PAGADO":[
+    "✅",
+    "PAGADO"
+  ],
+
+  "PENDIENTE":[
+    "⏳",
+    "PENDIENTE"
+  ]
+
+};
+
+
+/* ============================================================
+   VARIABLES
+============================================================ */
+
+let data = [];
+let selected = getCurrentMonth();
+
+let selPerson = "Dafne";
+let selType = "Gasto";
+let selCat = "Comida";
+let selState = "PAGADO";
+
+let charts = {};
+
+
+/* ============================================================
+   UTILIDADES DE FECHAS
+============================================================ */
+
+function getCurrentMonth(){
+
+  const now = new Date();
+
+  return now.getFullYear()
+    + "-"
+    + String(now.getMonth()+1).padStart(2,"0");
+
+}
+
+
+function monthName(month){
+
+  if(!month) return "";
+
+  return new Date(month+"-15").toLocaleDateString(
+    "es-PE",
+    {
+      month:"long",
+      year:"numeric"
+    }
+  );
+
+}
+
+
+function monthNameUpper(month){
+
+  return monthName(month).toUpperCase();
+
+}
+
+
+function nextMonth(month){
+
+  const d = new Date(month+"-15T12:00:00");
+
+  d.setMonth(d.getMonth()+1);
+
+  return d.getFullYear()
+    + "-"
+    + String(d.getMonth()+1).padStart(2,"0");
+
+}
+
+
+function previousMonth(month){
+
+  const d = new Date(month+"-15T12:00:00");
+
+  d.setMonth(d.getMonth()-1);
+
+  return d.getFullYear()
+    + "-"
+    + String(d.getMonth()+1).padStart(2,"0");
+
+}
+
+
+function dateToMonth(date){
+
+  if(!date) return getCurrentMonth();
+
+  return String(date).slice(0,7);
+
+}
+
+
+/* ============================================================
+   REGLA PRINCIPAL:
+   SUELDO DE FIN DE MES → MES SIGUIENTE
+============================================================ */
+
+function calculateCoverageMonth(date,type,cat){
+
+  const actualMonth = dateToMonth(date);
+
+  /*
+    Solo se aplica a:
+    Ingreso + Sueldo
+  */
+
+  if(
+    type !== "Ingreso" ||
+    cat !== "Sueldo"
+  ){
+
+    return actualMonth;
+
+  }
+
+
+  if(!date){
+
+    return actualMonth;
+
+  }
+
+
+  const day = Number(
+    String(date).slice(8,10)
+  );
+
+
+  if(day >= SALARY_CUTOFF_DAY){
+
+    return nextMonth(actualMonth);
+
+  }
+
+
+  return actualMonth;
+
+}
+
+
+/* ============================================================
+   MIGRACIÓN DE DATOS ANTIGUOS
+============================================================ */
+
+function migrateData(){
+
+  if(!Array.isArray(data)){
+
+    data = [];
+
+  }
+
+
+  data = data.map((x,index)=>{
+
+    const record = {
+
+      id:x.id ?? index+1,
+
+      date:x.date || getCurrentMonth()+"-01",
+
+      coverageMonth:
+        x.coverageMonth ||
+        calculateCoverageMonth(
+          x.date || getCurrentMonth()+"-01",
+          x.type || "Gasto",
+          x.cat || "Comida"
+        ),
+
+      person:x.person || "Dafne",
+
+      type:x.type || "Gasto",
+
+      cat:x.cat || "Comida",
+
+      detail:x.detail || "Sin detalle",
+
+      budget:Number(x.budget || 0),
+
+      amount:Number(x.amount || 0),
+
+      state:x.state || "PENDIENTE"
+
+    };
+
+
+    /*
+      Si un registro antiguo es un sueldo de fin de mes
+      y todavía no tenía coverageMonth, aplicamos la regla.
+    */
+
+    if(
+      !x.coverageMonth &&
+      record.type==="Ingreso" &&
+      record.cat==="Sueldo"
+    ){
+
+      record.coverageMonth =
+        calculateCoverageMonth(
+          record.date,
+          record.type,
+          record.cat
+        );
+
+    }
+
+
+    return record;
+
+  });
+
+
+  save();
+
+}
+
+
+/* ============================================================
+   CARGAR DATOS
+============================================================ */
+
+function loadData(){
+
+  const raw =
+    localStorage.getItem(KEY);
+
+  if(raw){
+
+    try{
+
+      data = JSON.parse(raw);
+
+    }catch(error){
+
+      console.error(
+        "Error leyendo localStorage:",
+        error
+      );
+
+      data = [];
+
+    }
+
+  }
+
+
+  /*
+    Si no existe información,
+    cargamos datos de ejemplo.
+  */
+
+  if(!Array.isArray(data) || data.length===0){
+
+    data = [
+
+      /*
+        SUELDO JULIO COBRADO A FIN DE MES
+        Y DESTINADO A AGOSTO.
+      */
+
+      {
+        id:1,
+        date:"2026-07-31",
+        coverageMonth:"2026-08",
+        person:"Dafne",
+        type:"Ingreso",
+        cat:"Sueldo",
+        detail:"Sueldo julio — cubre agosto",
+        budget:2800,
+        amount:2800,
+        state:"PAGADO"
+      },
+
+      {
+        id:2,
+        date:"2026-07-31",
+        coverageMonth:"2026-08",
+        person:"Francesco",
+        type:"Ingreso",
+        cat:"Sueldo",
+        detail:"Sueldo julio — cubre agosto",
+        budget:3000,
+        amount:3000,
+        state:"PAGADO"
+      },
+
+
+      /* AGOSTO */
+
+      {
+        id:3,
+        date:"2026-08-02",
+        coverageMonth:"2026-08",
+        person:"Dafne",
+        type:"Gasto",
+        cat:"Casa/Alquiler",
+        detail:"Alquiler 50/50",
+        budget:150,
+        amount:150,
+        state:"PAGADO"
+      },
+
+      {
+        id:4,
+        date:"2026-08-02",
+        coverageMonth:"2026-08",
+        person:"Francesco",
+        type:"Gasto",
+        cat:"Casa/Alquiler",
+        detail:"Alquiler 50/50",
+        budget:150,
+        amount:150,
+        state:"PAGADO"
+      },
+
+      {
+        id:5,
+        date:"2026-08-03",
+        coverageMonth:"2026-08",
+        person:"Dafne",
+        type:"Gasto",
+        cat:"Comida",
+        detail:"Comida familiar",
+        budget:200,
+        amount:180,
+        state:"PAGADO"
+      },
+
+      {
+        id:6,
+        date:"2026-08-03",
+        coverageMonth:"2026-08",
+        person:"Francesco",
+        type:"Gasto",
+        cat:"Comida",
+        detail:"Comida familiar",
+        budget:200,
+        amount:210,
+        state:"PAGADO"
+      },
+
+      {
+        id:7,
+        date:"2026-08-04",
+        coverageMonth:"2026-08",
+        person:"Dafne",
+        type:"Gasto",
+        cat:"Movilidad",
+        detail:"Taxi y pasajes",
+        budget:100,
+        amount:70,
+        state:"PAGADO"
+      },
+
+      {
+        id:8,
+        date:"2026-08-04",
+        coverageMonth:"2026-08",
+        person:"Francesco",
+        type:"Gasto",
+        cat:"Movilidad",
+        detail:"Taxi y pasajes",
+        budget:100,
+        amount:85,
+        state:"PAGADO"
+      },
+
+      {
+        id:9,
+        date:"2026-08-05",
+        coverageMonth:"2026-08",
+        person:"Dafne",
+        type:"Ahorro",
+        cat:"Ahorro General",
+        detail:"Fondo de emergencia",
+        budget:150,
+        amount:150,
+        state:"PAGADO"
+      },
+
+      {
+        id:10,
+        date:"2026-08-05",
+        coverageMonth:"2026-08",
+        person:"Francesco",
+        type:"Ahorro",
+        cat:"Ahorro General",
+        detail:"Fondo de emergencia",
+        budget:200,
+        amount:200,
+        state:"PAGADO"
+      },
+
+      {
+        id:11,
+        date:"2026-08-05",
+        coverageMonth:"2026-08",
+        person:"Dafne",
+        type:"Fondo Viajes",
+        cat:"Fondo Viajes",
+        detail:"Meta viaje familiar",
+        budget:100,
+        amount:100,
+        state:"PAGADO"
+      },
+
+      {
+        id:12,
+        date:"2026-08-05",
+        coverageMonth:"2026-08",
+        person:"Francesco",
+        type:"Fondo Viajes",
+        cat:"Fondo Viajes",
+        detail:"Meta viaje familiar",
+        budget:150,
+        amount:150,
+        state:"PAGADO"
+      },
+
+
+      /* JULIO */
+
+      {
+        id:13,
+        date:"2026-07-10",
+        coverageMonth:"2026-07",
+        person:"Dafne",
+        type:"Gasto",
+        cat:"Salidas",
+        detail:"Salida familiar",
+        budget:180,
+        amount:165,
+        state:"PAGADO"
+      },
+
+      {
+        id:14,
+        date:"2026-07-12",
+        coverageMonth:"2026-07",
+        person:"Francesco",
+        type:"Gasto",
+        cat:"Compras Casa",
+        detail:"Compra de hogar",
+        budget:250,
+        amount:230,
+        state:"PAGADO"
+      },
+
+      {
+        id:15,
+        date:"2026-07-15",
+        coverageMonth:"2026-07",
+        person:"Dafne",
+        type:"Ahorro",
+        cat:"Ahorro General",
+        detail:"Ahorro julio",
+        budget:200,
+        amount:200,
+        state:"PAGADO"
+      },
+
+      {
+        id:16,
+        date:"2026-07-15",
+        coverageMonth:"2026-07",
+        person:"Francesco",
+        type:"Fondo Viajes",
+        cat:"Fondo Viajes",
+        detail:"Viaje julio",
+        budget:250,
+        amount:250,
+        state:"PAGADO"
+      },
+
+
+      /* JUNIO */
+
+      {
+        id:17,
+        date:"2026-06-03",
+        coverageMonth:"2026-06",
+        person:"Dafne",
+        type:"Ingreso",
+        cat:"Sueldo",
+        detail:"Sueldo junio",
+        budget:2700,
+        amount:2700,
+        state:"PAGADO"
+      },
+
+      {
+        id:18,
+        date:"2026-06-03",
+        coverageMonth:"2026-06",
+        person:"Francesco",
+        type:"Ingreso",
+        cat:"Sueldo",
+        detail:"Sueldo junio",
+        budget:2900,
+        amount:2900,
+        state:"PAGADO"
+      },
+
+      {
+        id:19,
+        date:"2026-06-15",
+        coverageMonth:"2026-06",
+        person:"Dafne",
+        type:"Gasto",
+        cat:"Gustos",
+        detail:"Pequeños gustos",
+        budget:120,
+        amount:95,
+        state:"PAGADO"
+      },
+
+      {
+        id:20,
+        date:"2026-06-15",
+        coverageMonth:"2026-06",
+        person:"Francesco",
+        type:"Gasto",
+        cat:"Bancos/Servicios",
+        detail:"Internet y luz",
+        budget:180,
+        amount:180,
+        state:"PAGADO"
+      },
+
+      {
+        id:21,
+        date:"2026-06-20",
+        coverageMonth:"2026-06",
+        person:"Dafne",
+        type:"Ahorro",
+        cat:"Ahorro General",
+        detail:"Ahorro junio",
+        budget:180,
+        amount:180,
+        state:"PAGADO"
+      },
+
+      {
+        id:22,
+        date:"2026-06-20",
+        coverageMonth:"2026-06",
+        person:"Francesco",
+        type:"Fondo Viajes",
+        cat:"Fondo Viajes",
+        detail:"Viaje junio",
+        budget:200,
+        amount:200,
+        state:"PAGADO"
+      }
+
+    ];
+
+    save();
+
+  }else{
+
+    migrateData();
+
+  }
+
+}
+
+
+/* ============================================================
+   GUARDAR
+============================================================ */
+
+function save(){
+
+  localStorage.setItem(
+    KEY,
+    JSON.stringify(data)
+  );
+
+}
+
+
+/* ============================================================
+   DINERO
+============================================================ */
+
+function money(n){
+
+  return "S/ "
+    + Number(n || 0).toLocaleString(
+      "es-PE",
+      {
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+      }
+    );
+
+}
+
+
+/* ============================================================
+   SUMATORIA
+============================================================ */
+
+function sum(arr,fn){
+
+  return arr.reduce(
+    (total,x)=>{
+
+      return total +
+        (
+          fn(x)
+          ? Number(x.amount || 0)
+          : 0
+        );
+
+    },
+    0
+  );
+
+}
+
+
+/* ============================================================
+   ID
+============================================================ */
+
+function nextId(){
+
+  if(!data.length){
+
+    return 1;
+
+  }
+
+  return Math.max(
+    ...data.map(x=>Number(x.id)||0)
+  ) + 1;
+
+}
+
+
+/* ============================================================
+   MESES DISPONIBLES
+============================================================ */
+
+function months(){
+
+  const s = new Set();
+
+  data.forEach(x=>{
+
+    if(x.coverageMonth){
+
+      s.add(x.coverageMonth);
+
+    }
+
+  });
+
+
+  s.add(selected);
+
+
+  /*
+    También dejamos meses adyacentes disponibles
+    para poder registrar correctamente.
+  */
+
+  s.add(previousMonth(selected));
+  s.add(nextMonth(selected));
+
+
+  return [...s]
+    .filter(Boolean)
+    .sort()
+    .reverse();
+
+}
+
+
+/* ============================================================
+   RENDER DE OPCIONES
+============================================================ */
+
+function renderChoices(
+  id,
+  obj,
+  current,
+  setter
+){
+
+  const element =
+    document.getElementById(id);
+
+  element.innerHTML =
+    Object.entries(obj)
+      .map(([k,v])=>`
+
+        <button
+          type="button"
+          class="choice ${k===current?"active":""}"
+          data-k="${esc(k)}"
+        >
+
+          <span>${v[0]}</span>
+
+          ${esc(v[1])}
+
+        </button>
+
+      `)
+      .join("");
+
+
+  element
+    .querySelectorAll(".choice")
+    .forEach(button=>{
+
+      button.onclick=()=>{
+
+        setter(button.dataset.k);
+
+        /*
+          Cuando cambia el tipo o categoría,
+          actualizamos automáticamente la fecha/mes.
+        */
+
+        updateSalaryRule();
+
+        renderAll();
+
+      };
+
+    });
+
+}
+
+
+/* ============================================================
+   COBERTURA DEL FORMULARIO
+============================================================ */
+
+function populateCoverageMonths(){
+
+  const select =
+    document.getElementById(
+      "coverageMonth"
+    );
+
+
+  const current =
+    select.value || selected;
+
+
+  const list = new Set(
+    months()
+  );
+
+
+  list.add(selected);
+  list.add(previousMonth(selected));
+  list.add(nextMonth(selected));
+
+
+  select.innerHTML =
+    [...list]
+      .sort()
+      .reverse()
+      .map(m=>`
+
+        <option value="${m}">
+          ${monthNameUpper(m)}
+        </option>
+
+      `)
+      .join("");
+
+
+  if([...list].includes(current)){
+
+    select.value = current;
+
+  }else{
+
+    select.value = selected;
+
+  }
+
+}
+
+
+/* ============================================================
+   ACTUALIZAR REGLA DE SUELDO
+============================================================ */
+
+function updateSalaryRule(){
+
+  const dateInput =
+    document.getElementById("date");
+
+  const coverageSelect =
+    document.getElementById(
+      "coverageMonth"
+    );
+
+  const hint =
+    document.getElementById(
+      "salaryHint"
+    );
+
+
+  if(
+    !dateInput.value ||
+    selType!=="Ingreso" ||
+    selCat!=="Sueldo"
+  ){
+
+    hint.style.display="none";
+
+    return;
+
+  }
+
+
+  const day =
+    Number(
+      dateInput.value.slice(8,10)
+    );
+
+
+  const actual =
+    dateToMonth(
+      dateInput.value
+    );
+
+
+  if(day >= SALARY_CUTOFF_DAY){
+
+    const suggested =
+      nextMonth(actual);
+
+    coverageSelect.value =
+      suggested;
+
+
+    hint.style.display="block";
+
+    hint.innerHTML = `
+
+      💼 <b>Regla aplicada automáticamente.</b><br><br>
+
+      El sueldo fue recibido el
+      <b>${dateInput.value}</b>.
+
+      Como fue recibido a partir del día
+      <b>${SALARY_CUTOFF_DAY}</b>,
+      el sistema considera que corresponde
+      al cierre del mes.
+
+      <br><br>
+
+      💰 <b>Fecha real:</b>
+      ${dateInput.value}
+
+      <br>
+
+      🎯 <b>Mes que cubre:</b>
+      ${monthNameUpper(suggested)}
+
+    `;
+
+  }else{
+
+    coverageSelect.value =
+      actual;
+
+
+    hint.style.display="block";
+
+    hint.innerHTML = `
+
+      💼 Este sueldo fue recibido antes del día
+      <b>${SALARY_CUTOFF_DAY}</b>.
+
+      Por defecto se considera que cubre
+      <b>${monthNameUpper(actual)}</b>.
+
+      Puedes cambiarlo manualmente si corresponde.
+
+    `;
+
+  }
+
+}
+
+
+/* ============================================================
+   RENDER GENERAL
+============================================================ */
+
 function renderAll(){
-let ms=months(),m=document.getElementById("month");m.innerHTML=ms.map(x=>`<option value="${x}">${new Date(x+"-15").toLocaleDateString("es-PE",{month:"long",year:"numeric"}).toUpperCase()}</option>`).join("");m.value=selected;
-let z=data.filter(x=>x.date.slice(0,7)===selected), income=sum(z,x=>x.type==="Ingreso"),expense=sum(z,x=>x.type==="Gasto"),saving=sum(z,x=>x.type==="Ahorro"),travel=sum(z,x=>x.type==="Fondo Viajes"),available=income-expense-saving-travel;
-document.getElementById("income").textContent=money(income);document.getElementById("expense").textContent=money(expense);document.getElementById("saving").textContent=money(saving);document.getElementById("travel").textContent=money(travel);
-let pct=income?Math.max(0,Math.min(1,available/income)):0;document.getElementById("energyBar").style.width=(pct*100)+"%";document.getElementById("energyText").textContent=`🔋 ${money(available)} disponibles • ${(pct*100).toFixed(0)}% de energía`;
-for(let [id,p] of [["dafneAvail","Dafne"],["franAvail","Francesco"]]){let q=z.filter(x=>x.person===p);document.getElementById(id).textContent=money(sum(q,x=>x.type==="Ingreso")-sum(q,x=>["Gasto","Ahorro","Fondo Viajes"].includes(x.type)))}
-let gs=sum(data,x=>x.type==="Ahorro"),gt=sum(data,x=>x.type==="Fondo Viajes"),goal=5000,tp=Math.min(1,gt/goal);document.getElementById("globalSaving").textContent=money(gs);document.getElementById("globalTravel").textContent=money(gt)+" / "+money(goal);document.getElementById("travelPct").textContent=(tp*100).toFixed(0)+"% completado";document.getElementById("travelBar").style.width=(tp*100)+"%";
-renderChoices("personChoices",people,selPerson,x=>selPerson=x);renderChoices("typeChoices",types,selType,x=>selType=x);renderChoices("catChoices",cats,selCat,x=>selCat=x);renderChoices("stateChoices",states,selState,x=>selState=x);
-document.getElementById("date").value ||= new Date().toISOString().slice(0,10);
-drawCharts(z);renderTable();
+
+  /*
+    Selector de mes
+  */
+
+  const ms = months();
+
+  const monthSelect =
+    document.getElementById("month");
+
+
+  monthSelect.innerHTML =
+    ms.map(x=>`
+
+      <option value="${x}">
+        ${monthNameUpper(x)}
+      </option>
+
+    `)
+    .join("");
+
+
+  /*
+    Si el mes seleccionado ya no existe,
+    mantenemos el seleccionado.
+  */
+
+  monthSelect.value =
+    selected;
+
+
+  /*
+    MOVIMIENTOS DEL MES
+    IMPORTANTE:
+    Se filtra por coverageMonth,
+    NO por date.
+  */
+
+  const z =
+    data.filter(
+      x=>x.coverageMonth===selected
+    );
+
+
+  /*
+    INGRESOS
+  */
+
+  const income =
+    sum(
+      z,
+      x=>x.type==="Ingreso"
+    );
+
+
+  /*
+    GASTOS
+  */
+
+  const expense =
+    sum(
+      z,
+      x=>x.type==="Gasto"
+    );
+
+
+  /*
+    AHORRO
+  */
+
+  const saving =
+    sum(
+      z,
+      x=>x.type==="Ahorro"
+    );
+
+
+  /*
+    VIAJES
+  */
+
+  const travel =
+    sum(
+      z,
+      x=>x.type==="Fondo Viajes"
+    );
+
+
+  /*
+    DISPONIBLE
+  */
+
+  const available =
+    income -
+    expense -
+    saving -
+    travel;
+
+
+  /*
+    KPI
+  */
+
+  document.getElementById(
+    "income"
+  ).textContent =
+    money(income);
+
+
+  document.getElementById(
+    "expense"
+  ).textContent =
+    money(expense);
+
+
+  document.getElementById(
+    "saving"
+  ).textContent =
+    money(saving);
+
+
+  document.getElementById(
+    "travel"
+  ).textContent =
+    money(travel);
+
+
+  /*
+    ENERGÍA
+  */
+
+  const pct =
+    income > 0
+      ? Math.max(
+          0,
+          Math.min(
+            1,
+            available/income
+          )
+        )
+      : 0;
+
+
+  document.getElementById(
+    "energyBar"
+  ).style.width =
+    (pct*100)+"%";
+
+
+  document.getElementById(
+    "energyText"
+  ).textContent =
+    `🔋 ${money(available)} disponibles • ${(pct*100).toFixed(0)}% de energía`;
+
+
+  /*
+    DISPONIBLE POR PERSONA
+  */
+
+  for(
+    const [id,p] of [
+      ["dafneAvail","Dafne"],
+      ["franAvail","Francesco"]
+    ]
+  ){
+
+    const q =
+      z.filter(
+        x=>x.person===p
+      );
+
+
+    const personIncome =
+      sum(
+        q,
+        x=>x.type==="Ingreso"
+      );
+
+
+    const personOut =
+      sum(
+        q,
+        x=>[
+          "Gasto",
+          "Ahorro",
+          "Fondo Viajes"
+        ].includes(x.type)
+      );
+
+
+    const personAvailable =
+      personIncome -
+      personOut;
+
+
+    document.getElementById(id)
+      .textContent =
+      money(personAvailable);
+
+  }
+
+
+  /*
+    ACUMULADOS
+  */
+
+  const globalSaving =
+    sum(
+      data,
+      x=>x.type==="Ahorro"
+    );
+
+
+  const globalTravel =
+    sum(
+      data,
+      x=>x.type==="Fondo Viajes"
+    );
+
+
+  const goal = 5000;
+
+
+  const travelPct =
+    Math.min(
+      1,
+      globalTravel/goal
+    );
+
+
+  document.getElementById(
+    "globalSaving"
+  ).textContent =
+    money(globalSaving);
+
+
+  document.getElementById(
+    "globalTravel"
+  ).textContent =
+    money(globalTravel)
+    +" / "
+    +money(goal);
+
+
+  document.getElementById(
+    "travelPct"
+  ).textContent =
+    (travelPct*100).toFixed(0)
+    +"% completado";
+
+
+  document.getElementById(
+    "travelBar"
+  ).style.width =
+    (travelPct*100)+"%";
+
+
+  /*
+    FORMULARIO
+  */
+
+  renderChoices(
+    "personChoices",
+    people,
+    selPerson,
+    x=>selPerson=x
+  );
+
+
+  renderChoices(
+    "typeChoices",
+    types,
+    selType,
+    x=>selType=x
+  );
+
+
+  renderChoices(
+    "catChoices",
+    cats,
+    selCat,
+    x=>selCat=x
+  );
+
+
+  renderChoices(
+    "stateChoices",
+    states,
+    selState,
+    x=>selState=x
+  );
+
+
+  /*
+    FECHA
+  */
+
+  const dateInput =
+    document.getElementById("date");
+
+
+  if(!dateInput.value){
+
+    dateInput.value =
+      new Date()
+        .toISOString()
+        .slice(0,10);
+
+  }
+
+
+  populateCoverageMonths();
+
+
+  updateSalaryRule();
+
+
+  /*
+    GRÁFICOS
+  */
+
+  drawCharts(z);
+
+
+  /*
+    TABLA
+  */
+
+  renderTable();
+
 }
-function destroy(k){if(charts[k])charts[k].destroy()}
+
+
+/* ============================================================
+   DESTRUIR GRÁFICO
+============================================================ */
+
+function destroy(k){
+
+  if(charts[k]){
+
+    charts[k].destroy();
+
+    charts[k]=null;
+
+  }
+
+}
+
+
+/* ============================================================
+   GRÁFICOS
+============================================================ */
+
 function drawCharts(z){
-destroy("pie");charts.pie=new Chart(document.getElementById("pie"),{type:"doughnut",data:{labels:[...new Set(z.filter(x=>x.type==="Gasto").map(x=>x.cat))],datasets:[{data:[...new Set(z.filter(x=>x.type==="Gasto").map(x=>x.cat))].map(c=>sum(z,x=>x.type==="Gasto"&&x.cat===c))}]},options:{plugins:{legend:{position:"bottom"}}}});
-destroy("people");charts.people=new Chart(document.getElementById("peopleChart"),{type:"bar",data:{labels:["Dafne 💗","Francesco 🦁"],datasets:[{label:"Gastos S/",data:["Dafne","Francesco"].map(p=>sum(z,x=>x.type==="Gasto"&&x.person===p))}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
-let ms=[...new Set(data.map(x=>x.date.slice(0,7)))].sort(),labels=ms.map(x=>new Date(x+"-15").toLocaleDateString("es-PE",{month:"short",year:"numeric"}));
-destroy("history");charts.history=new Chart(document.getElementById("history"),{type:"line",data:{labels,datasets:["Ingreso","Gasto","Ahorro","Fondo Viajes"].map(t=>({label:t,data:ms.map(mm=>sum(data.filter(x=>x.date.slice(0,7)===mm),x=>x.type===t)),tension:.3}))},options:{responsive:true,scales:{y:{beginAtZero:true}}}});
+
+  /*
+    PIE
+  */
+
+  destroy("pie");
+
+
+  const expenseRecords =
+    z.filter(
+      x=>x.type==="Gasto"
+    );
+
+
+  const categories =
+    [
+      ...new Set(
+        expenseRecords.map(
+          x=>x.cat
+        )
+      )
+    ];
+
+
+  charts.pie =
+    new Chart(
+      document.getElementById("pie"),
+      {
+        type:"doughnut",
+
+        data:{
+
+          labels:
+            categories.length
+              ? categories
+              : ["Sin gastos"],
+
+          datasets:[{
+
+            data:
+              categories.length
+                ? categories.map(
+                    c=>
+                      sum(
+                        z,
+                        x=>
+                          x.type==="Gasto" &&
+                          x.cat===c
+                      )
+                  )
+                : [1]
+
+          }]
+
+        },
+
+        options:{
+
+          responsive:true,
+
+          maintainAspectRatio:false,
+
+          plugins:{
+
+            legend:{
+              position:"bottom"
+            }
+
+          }
+
+        }
+
+      }
+    );
+
+
+  /*
+    PERSONAS
+  */
+
+  destroy("people");
+
+
+  charts.people =
+    new Chart(
+      document.getElementById(
+        "peopleChart"
+      ),
+      {
+
+        type:"bar",
+
+        data:{
+
+          labels:[
+            "Dafne 💗",
+            "Francesco 🦁"
+          ],
+
+          datasets:[{
+
+            label:"Gastos S/",
+
+            data:[
+              "Dafne",
+              "Francesco"
+            ].map(
+              p=>
+                sum(
+                  z,
+                  x=>
+                    x.type==="Gasto" &&
+                    x.person===p
+                )
+            )
+
+          }]
+
+        },
+
+        options:{
+
+          responsive:true,
+
+          maintainAspectRatio:false,
+
+          plugins:{
+
+            legend:{
+              display:false
+            }
+
+          },
+
+          scales:{
+
+            y:{
+              beginAtZero:true
+            }
+
+          }
+
+        }
+
+      }
+    );
+
+
+  /*
+    HISTÓRICO
+    IMPORTANTE:
+    Se agrupa por coverageMonth.
+  */
+
+  const historyMonths =
+    [
+      ...new Set(
+        data.map(
+          x=>x.coverageMonth
+        )
+      )
+    ]
+    .filter(Boolean)
+    .sort();
+
+
+  const labels =
+    historyMonths.map(
+      x=>
+        new Date(
+          x+"-15"
+        ).toLocaleDateString(
+          "es-PE",
+          {
+            month:"short",
+            year:"numeric"
+          }
+        )
+    );
+
+
+  destroy("history");
+
+
+  charts.history =
+    new Chart(
+      document.getElementById(
+        "history"
+      ),
+      {
+
+        type:"line",
+
+        data:{
+
+          labels,
+
+          datasets:[
+            "Ingreso",
+            "Gasto",
+            "Ahorro",
+            "Fondo Viajes"
+          ].map(type=>({
+
+            label:type,
+
+            data:
+              historyMonths.map(
+                mm=>
+                  sum(
+                    data.filter(
+                      x=>
+                        x.coverageMonth===mm
+                    ),
+                    x=>
+                      x.type===type
+                  )
+              ),
+
+            tension:.3
+
+          }))
+
+        },
+
+        options:{
+
+          responsive:true,
+
+          maintainAspectRatio:false,
+
+          scales:{
+
+            y:{
+              beginAtZero:true
+            }
+
+          }
+
+        }
+
+      }
+
+    );
+
 }
+
+
+/* ============================================================
+   ESCAPE HTML
+============================================================ */
+
+function esc(s){
+
+  return String(
+    s ?? ""
+  ).replace(
+    /[&<>"']/g,
+    c=>({
+
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+
+    }[c])
+  );
+
+}
+
+
+/* ============================================================
+   TABLA
+============================================================ */
+
 function renderTable(){
-let q=(document.getElementById("search").value||"").toLowerCase(),rows=data.filter(x=>Object.values(x).join(" ").toLowerCase().includes(q)).sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id);
-document.getElementById("tbody").innerHTML=rows.map(x=>`<tr><td>${x.id}</td><td>${x.date}</td><td>${x.person}</td><td>${types[x.type]?.[0]||"📦"} ${x.type}</td><td>${cats[x.cat]?.[0]||"📦"} ${x.cat}</td><td>${esc(x.detail)}</td><td>${money(x.amount)}</td><td><span class="pill ${x.state==="PAGADO"?"paid":"pending"}">${x.state}</span></td><td><button class="danger" onclick="del(${x.id})">🗑️</button></td></tr>`).join("")||`<tr><td colspan="9" class="empty">No encontramos movimientos.</td></tr>`;
+
+  const q =
+    (
+      document.getElementById(
+        "search"
+      ).value || ""
+    )
+    .toLowerCase()
+    .trim();
+
+
+  const rows =
+    data
+      .filter(x=>{
+
+        const text =
+          [
+
+            x.id,
+            x.date,
+            x.coverageMonth,
+            monthName(x.coverageMonth),
+            x.person,
+            x.type,
+            x.cat,
+            x.detail,
+            x.budget,
+            x.amount,
+            x.state
+
+          ]
+          .join(" ")
+          .toLowerCase();
+
+
+        return text.includes(q);
+
+      })
+      .sort(
+        (a,b)=>
+          b.date.localeCompare(a.date)
+          ||
+          b.id-a.id
+      );
+
+
+  document.getElementById(
+    "tbody"
+  ).innerHTML =
+
+    rows.length
+
+      ?
+
+        rows.map(x=>`
+
+          <tr>
+
+            <td>
+              ${x.id}
+            </td>
+
+
+            <td>
+              ${esc(x.date)}
+            </td>
+
+
+            <td>
+
+              <span class="pill covered">
+
+                🎯
+                ${esc(
+                  monthNameUpper(
+                    x.coverageMonth
+                  )
+                )}
+
+              </span>
+
+            </td>
+
+
+            <td>
+              ${people[x.person]?.[0] || "👤"}
+              ${esc(x.person)}
+            </td>
+
+
+            <td>
+              ${types[x.type]?.[0] || "📦"}
+              ${esc(x.type)}
+            </td>
+
+
+            <td>
+              ${cats[x.cat]?.[0] || "📦"}
+              ${esc(x.cat)}
+            </td>
+
+
+            <td>
+              ${esc(x.detail)}
+            </td>
+
+
+            <td>
+              ${money(x.budget)}
+            </td>
+
+
+            <td>
+              <b>
+                ${money(x.amount)}
+              </b>
+            </td>
+
+
+            <td>
+
+              <span
+                class="pill ${
+                  x.state==="PAGADO"
+                    ? "paid"
+                    : "pending"
+                }"
+              >
+
+                ${states[x.state]?.[0] || "📌"}
+                ${esc(x.state)}
+
+              </span>
+
+            </td>
+
+
+            <td>
+
+              <button
+                type="button"
+                class="danger"
+                onclick="del(${x.id})"
+                title="Eliminar"
+              >
+                🗑️
+              </button>
+
+            </td>
+
+          </tr>
+
+        `).join("")
+
+      :
+
+        `
+          <tr>
+            <td
+              colspan="11"
+              class="empty"
+            >
+              No encontramos movimientos.
+            </td>
+          </tr>
+        `;
+
 }
-function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
-window.del=id=>{if(confirm("¿Eliminar este movimiento?")){data=data.filter(x=>x.id!==id);save();renderAll()}}
-document.getElementById("month").onchange=e=>{selected=e.target.value;renderAll()};
-document.getElementById("prev").onclick=()=>{let ms=months(),i=ms.indexOf(selected);selected=ms[Math.min(i+1,ms.length-1)];renderAll()};
-document.getElementById("next").onclick=()=>{let ms=months(),i=ms.indexOf(selected);selected=ms[Math.max(i-1,0)];renderAll()};
-document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>document.getElementById("amount").value=(Number(document.getElementById("amount").value)||0)+Number(b.dataset.add));
-document.getElementById("save").onclick=()=>{
-let amount=Number(document.getElementById("amount").value),budget=Number(document.getElementById("budget").value)||0,date=document.getElementById("date").value||new Date().toISOString().slice(0,10);
-if(!amount||amount<=0){alert("💡 Escribe un monto mayor que S/ 0.");return}
-data.push({id:data.length?Math.max(...data.map(x=>x.id))+1:1,date,person:selPerson,type:selType,cat:selCat,detail:document.getElementById("detail").value||"Sin detalle",budget,amount,state:selState});save();document.getElementById("amount").value="";document.getElementById("budget").value="";document.getElementById("detail").value="";selected=date.slice(0,7);renderAll();alert("🎉 ¡Guardado!");
+
+
+/* ============================================================
+   ELIMINAR
+============================================================ */
+
+window.del = function(id){
+
+  if(
+    !confirm(
+      "¿Eliminar este movimiento?\n\nEsta acción no se puede deshacer."
+    )
+  ){
+
+    return;
+
+  }
+
+
+  data =
+    data.filter(
+      x=>x.id!==id
+    );
+
+
+  save();
+
+  renderAll();
+
 };
-document.getElementById("fixed").onclick=()=>{
-let month=selected,items=[["Casa/Alquiler","Alquiler familiar 50/50",150],["Comida","Comida familiar 50/50",200],["Colegio","Colegio - parte familiar",100],["Bancos/Servicios","Servicios del hogar 50/50",80]],added=0;
-for(let [cat,detail,amt] of items)for(let person of ["Dafne","Francesco"]){if(!data.some(x=>x.date.startsWith(month)&&x.person===person&&x.cat===cat&&x.detail===detail&&x.amount===amt)){data.push({id:Math.max(...data.map(x=>x.id),0)+1,date:month+"-01",person,type:"Gasto",cat,detail,budget:amt,amount:amt,state:"PENDIENTE"});added++}}
-save();renderAll();alert(`⚡ Se agregaron ${added} movimientos sin duplicados.`);
+
+
+/* ============================================================
+   CAMBIO DE MES
+============================================================ */
+
+document.getElementById(
+  "month"
+).onchange = function(e){
+
+  selected =
+    e.target.value;
+
+  renderAll();
+
 };
-document.getElementById("search").oninput=renderTable;
-document.getElementById("csv").onclick=()=>{let head=["ID","Fecha","Periodo","Persona","Tipo","Categoría","Detalle","Presupuesto","Monto Real","Estado"],lines=[head,...data.map(x=>[x.id,x.date,x.date.slice(0,7),x.person,x.type,x.cat,x.detail,x.budget,x.amount,x.state])].map(r=>r.map(v=>`"${String(v).replaceAll('"','""')}"`).join(","));let a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+lines.join("\n")],{type:"text/csv;charset=utf-8"}));a.download="historial_finanzas_familiares.csv";a.click()};
+
+
+/* ============================================================
+   MES ANTERIOR
+============================================================ */
+
+document.getElementById(
+  "prev"
+).onclick = function(){
+
+  selected =
+    previousMonth(
+      selected
+    );
+
+  renderAll();
+
+};
+
+
+/* ============================================================
+   MES SIGUIENTE
+============================================================ */
+
+document.getElementById(
+  "next"
+).onclick = function(){
+
+  selected =
+    nextMonth(
+      selected
+    );
+
+  renderAll();
+
+};
+
+
+/* ============================================================
+   CAMBIO DE FECHA
+============================================================ */
+
+document.getElementById(
+  "date"
+).addEventListener(
+  "change",
+  function(){
+
+    /*
+      Si se cambia la fecha,
+      recalculamos automáticamente
+      el mes que cubre.
+    */
+
+    updateSalaryRule();
+
+  }
+);
+
+
+/* ============================================================
+   CAMBIO DE MES CUBIERTO
+============================================================ */
+
+document.getElementById(
+  "coverageMonth"
+).addEventListener(
+  "change",
+  function(){
+
+    const hint =
+      document.getElementById(
+        "salaryHint"
+      );
+
+
+    /*
+      Si el usuario cambia manualmente
+      la cobertura del sueldo, se respeta.
+    */
+
+    if(
+      selType==="Ingreso" &&
+      selCat==="Sueldo"
+    ){
+
+      hint.style.display="block";
+
+      hint.innerHTML = `
+
+        ✏️ <b>Mes cubierto seleccionado manualmente.</b>
+
+        <br><br>
+
+        Fecha real:
+        <b>
+          ${document.getElementById("date").value}
+        </b>
+
+        <br>
+
+        Mes que cubre:
+        <b>
+          ${monthNameUpper(
+            this.value
+          )}
+        </b>
+
+      `;
+
+    }
+
+  }
+);
+
+
+/* ============================================================
+   BOTONES RÁPIDOS
+============================================================ */
+
+document
+  .querySelectorAll("[data-add]")
+  .forEach(button=>{
+
+    button.onclick=function(){
+
+      const amount =
+        document.getElementById(
+          "amount"
+        );
+
+
+      amount.value =
+        (
+          Number(
+            amount.value
+          ) || 0
+        )
+        +
+        Number(
+          button.dataset.add
+        );
+
+    };
+
+  });
+
+
+/* ============================================================
+   GUARDAR REGISTRO
+============================================================ */
+
+document.getElementById(
+  "save"
+).onclick = function(){
+
+  const amount =
+    Number(
+      document.getElementById(
+        "amount"
+      ).value
+    );
+
+
+  const budget =
+    Number(
+      document.getElementById(
+        "budget"
+      ).value
+    ) || 0;
+
+
+  const date =
+    document.getElementById(
+      "date"
+    ).value
+    ||
+    new Date()
+      .toISOString()
+      .slice(0,10);
+
+
+  let coverageMonth =
+    document.getElementById(
+      "coverageMonth"
+    ).value;
+
+
+  /*
+    Validación de monto.
+  */
+
+  if(
+    !amount ||
+    amount<=0
+  ){
+
+    alert(
+      "💡 Escribe un monto mayor que S/ 0."
+    );
+
+    return;
+
+  }
+
+
+  /*
+    Si es sueldo, verificamos
+    la regla automáticamente.
+  */
+
+  if(
+    selType==="Ingreso" &&
+    selCat==="Sueldo"
+  ){
+
+    /*
+      Si el usuario no seleccionó nada,
+      aplicamos regla automática.
+    */
+
+    if(!coverageMonth){
+
+      coverageMonth =
+        calculateCoverageMonth(
+          date,
+          selType,
+          selCat
+        );
+
+    }
+
+  }else{
+
+    /*
+      Para los demás movimientos,
+      por defecto corresponde al mes
+      seleccionado en el formulario.
+    */
+
+    if(!coverageMonth){
+
+      coverageMonth =
+        dateToMonth(date);
+
+    }
+
+  }
+
+
+  const detail =
+    document.getElementById(
+      "detail"
+    ).value
+    ||
+    "Sin detalle";
+
+
+  /*
+    Creamos registro.
+  */
+
+  data.push({
+
+    id:nextId(),
+
+    date,
+
+    coverageMonth,
+
+    person:selPerson,
+
+    type:selType,
+
+    cat:selCat,
+
+    detail,
+
+    budget,
+
+    amount,
+
+    state:selState
+
+  });
+
+
+  save();
+
+
+  /*
+    Limpiar formulario.
+  */
+
+  document.getElementById(
+    "amount"
+  ).value="";
+
+
+  document.getElementById(
+    "budget"
+  ).value="";
+
+
+  document.getElementById(
+    "detail"
+  ).value="";
+
+
+  /*
+    El dashboard cambia al mes cubierto.
+  */
+
+  selected =
+    coverageMonth;
+
+
+  /*
+    Renderizar.
+  */
+
+  renderAll();
+
+
+  /*
+    Mensaje.
+  */
+
+  if(
+    selType==="Ingreso" &&
+    selCat==="Sueldo" &&
+    dateToMonth(date)!==coverageMonth
+  ){
+
+    alert(
+      "🎉 ¡Sueldo guardado!\n\n"
+      +
+      "📅 Fecha real: "
+      +date
+      +"\n"
+      +
+      "🎯 Cubre: "
+      +monthNameUpper(coverageMonth)
+    );
+
+  }else{
+
+    alert(
+      "🎉 ¡Movimiento guardado!"
+    );
+
+  }
+
+};
+
+
+/* ============================================================
+   GASTOS FIJOS
+============================================================ */
+
+document.getElementById(
+  "fixed"
+).onclick = function(){
+
+  const month =
+    selected;
+
+
+  /*
+    Gastos familiares totales:
+    Alquiler 300
+    Comida 400
+    Colegio 200
+    Servicios 160
+
+    Total = 1060
+
+    50/50:
+    Dafne 530
+    Francesco 530
+  */
+
+  const items = [
+
+    [
+      "Casa/Alquiler",
+      "Alquiler familiar 50/50",
+      150
+    ],
+
+    [
+      "Comida",
+      "Comida familiar 50/50",
+      200
+    ],
+
+    [
+      "Colegio",
+      "Colegio - parte familiar",
+      100
+    ],
+
+    [
+      "Bancos/Servicios",
+      "Servicios del hogar 50/50",
+      80
+    ]
+
+  ];
+
+
+  let added = 0;
+
+
+  for(
+    const [cat,detail,amt]
+    of items
+  ){
+
+    for(
+      const person
+      of [
+        "Dafne",
+        "Francesco"
+      ]
+    ){
+
+      /*
+        Evitar duplicados.
+      */
+
+      const exists =
+        data.some(
+          x=>
+            x.coverageMonth===month &&
+            x.person===person &&
+            x.cat===cat &&
+            x.detail===detail &&
+            Number(x.amount)===Number(amt)
+        );
+
+
+      if(!exists){
+
+        data.push({
+
+          id:nextId(),
+
+          /*
+            Los gastos fijos se pueden considerar
+            registrados el primer día del mes.
+          */
+
+          date:
+            month+"-01",
+
+          coverageMonth:
+            month,
+
+          person,
+
+          type:"Gasto",
+
+          cat,
+
+          detail,
+
+          budget:amt,
+
+          amount:amt,
+
+          state:"PENDIENTE"
+
+        });
+
+
+        added++;
+
+      }
+
+    }
+
+  }
+
+
+  save();
+
+  renderAll();
+
+
+  alert(
+    `⚡ Se agregaron ${added} movimientos sin duplicados.`
+  );
+
+};
+
+
+/* ============================================================
+   BUSCADOR
+============================================================ */
+
+document.getElementById(
+  "search"
+).oninput =
+  renderTable;
+
+
+/* ============================================================
+   LIMPIAR BUSCADOR
+============================================================ */
+
+document.getElementById(
+  "clearSearch"
+).onclick=function(){
+
+  document.getElementById(
+    "search"
+  ).value="";
+
+
+  renderTable();
+
+};
+
+
+/* ============================================================
+   EXPORTAR CSV
+============================================================ */
+
+document.getElementById(
+  "csv"
+).onclick=function(){
+
+  const head = [
+
+    "ID",
+    "Fecha Real",
+    "Mes que Cubre",
+    "Periodo",
+    "Persona",
+    "Tipo",
+    "Categoría",
+    "Detalle",
+    "Presupuesto",
+    "Monto Real",
+    "Estado"
+
+  ];
+
+
+  const lines = [
+
+    head,
+
+    ...data.map(x=>[
+
+      x.id,
+
+      x.date,
+
+      x.coverageMonth,
+
+      monthName(x.coverageMonth),
+
+      x.person,
+
+      x.type,
+
+      x.cat,
+
+      x.detail,
+
+      x.budget,
+
+      x.amount,
+
+      x.state
+
+    ])
+
+  ]
+  .map(
+    row=>
+      row.map(
+        value=>
+          `"${String(value ?? "")
+            .replaceAll('"','""')}"`
+      ).join(",")
+  );
+
+
+  const blob =
+    new Blob(
+      [
+        "\ufeff"
+        +
+        lines.join("\n")
+      ],
+      {
+        type:
+          "text/csv;charset=utf-8"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(
+      blob
+    );
+
+
+  const a =
+    document.createElement(
+      "a"
+    );
+
+
+  a.href=url;
+
+  a.download =
+    "historial_finanzas_familiares.csv";
+
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  a.remove();
+
+
+  URL.revokeObjectURL(url);
+
+};
+
+
+/* ============================================================
+   INICIO
+============================================================ */
+
+loadData();
+
 renderAll();
+
 </script>
+
 </body>
 </html>
