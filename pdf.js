@@ -6,7 +6,8 @@ const formatMoney = n => "S/ " + Number(n || 0).toLocaleString("es-PE", {
 });
 
 export function generatePDF(selectedPeriod) {
-    const { jsPDF } = window.jspdf || {};
+    // 1. Validar jsPDF
+    const jsPDF = window.jspdf ? window.jspdf.jsPDF : window.jsPDF;
     if (!jsPDF) {
         alert("La librería jsPDF no está disponible.");
         return;
@@ -14,17 +15,8 @@ export function generatePDF(selectedPeriod) {
 
     const doc = new jsPDF();
 
-    // 1. Obtener Hora y Fecha Actual en Tiempo Real
-    const now = new Date();
-    const formattedTime = now.toLocaleTimeString("es-PE", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true
-    });
-
-    // 2. Banner Superior Morado Oscuro
-    doc.setFillColor(44, 38, 86); // #2C2656
+    // 2. Banner Superior Morado Oscuro (#2C2656)
+    doc.setFillColor(44, 38, 86);
     doc.rect(0, 0, 210, 28, "F");
 
     // Título Principal (Blanco)
@@ -33,11 +25,11 @@ export function generatePDF(selectedPeriod) {
     doc.setTextColor(255, 255, 255);
     doc.text("Reporte Finanzas Familiares", 14, 13);
 
-    // Subtítulo con Periodo, Nombres y Hora de Generación
+    // Subtítulo con Periodo y Nombres
     doc.setFont("helvetica", "normal");
     doc.setFontSize(9.5);
     doc.setTextColor(215, 215, 225);
-    doc.text(`Periodo: ${selectedPeriod} | Dafne & Francesco   •   Hora: ${formattedTime}`, 14, 21);
+    doc.text(`Periodo: ${selectedPeriod} | Dafne & Francesco`, 14, 21);
 
     // 3. Sección: Resumen del Mes
     let y = 38;
@@ -54,12 +46,12 @@ export function generatePDF(selectedPeriod) {
     const travel = currentData.filter(x => x.type === "Fondo Viajes").reduce((a, b) => a + Number(b.amount || 0), 0);
     const available = income - expense - saving - travel;
 
-    // Caja de Resumen Con Fondo Suave y Bordes Redondeados
+    // Caja de Resumen Con Fondo Suave y Bordes Redondeados (#F5F5FC)
     y += 6;
     doc.setFillColor(245, 245, 252);
     doc.roundedRect(14, y, 182, 26, 3, 3, "F");
 
-    // Texto dentro de la caja de resumen
+    // Valores dentro de la caja
     doc.setFontSize(9.5);
 
     // Columna Izquierda
@@ -85,10 +77,10 @@ export function generatePDF(selectedPeriod) {
     doc.setTextColor(44, 38, 86);
     doc.text("Detalle de Movimientos", 14, y);
 
-    // Tabla de Movimientos (Incluye Fecha del Movimiento y Fecha/Hora de Ingreso)
+    // Filas con Fecha del Movimiento, Fecha de Registro y Hora
     const tableRows = currentData.map(x => [
         x.date || "-",
-        x.createdDate || x.createdAt || x.date || "-", // Fecha en que se ingresó la info
+        x.createdDate || x.createdAt || x.date || "-",
         x.time || x.hora || "—",
         x.person || "-",
         x.cat || "-",
@@ -97,10 +89,13 @@ export function generatePDF(selectedPeriod) {
         x.state || "PAGADO"
     ]);
 
-    if (typeof doc.autoTable === "function") {
-        doc.autoTable({
+    // Ejecutar autoTable garantizando la compatibilidad del plugin
+    const autoTable = doc.autoTable || (window.jspdf ? window.jspdf.autoTable : null);
+    
+    if (typeof autoTable === "function") {
+        autoTable.call(doc, {
             startY: y + 4,
-            head: [["F. Movimiento", "F. Ingreso", "Hora", "Persona", "Categoría", "Detalle", "Monto", "Estado"]],
+            head: [["Fecha", "F. Registro", "Hora", "Persona", "Categoría", "Detalle", "Monto", "Estado"]],
             body: tableRows,
             theme: "plain",
             styles: {
@@ -114,14 +109,14 @@ export function generatePDF(selectedPeriod) {
                 fontStyle: "bold"
             },
             columnStyles: {
-                0: { cellWidth: 22 },
+                0: { cellWidth: 20 },
                 1: { cellWidth: 22 },
                 2: { cellWidth: 16 },
-                3: { cellWidth: 22 },
-                4: { cellWidth: 26 },
-                5: { cellWidth: 40 },
+                3: { cellWidth: 20 },
+                4: { cellWidth: 24 },
+                5: { cellWidth: 42 },
                 6: { cellWidth: 20, halign: "right" },
-                7: { cellWidth: 16, halign: "right" }
+                7: { cellWidth: 18, halign: "right" }
             }
         });
     }
