@@ -6,23 +6,16 @@ const formatMoney = n => "S/ " + Number(n || 0).toLocaleString("es-PE", {
 });
 
 export function generatePDF(selectedPeriod) {
-    // 1. Validar la disponibilidad de jsPDF (cargado desde CDN en index.html)
     const { jsPDF } = window.jspdf || {};
     if (!jsPDF) {
-        alert("La librería jsPDF no está disponible. Asegúrate de incluir los scripts en tu HTML.");
+        alert("La librería jsPDF no está disponible.");
         return;
     }
 
     const doc = new jsPDF();
 
-    // 2. Obtener la Fecha y Hora en tiempo real para el encabezado
+    // 1. Obtener Hora y Fecha Actual en Tiempo Real
     const now = new Date();
-    const formattedDate = now.toLocaleDateString("es-PE", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-    });
     const formattedTime = now.toLocaleTimeString("es-PE", {
         hour: "2-digit",
         minute: "2-digit",
@@ -30,97 +23,109 @@ export function generatePDF(selectedPeriod) {
         hour12: true
     });
 
-    const dateCapitalized = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+    // 2. Banner Superior Morado Oscuro
+    doc.setFillColor(44, 38, 86); // #2C2656
+    doc.rect(0, 0, 210, 28, "F");
 
-    // 3. Filtrar los movimientos del periodo seleccionado
-    const currentData = data.filter(x => (x.period || (x.date && x.date.slice(0, 7))) === selectedPeriod);
-
-    // 4. Encabezado del PDF
+    // Título Principal (Blanco)
     doc.setFont("helvetica", "bold");
     doc.setFontSize(18);
-    doc.text("Reporte Financiero Familiar", 14, 18);
+    doc.setTextColor(255, 255, 255);
+    doc.text("Reporte Finanzas Familiares", 14, 13);
 
+    // Subtítulo con Periodo, Nombres y Hora de Generación
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(11);
-    doc.setTextColor(100);
-    doc.text(`Periodo: ${selectedPeriod}`, 14, 25);
+    doc.setFontSize(9.5);
+    doc.setTextColor(215, 215, 225);
+    doc.text(`Periodo: ${selectedPeriod} | Dafne & Francesco   •   Hora: ${formattedTime}`, 14, 21);
 
-    // Fecha y hora de generación
-    doc.setFontSize(9);
-    doc.setTextColor(120);
-    doc.text(`Generado el: ${dateCapitalized} a las ${formattedTime}`, 14, 31);
+    // 3. Sección: Resumen del Mes
+    let y = 38;
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(13);
+    doc.setTextColor(44, 38, 86);
+    doc.text("Resumen del Mes", 14, y);
 
-    doc.setDrawColor(200);
-    doc.line(14, 34, 196, 34);
-
-    // 5. Totales
+    // Cálculos de Totales
+    const currentData = data.filter(x => (x.period || (x.date && x.date.slice(0, 7))) === selectedPeriod);
     const income = currentData.filter(x => x.type === "Ingreso").reduce((a, b) => a + Number(b.amount || 0), 0);
     const expense = currentData.filter(x => x.type === "Gasto").reduce((a, b) => a + Number(b.amount || 0), 0);
     const saving = currentData.filter(x => x.type === "Ahorro").reduce((a, b) => a + Number(b.amount || 0), 0);
     const travel = currentData.filter(x => x.type === "Fondo Viajes").reduce((a, b) => a + Number(b.amount || 0), 0);
     const available = income - expense - saving - travel;
 
-    // 6. Tabla Resumen (usando autoTable)
+    // Caja de Resumen Con Fondo Suave y Bordes Redondeados
+    y += 6;
+    doc.setFillColor(245, 245, 252);
+    doc.roundedRect(14, y, 182, 26, 3, 3, "F");
+
+    // Texto dentro de la caja de resumen
+    doc.setFontSize(9.5);
+
+    // Columna Izquierda
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(60, 60, 80);
+    doc.text(`Ingresos Totales: ${formatMoney(income)}`, 20, y + 8);
+    doc.text(`Ahorro General: ${formatMoney(saving)}`, 20, y + 15);
+    
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(44, 38, 86);
+    doc.text(`Disponible Neto: ${formatMoney(available)}`, 20, y + 22);
+
+    // Columna Derecha
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(60, 60, 80);
+    doc.text(`Gastos Totales: ${formatMoney(expense)}`, 110, y + 8);
+    doc.text(`Fondo Viajes: ${formatMoney(travel)}`, 110, y + 15);
+
+    // 4. Sección: Detalle de Movimientos
+    y += 36;
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(13);
+    doc.setTextColor(44, 38, 86);
+    doc.text("Detalle de Movimientos", 14, y);
+
+    // Tabla de Movimientos (Incluye Fecha del Movimiento y Fecha/Hora de Ingreso)
+    const tableRows = currentData.map(x => [
+        x.date || "-",
+        x.createdDate || x.createdAt || x.date || "-", // Fecha en que se ingresó la info
+        x.time || x.hora || "—",
+        x.person || "-",
+        x.cat || "-",
+        x.detail || "-",
+        formatMoney(x.amount),
+        x.state || "PAGADO"
+    ]);
+
     if (typeof doc.autoTable === "function") {
         doc.autoTable({
-            startY: 38,
-            head: [["Ingresos Totales", "Gastos Totales", "Ahorro", "Fondo Viajes", "Disponible"]],
-            body: [[
-                formatMoney(income),
-                formatMoney(expense),
-                formatMoney(saving),
-                formatMoney(travel),
-                formatMoney(available)
-            ]],
-            theme: "grid",
-            styles: { fontSize: 9, halign: "center" },
-            headStyles: { fillColor: [41, 128, 185], textColor: 255 }
-        });
-
-        // 7. Tabla Detallada con Hora
-        const tableRows = currentData.map(x => [
-            x.id || "-",
-            x.date || "-",
-            x.time || x.hora || "—",
-            x.person || "-",
-            x.type || "-",
-            x.cat || "-",
-            x.detail || "Sin detalle",
-            formatMoney(x.amount),
-            x.state || "PENDIENTE"
-        ]);
-
-        doc.autoTable({
-            startY: doc.lastAutoTable.finalY + 10,
-            head: [["ID", "Fecha", "Hora", "Persona", "Tipo", "Categoría", "Detalle", "Monto", "Estado"]],
+            startY: y + 4,
+            head: [["F. Movimiento", "F. Ingreso", "Hora", "Persona", "Categoría", "Detalle", "Monto", "Estado"]],
             body: tableRows,
-            theme: "striped",
-            styles: { fontSize: 8 },
-            headStyles: { fillColor: [52, 73, 94], textColor: 255 },
+            theme: "plain",
+            styles: {
+                fontSize: 8,
+                textColor: [50, 50, 60],
+                cellPadding: 2.5
+            },
+            headStyles: {
+                fillColor: [235, 235, 245],
+                textColor: [44, 38, 86],
+                fontStyle: "bold"
+            },
             columnStyles: {
-                0: { cellWidth: 10 },
-                1: { cellWidth: 20 },
-                2: { cellWidth: 18 },
-                3: { cellWidth: 20 },
-                4: { cellWidth: 18 },
-                5: { cellWidth: 22 },
-                6: { cellWidth: 44 },
-                7: { cellWidth: 20, halign: "right" },
-                8: { cellWidth: 20, halign: "center" }
+                0: { cellWidth: 22 },
+                1: { cellWidth: 22 },
+                2: { cellWidth: 16 },
+                3: { cellWidth: 22 },
+                4: { cellWidth: 26 },
+                5: { cellWidth: 40 },
+                6: { cellWidth: 20, halign: "right" },
+                7: { cellWidth: 16, halign: "right" }
             }
-        });
-    } else {
-        // Fallback simple si autotable no está disponible
-        let y = 45;
-        doc.setFontSize(9);
-        doc.setTextColor(0);
-        currentData.forEach(x => {
-            const timeStr = x.time || x.hora || "—";
-            doc.text(`${x.date} ${timeStr} | ${x.person} | ${x.type} | ${x.cat}: ${formatMoney(x.amount)} (${x.state})`, 14, y);
-            y += 6;
         });
     }
 
-    // 8. Descarga del PDF
+    // Guardar archivo
     doc.save(`reporte_finanzas_${selectedPeriod}.pdf`);
 }
