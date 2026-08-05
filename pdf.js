@@ -1,4 +1,3 @@
-import { data, people, types, cats } from "./database.js";
 
 /* =====================================================
    UTILIDADES
