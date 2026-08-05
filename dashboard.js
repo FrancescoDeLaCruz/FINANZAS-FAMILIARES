@@ -182,50 +182,60 @@ export function renderAll() {
 }
 
 /* =====================================================
-   RENDER TABLA E HISTORIAL
+   RENDER TABLA E HISTORIAL (CON COLUMNA HORA)
 ===================================================== */
 export function renderTable() {
     const searchVal = (document.getElementById("search")?.value || "").toLowerCase();
 
     const filteredRows = data
         .filter(x => Object.values(x).join(" ").toLowerCase().includes(searchVal))
-        .sort((a, b) => String(b.date).localeCompare(String(a.date)) || (b.id - a.id));
+        .sort((a, b) => {
+            const dateCompare = String(b.date || "").localeCompare(String(a.date || ""));
+            if (dateCompare !== 0) return dateCompare;
+            const timeA = a.time || a.hora || "";
+            const timeB = b.time || b.hora || "";
+            return timeB.localeCompare(timeA) || (b.id - a.id);
+        });
 
     const tbody = document.getElementById("tbody");
     if (!tbody) return;
 
     if (filteredRows.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="11" class="empty">No encontramos movimientos.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="12" class="empty">No encontramos movimientos.</td></tr>`;
         return;
     }
 
-    tbody.innerHTML = filteredRows.map(x => `
-        <tr>
-            <td>${x.id || "-"}</td>
-            <td>${x.date || "-"}</td>
-            <td>${x.period || (x.date ? x.date.slice(0, 7) : "-")}</td>
-            <td>${people[x.person]?.[0] || ""} ${x.person}</td>
-            <td>${types[x.type]?.[0] || "📦"} ${x.type}</td>
-            <td>${cats[x.cat]?.[0] || "📦"} ${x.cat}</td>
-            <td>${escapeHTML(x.detail)}</td>
-            <td>${formatMoney(x.budget)}</td>
-            <td>${formatMoney(x.amount)}</td>
-            <td>
-                <span class="pill ${x.state === "PAGADO" ? "paid" : "pending"}">
-                    ${x.state === "PAGADO" ? "✅ PAGADO" : "⏳ PENDIENTE"}
-                </span>
-            </td>
-            <td>
-                <div class="actions">
-                    ${x.state === "PENDIENTE"
-                        ? `<button class="action-btn pay" data-fpid="${x.firestoreId}" data-id="${x.id}">✅ Pagar</button>`
-                        : `<button class="action-btn unpay" data-fpid="${x.firestoreId}" data-id="${x.id}">⏳ Pendiente</button>`
-                    }
-                    <button class="action-btn danger" data-del-fpid="${x.firestoreId}" data-del-id="${x.id}">🗑️</button>
-                </div>
-            </td>
-        </tr>
-    `).join("");
+    tbody.innerHTML = filteredRows.map(x => {
+        const timeDisplay = x.time || x.hora || "—";
+        return `
+            <tr>
+                <td>${x.id || "-"}</td>
+                <td>${x.date || "-"}</td>
+                <td><b>${timeDisplay}</b></td>
+                <td>${x.period || (x.date ? x.date.slice(0, 7) : "-")}</td>
+                <td>${people[x.person]?.[0] || ""} ${x.person}</td>
+                <td>${types[x.type]?.[0] || "📦"} ${x.type}</td>
+                <td>${cats[x.cat]?.[0] || "📦"} ${x.cat}</td>
+                <td>${escapeHTML(x.detail)}</td>
+                <td>${formatMoney(x.budget)}</td>
+                <td>${formatMoney(x.amount)}</td>
+                <td>
+                    <span class="pill ${x.state === "PAGADO" ? "paid" : "pending"}">
+                        ${x.state === "PAGADO" ? "✅ PAGADO" : "⏳ PENDIENTE"}
+                    </span>
+                </td>
+                <td>
+                    <div class="actions">
+                        ${x.state === "PENDIENTE"
+                            ? `<button class="action-btn pay" data-fpid="${x.firestoreId}" data-id="${x.id}">✅ Pagar</button>`
+                            : `<button class="action-btn unpay" data-fpid="${x.firestoreId}" data-id="${x.id}">⏳ Pendiente</button>`
+                        }
+                        <button class="action-btn danger" data-del-fpid="${x.firestoreId}" data-del-id="${x.id}">🗑️</button>
+                    </div>
+                </td>
+            </tr>
+        `;
+    }).join("");
 
     // Asignar Event Listeners a los botones de la tabla
     tbody.querySelectorAll(".pay").forEach(btn => {
@@ -347,7 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
         for (const [cat, detail, amt] of items) {
             for (const person of ["Dafne", "Francesco"]) {
                 const exists = data.some(x => 
-                    (x.period || x.date.slice(0, 7)) === selectedPeriod &&
+                    (x.period || (x.date && x.date.slice(0, 7))) === selectedPeriod &&
                     x.person === person &&
                     x.cat === cat &&
                     x.detail === detail
@@ -382,13 +392,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 8. Exportar CSV
     document.getElementById("csv").onclick = () => {
-        const head = ["ID", "Fecha", "Periodo", "Persona", "Tipo", "Categoría", "Detalle", "Presupuesto", "Monto Real", "Estado"];
+        const head = ["ID", "Fecha", "Hora", "Periodo", "Persona", "Tipo", "Categoría", "Detalle", "Presupuesto", "Monto Real", "Estado"];
         const lines = [
             head,
             ...data.map(x => [
                 x.id,
                 x.date,
-                x.period || x.date.slice(0, 7),
+                x.time || x.hora || "-",
+                x.period || (x.date ? x.date.slice(0, 7) : "-"),
                 x.person,
                 x.type,
                 x.cat,
@@ -402,7 +413,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const blob = new Blob(["\ufeff" + lines.join("\n")], { type: "text/csv;charset=utf-8" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
-        link.download = "historial_finanzas_familiares.csv";
+        link.download = `historial_finanzas_${selectedPeriod}.csv`;
         link.click();
     };
 
