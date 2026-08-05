@@ -1,120 +1,126 @@
+import { data } from "./database.js";
 
-/* =====================================================
-   UTILIDADES
-===================================================== */
 const formatMoney = n => "S/ " + Number(n || 0).toLocaleString("es-PE", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
 });
 
-/* =====================================================
-   GENERACIÓN DE REPORTES PDF
-===================================================== */
-export async function generatePDF(selectedPeriod) {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({
-        orientation: "portrait",
-        unit: "mm",
-        format: "a4"
+export function generatePDF(selectedPeriod) {
+    // 1. Validar la disponibilidad de jsPDF (cargado desde CDN en index.html)
+    const { jsPDF } = window.jspdf || {};
+    if (!jsPDF) {
+        alert("La librería jsPDF no está disponible. Asegúrate de incluir los scripts en tu HTML.");
+        return;
+    }
+
+    const doc = new jsPDF();
+
+    // 2. Obtener la Fecha y Hora en tiempo real para el encabezado
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString("es-PE", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    });
+    const formattedTime = now.toLocaleTimeString("es-PE", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
     });
 
-    // Filtrar datos del periodo seleccionado
-    const periodData = data.filter(x => (x.period || x.date.slice(0, 7)) === selectedPeriod);
+    const dateCapitalized = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 
-    // Cálculos de totales
-    const income = periodData.filter(x => x.type === "Ingreso").reduce((a, b) => a + Number(b.amount || 0), 0);
-    const expense = periodData.filter(x => x.type === "Gasto").reduce((a, b) => a + Number(b.amount || 0), 0);
-    const saving = periodData.filter(x => x.type === "Ahorro").reduce((a, b) => a + Number(b.amount || 0), 0);
-    const travel = periodData.filter(x => x.type === "Fondo Viajes").reduce((a, b) => a + Number(b.amount || 0), 0);
-    const balance = income - expense - saving - travel;
+    // 3. Filtrar los movimientos del periodo seleccionado
+    const currentData = data.filter(x => (x.period || (x.date && x.date.slice(0, 7))) === selectedPeriod);
 
-    // Encabezado del documento
-    doc.setFillColor(48, 43, 89); // #302b59
-    doc.rect(0, 0, 210, 30, "F");
-    
-    doc.setTextColor(255, 255, 255);
+    // 4. Encabezado del PDF
+    doc.setFont("helvetica", "bold");
     doc.setFontSize(18);
-    doc.setFont("helvetica", "bold");
-    doc.text("Reporte Finanzas Familiares", 14, 15);
+    doc.text("Reporte Financiero Familiar", 14, 18);
 
+    doc.setFont("helvetica", "normal");
     doc.setFontSize(11);
-    doc.setFont("helvetica", "normal");
-    doc.text(`Periodo: ${selectedPeriod} | Dafne & Francesco`, 14, 23);
+    doc.setTextColor(100);
+    doc.text(`Periodo: ${selectedPeriod}`, 14, 25);
 
-    // Resumen de KPIs
-    let y = 40;
-    doc.setTextColor(41, 36, 71);
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "bold");
-    doc.text("Resumen del Mes", 14, y);
-
-    y += 8;
-    doc.setFontSize(10);
-    doc.setFont("helvetica", "normal");
-    
-    doc.setFillColor(246, 244, 255);
-    doc.roundedRect(14, y, 182, 25, 3, 3, "F");
-
-    y += 7;
-    doc.text(`Ingresos Totales: ${formatMoney(income)}`, 20, y);
-    doc.text(`Gastos Totales: ${formatMoney(expense)}`, 110, y);
-    
-    y += 8;
-    doc.text(`Ahorro General: ${formatMoney(saving)}`, 20, y);
-    doc.text(`Fondo Viajes: ${formatMoney(travel)}`, 110, y);
-
-    y += 8;
-    doc.setFont("helvetica", "bold");
-    doc.text(`Disponible Neto: ${formatMoney(balance)}`, 20, y);
-
-    // Tabla de Detalle
-    y += 15;
-    doc.setFontSize(14);
-    doc.text("Detalle de Movimientos", 14, y);
-
-    y += 8;
+    // Fecha y hora de generación
     doc.setFontSize(9);
-    doc.setFont("helvetica", "bold");
-    doc.setFillColor(233, 229, 246);
-    doc.rect(14, y, 182, 7, "F");
+    doc.setTextColor(120);
+    doc.text(`Generado el: ${dateCapitalized} a las ${formattedTime}`, 14, 31);
 
-    doc.text("Fecha", 16, y + 5);
-    doc.text("Persona", 42, y + 5);
-    doc.text("Categoría", 72, y + 5);
-    doc.text("Detalle", 112, y + 5);
-    doc.text("Monto", 162, y + 5);
-    doc.text("Estado", 182, y + 5);
+    doc.setDrawColor(200);
+    doc.line(14, 34, 196, 34);
 
-    y += 8;
-    doc.setFont("helvetica", "normal");
+    // 5. Totales
+    const income = currentData.filter(x => x.type === "Ingreso").reduce((a, b) => a + Number(b.amount || 0), 0);
+    const expense = currentData.filter(x => x.type === "Gasto").reduce((a, b) => a + Number(b.amount || 0), 0);
+    const saving = currentData.filter(x => x.type === "Ahorro").reduce((a, b) => a + Number(b.amount || 0), 0);
+    const travel = currentData.filter(x => x.type === "Fondo Viajes").reduce((a, b) => a + Number(b.amount || 0), 0);
+    const available = income - expense - saving - travel;
 
-    if (periodData.length === 0) {
-        doc.text("No existen movimientos registrados en este periodo.", 16, y + 5);
-    } else {
-        periodData.forEach(item => {
-            if (y > 270) { // Salto de página
-                doc.addPage();
-                y = 20;
+    // 6. Tabla Resumen (usando autoTable)
+    if (typeof doc.autoTable === "function") {
+        doc.autoTable({
+            startY: 38,
+            head: [["Ingresos Totales", "Gastos Totales", "Ahorro", "Fondo Viajes", "Disponible"]],
+            body: [[
+                formatMoney(income),
+                formatMoney(expense),
+                formatMoney(saving),
+                formatMoney(travel),
+                formatMoney(available)
+            ]],
+            theme: "grid",
+            styles: { fontSize: 9, halign: "center" },
+            headStyles: { fillColor: [41, 128, 185], textColor: 255 }
+        });
+
+        // 7. Tabla Detallada con Hora
+        const tableRows = currentData.map(x => [
+            x.id || "-",
+            x.date || "-",
+            x.time || x.hora || "—",
+            x.person || "-",
+            x.type || "-",
+            x.cat || "-",
+            x.detail || "Sin detalle",
+            formatMoney(x.amount),
+            x.state || "PENDIENTE"
+        ]);
+
+        doc.autoTable({
+            startY: doc.lastAutoTable.finalY + 10,
+            head: [["ID", "Fecha", "Hora", "Persona", "Tipo", "Categoría", "Detalle", "Monto", "Estado"]],
+            body: tableRows,
+            theme: "striped",
+            styles: { fontSize: 8 },
+            headStyles: { fillColor: [52, 73, 94], textColor: 255 },
+            columnStyles: {
+                0: { cellWidth: 10 },
+                1: { cellWidth: 20 },
+                2: { cellWidth: 18 },
+                3: { cellWidth: 20 },
+                4: { cellWidth: 18 },
+                5: { cellWidth: 22 },
+                6: { cellWidth: 44 },
+                7: { cellWidth: 20, halign: "right" },
+                8: { cellWidth: 20, halign: "center" }
             }
-
-            doc.text(String(item.date || ""), 16, y + 4);
-            doc.text(String(item.person || ""), 42, y + 4);
-            doc.text(String(item.cat || "").slice(0, 18), 72, y + 4);
-            doc.text(String(item.detail || "").slice(0, 24), 112, y + 4);
-            doc.text(formatMoney(item.amount), 162, y + 4);
-            doc.text(String(item.state || ""), 182, y + 4);
-
-            doc.setDrawColor(233, 229, 246);
-            doc.line(14, y + 6, 196, y + 6);
-            y += 8;
+        });
+    } else {
+        // Fallback simple si autotable no está disponible
+        let y = 45;
+        doc.setFontSize(9);
+        doc.setTextColor(0);
+        currentData.forEach(x => {
+            const timeStr = x.time || x.hora || "—";
+            doc.text(`${x.date} ${timeStr} | ${x.person} | ${x.type} | ${x.cat}: ${formatMoney(x.amount)} (${x.state})`, 14, y);
+            y += 6;
         });
     }
 
-    // Pie de página
-    doc.setFontSize(8);
-    doc.setTextColor(119, 113, 142);
-    doc.text("Generado automáticamente por la App de Finanzas Familiares", 14, 287);
-
-    // Descargar archivo
-    doc.save(`Reporte_Finanzas_${selectedPeriod}.pdf`);
+    // 8. Descarga del PDF
+    doc.save(`reporte_finanzas_${selectedPeriod}.pdf`);
 }
