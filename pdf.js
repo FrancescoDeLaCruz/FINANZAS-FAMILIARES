@@ -1,121 +1,83 @@
-import { data, people, types, cats } from "./database.js";
-
-/* =====================================================
-   UTILIDADES
-===================================================== */
-const formatMoney = n => "S/ " + Number(n || 0).toLocaleString("es-PE", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-});
-
-/* =====================================================
-   GENERACIÓN DE REPORTES PDF
-===================================================== */
-export async function generatePDF(selectedPeriod) {
+// Generación de reportes PDF usando jsPDF y autoTable
+export function generarPDF(movimientos, resumen) {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({
-        orientation: "portrait",
-        unit: "mm",
-        format: "a4"
-    });
+    const doc = new jsPDF();
 
-    // Filtrar datos del periodo seleccionado
-    const periodData = data.filter(x => (x.period || x.date.slice(0, 7)) === selectedPeriod);
+    const fechaActual = new Date();
+    const periodo = `${fechaActual.getFullYear()}-${String(fechaActual.getMonth() + 1).padStart(2, '0')}`;
 
-    // Cálculos de totales
-    const income = periodData.filter(x => x.type === "Ingreso").reduce((a, b) => a + Number(b.amount || 0), 0);
-    const expense = periodData.filter(x => x.type === "Gasto").reduce((a, b) => a + Number(b.amount || 0), 0);
-    const saving = periodData.filter(x => x.type === "Ahorro").reduce((a, b) => a + Number(b.amount || 0), 0);
-    const travel = periodData.filter(x => x.type === "Fondo Viajes").reduce((a, b) => a + Number(b.amount || 0), 0);
-    const balance = income - expense - saving - travel;
+    // Encabezado
+    doc.setFillColor(44, 43, 82); // Color oscuro
+    doc.rect(0, 0, 210, 30, 'F');
 
-    // Encabezado del documento
-    doc.setFillColor(48, 43, 89); // #302b59
-    doc.rect(0, 0, 210, 30, "F");
-    
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(18);
-    doc.setFont("helvetica", "bold");
-    doc.text("💜 Reporte Finanzas Familiares", 14, 15);
+    doc.text("Reporte Finanzas Familiares", 14, 16);
 
-    doc.setFontSize(11);
-    doc.setFont("helvetica", "normal");
-    doc.text(`Periodo: ${selectedPeriod} | Dafne & Francesco`, 14, 23);
-
-    // Resumen de KPIs
-    let y = 40;
-    doc.setTextColor(41, 36, 71);
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "bold");
-    doc.text("📊 Resumen del Mes", 14, y);
-
-    y += 8;
     doc.setFontSize(10);
-    doc.setFont("helvetica", "normal");
-    
-    doc.setFillColor(246, 244, 255);
-    doc.roundedRect(14, y, 182, 25, 3, 3, "F");
+    doc.text(`Periodo: ${periodo} | Dafne & Francesco`, 14, 24);
 
-    y += 7;
-    doc.text(`Ingresos Totales: ${formatMoney(income)}`, 20, y);
-    doc.text(`Gastos Totales: ${formatMoney(expense)}`, 110, y);
-    
-    y += 8;
-    doc.text(`Ahorro General: ${formatMoney(saving)}`, 20, y);
-    doc.text(`Fondo Viajes: ${formatMoney(travel)}`, 110, y);
-
-    y += 8;
-    doc.setFont("helvetica", "bold");
-    doc.text(`Disponible Neto: ${formatMoney(balance)}`, 20, y);
-
-    // Tabla de Detalle
-    y += 15;
+    // Sección: Resumen del Mes
+    doc.setTextColor(44, 43, 82);
     doc.setFontSize(14);
-    doc.text("📝 Detalle de Movimientos", 14, y);
+    doc.setFont(undefined, 'bold');
+    doc.text("Resumen del Mes", 14, 42);
 
-    y += 8;
-    doc.setFontSize(9);
-    doc.setFont("helvetica", "bold");
-    doc.setFillColor(233, 229, 246);
-    doc.rect(14, y, 182, 7, "F");
+    // Cuadro de Resumen
+    doc.setFillColor(245, 246, 250);
+    doc.roundedRect(14, 47, 182, 35, 3, 3, 'F');
 
-    doc.text("Fecha", 16, y + 5);
-    doc.text("Persona", 42, y + 5);
-    doc.text("Categoría", 72, y + 5);
-    doc.text("Detalle", 112, y + 5);
-    doc.text("Monto", 162, y + 5);
-    doc.text("Estado", 182, y + 5);
+    doc.setFontSize(10);
+    doc.setFont(undefined, 'normal');
+    doc.setTextColor(50, 50, 50);
 
-    y += 8;
-    doc.setFont("helvetica", "normal");
+    doc.text(`Ingresos Totales: S/ ${resumen.ingresos.toFixed(2)}`, 20, 56);
+    doc.text(`Gastos Totales: S/ ${resumen.gastos.toFixed(2)}`, 110, 56);
 
-    if (periodData.length === 0) {
-        doc.text("No existen movimientos registrados en este periodo.", 16, y + 5);
-    } else {
-        periodData.forEach(item => {
-            if (y > 270) { // Salto de página
-                doc.addPage();
-                y = 20;
-            }
+    doc.text(`Ahorro General: S/ ${resumen.ahorro.toFixed(2)}`, 20, 64);
+    doc.text(`Fondo Viajes: S/ ${resumen.viajes.toFixed(2)}`, 110, 64);
 
-            doc.text(String(item.date || ""), 16, y + 4);
-            doc.text(String(item.person || ""), 42, y + 4);
-            doc.text(String(item.cat || "").slice(0, 18), 72, y + 4);
-            doc.text(String(item.detail || "").slice(0, 24), 112, y + 4);
-            doc.text(formatMoney(item.amount), 162, y + 4);
-            doc.text(String(item.state || ""), 182, y + 4);
+    doc.setFont(undefined, 'bold');
+    doc.text(`Disponible Neto: S/ ${resumen.disponible.toFixed(2)}`, 20, 74);
 
-            doc.setDrawColor(233, 229, 246);
-            doc.line(14, y + 6, 196, y + 6);
-            y += 8;
-        });
-    }
+    // Sección: Detalle de Movimientos
+    doc.setFontSize(14);
+    doc.setTextColor(44, 43, 82);
+    doc.text("Detalle de Movimientos", 14, 95);
 
-    // Pie de página
-    doc.setFontSize(8);
-    doc.setTextColor(119, 113, 142);
-    doc.text("Generado automáticamente por la App de Finanzas Familiares", 14, 287);
+    // Mapeo de datos para la tabla
+    const filasTabla = movimientos.map(m => [
+        m.fecha || '',
+        m.persona || '',
+        m.categoria || '',
+        m.detalle || '',
+        `S/ ${Number(m.monto || 0).toFixed(2)}`,
+        (m.estado || '').toUpperCase()
+    ]);
 
-    // Descargar archivo
-    doc.save(`Reporte_Finanzas_${selectedPeriod}.pdf`);
+    // Generar Tabla
+    doc.autoTable({
+        startY: 100,
+        head: [['Fecha', 'Persona', 'Categoría', 'Detalle', 'Monto', 'Estado']],
+        body: filasTabla,
+        headStyles: {
+            fillColor: [230, 230, 245],
+            textColor: [44, 43, 82],
+            fontStyle: 'bold'
+        },
+        alternateRowStyles: {
+            fillColor: [250, 250, 252]
+        },
+        styles: {
+            fontSize: 9,
+            cellPadding: 3
+        },
+        columnStyles: {
+            4: { halign: 'right' },
+            5: { halign: 'center' }
+        }
+    });
+
+    // Guardar archivo PDF
+    doc.save(`Reporte_Finanzas_${periodo}.pdf`);
 }
