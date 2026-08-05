@@ -53,6 +53,19 @@ export const states = {
 };
 
 /* =====================================================
+   HELPER: HORA ACTUAL
+===================================================== */
+function getCurrentTime() {
+    const now = new Date();
+    return now.toLocaleTimeString("es-PE", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+    });
+}
+
+/* =====================================================
    ESCUCHAR CAMBIOS EN TIEMPO REAL (FIRESTORE)
 ===================================================== */
 export function initDataListener(onDataChangedCallback) {
@@ -90,11 +103,20 @@ function loadLocalStorageData() {
    OPERACIONES CRUD
 ===================================================== */
 
-// 1. AGREGAR REGISTRO
+// 1. AGREGAR REGISTRO (Guarda Fecha y Hora)
 export async function addMovement(movement) {
     // Generar ID numérico único
     const newNumId = data.length ? Math.max(...data.map(x => Number(x.id) || 0)) + 1 : 1;
-    const newRecord = { ...movement, id: newNumId };
+    
+    // Asignar hora exacta si no viene provista
+    const time = movement.time || getCurrentTime();
+
+    const newRecord = { 
+        ...movement, 
+        id: newNumId,
+        time: time,
+        createdAt: new Date().toISOString()
+    };
 
     try {
         await addDoc(collection(db, COLLECTION_NAME), newRecord);
@@ -139,4 +161,33 @@ export async function deleteMovement(firestoreId, numId) {
     // Fallback local
     data = data.filter(x => x.id !== numId && x.firestoreId !== firestoreId);
     localStorage.setItem(LOCAL_KEY, JSON.stringify(data));
+}
+
+// 4. REGISTRAR GASTOS FIJOS DEL MES
+export async function addFixedExpenses(selectedPeriod, dateString) {
+    const currentTime = getCurrentTime();
+    const fixedList = [
+        { detail: "🏠 Alquiler", amount: 150, budget: 150, cat: "Casa/Alquiler" },
+        { detail: "🍕 Comida", amount: 200, budget: 200, cat: "Comida" },
+        { detail: "🎒 Colegio", amount: 200, budget: 200, cat: "Colegio" }
+    ];
+
+    const peopleList = ["Dafne", "Francesco"];
+
+    for (const person of peopleList) {
+        for (const fixed of fixedList) {
+            await addMovement({
+                person: person,
+                type: "Gasto",
+                cat: fixed.cat,
+                date: dateString,
+                time: currentTime,
+                period: selectedPeriod,
+                detail: `${fixed.detail} (Gasto Fijo)`,
+                amount: fixed.amount,
+                budget: fixed.budget,
+                state: "PENDIENTE"
+            });
+        }
+    }
 }
